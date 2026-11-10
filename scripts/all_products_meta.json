@@ -1,0 +1,1775 @@
+[
+  {
+    "file": "nongshim.ts",
+    "id": "shin-ramyun",
+    "name": "신라면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-the-red",
+    "name": "신라면 더 레드",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#7f1d1d",
+    "text": "#fef2f2"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-black",
+    "name": "신라면 블랙",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#1c1917",
+    "text": "#facc15"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-black-tofu-kimchi",
+    "name": "신라면 블랙 두부김치",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#991b1b",
+    "text": "#fef08a"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-non-frying",
+    "name": "신라면 건면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-toomba",
+    "name": "신라면 툼바",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#be123c",
+    "text": "#fff1f2"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "chapagetti",
+    "name": "짜파게티",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#451a03",
+    "text": "#fef3c7"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "spicy-chapagetti",
+    "name": "사천 짜파게티",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#831843",
+    "text": "#fdf2f8"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "neoguri",
+    "name": "너구리 (얼큰한맛)",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#c2410c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "neoguri-mild",
+    "name": "순한 너구리",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#0284c7",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "angry-neoguri",
+    "name": "앵그리 너구리 (3배 매운맛)",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "kaguri",
+    "name": "카구리 (카레너구리)",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#eab308",
+    "text": "#713f12"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "anseongtangmyeon",
+    "name": "안성탕면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#d97706",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "sunhagun-anseong",
+    "name": "순하군 안성탕면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#f59e0b",
+    "text": "#78350f"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "sari-gomtang",
+    "name": "사리곰탕면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#e2e8f0",
+    "text": "#1e293b"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "myeolchi-kalguksu",
+    "name": "멸치칼국수",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#15803d",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "ojingeo-jjamppong",
+    "name": "오징어짬뽕",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "baehongdong",
+    "name": "배홍동 비빔면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#ef4444",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "mupama",
+    "name": "무파마 탕면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#b45309",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "gamjamyeon",
+    "name": "감자면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#ca8a04",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "chal-bibimmyeon",
+    "name": "찰비빔면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#2563eb",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "budae-jjigae",
+    "name": "보글보글 부대찌개면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "doongji-dongchimi",
+    "name": "둥지냉면 동치미물냉면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#0369a1",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-ramyun-cup-big",
+    "name": "신라면 큰사발면",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-ramyun-cup-small",
+    "name": "신라면 컵 (소컵)",
+    "manufacturer": "농심",
+    "packageType": "CUP_SMALL",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "yukgaejang-sabal",
+    "name": "육개장 사발면",
+    "manufacturer": "농심",
+    "packageType": "BOWL",
+    "bg": "#e11d48",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "kimchi-sabal",
+    "name": "김치 사발면",
+    "manufacturer": "농심",
+    "packageType": "BOWL",
+    "bg": "#dc2626",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "fried-udon-cup",
+    "name": "튀김우동 큰사발면",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#047857",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "chapagetti-beombeok",
+    "name": "짜파게티 범벅 (소컵)",
+    "manufacturer": "농심",
+    "packageType": "CUP_SMALL",
+    "bg": "#78350f",
+    "text": "#fef3c7"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "noodlefit-tteokbokki",
+    "name": "누들핏 떡볶이국물맛",
+    "manufacturer": "농심",
+    "packageType": "CUP_SMALL",
+    "bg": "#e11d48",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-stir-fry",
+    "name": "신라면 볶음면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-stir-fry-cup",
+    "name": "신라면 볶음면 큰사발",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "chapagetti-the-black",
+    "name": "짜파게티 더 블랙",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#171717",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "baehongdong-kalbim",
+    "name": "배홍동 쫄쫄면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#dc2626",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "myeolchi-kalguksu-spicy",
+    "name": "얼큰장칼국수",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#c0392b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "sari-gomtang-cup",
+    "name": "사리곰탕 큰사발",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#2980b9",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "ojingeo-jjamppong-cup",
+    "name": "오징어짬뽕 큰사발",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#d35400",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "anseongtangmyeon-cup",
+    "name": "안성탕면 컵",
+    "manufacturer": "농심",
+    "packageType": "CUP_SMALL",
+    "bg": "#e67e22",
+    "text": "#2c3e50"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "neoguri-cup",
+    "name": "얼큰한 너구리 큰사발",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#c0392b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "shin-black-cup",
+    "name": "신라면 블랙사발",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#1c2833",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "saewootang-cup",
+    "name": "새우탕 큰사발",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#e67e22",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "doongji-bibim",
+    "name": "둥지 비빔냉면",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#c0392b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "gamjamyeon-cup",
+    "name": "감자면 큰사발",
+    "manufacturer": "농심",
+    "packageType": "CUP_LARGE",
+    "bg": "#7f8c8d",
+    "text": "#ffffff"
+  },
+  {
+    "file": "nongshim.ts",
+    "id": "noodlefit-eomuk",
+    "name": "누들핏 어묵탕맛",
+    "manufacturer": "농심",
+    "packageType": "CUP_SMALL",
+    "bg": "#2980b9",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "samyang-ramen",
+    "name": "삼양라면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "samyang-spicy",
+    "name": "삼양라면 매운맛",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "buldak",
+    "name": "불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#18181b",
+    "text": "#ef4444"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "haek-buldak",
+    "name": "핵불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#09090b",
+    "text": "#dc2626"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "carbo-buldak",
+    "name": "까르보불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#f472b6",
+    "text": "#831843"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "cheese-buldak",
+    "name": "치즈불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#f59e0b",
+    "text": "#78350f"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "rose-buldak",
+    "name": "로제불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#fb7185",
+    "text": "#881337"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "nagasaki-jjamppong",
+    "name": "나가사키 짬뽕",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#f1f5f9",
+    "text": "#334155"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "ganjjamppong",
+    "name": "간짬뽕",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#c2410c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "maengtaeng-black-pepper",
+    "name": "맵탱 흑후추소고기라면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#18181b",
+    "text": "#f59e0b"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "maengtaeng-garlic-shellfish",
+    "name": "맵탱 마늘조개라면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#0369a1",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "samyang-beef",
+    "name": "삼양 쇠고기면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#b45309",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "delicious-ramen",
+    "name": "맛있는라면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#ca8a04",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "buldak-cup-big",
+    "name": "불닭볶음면 큰컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#18181b",
+    "text": "#ef4444"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "carbo-buldak-cup",
+    "name": "까르보불닭볶음면 큰컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#f472b6",
+    "text": "#831843"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "samyang-cup-big",
+    "name": "삼양라면 큰컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "four-cheese-buldak",
+    "name": "4가지치즈 불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#f59e0b",
+    "text": "#78350f"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "four-cheese-buldak-cup",
+    "name": "4가지치즈 불닭볶음면 큰컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#f59e0b",
+    "text": "#78350f"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "habanero-lime-buldak",
+    "name": "하바네로 라임 불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#84cc16",
+    "text": "#14532d"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "yakisoba-buldak",
+    "name": "야키소바 불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#78350f",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "jjajang-buldak",
+    "name": "짜장 불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#292524",
+    "text": "#22c55e"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "curry-buldak",
+    "name": "커리 불닭볶음면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#ca8a04",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "buldak-stew",
+    "name": "불닭볶음탕면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "light-buldak",
+    "name": "라이트 불닭볶음면 (건면)",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#dc2626",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "sutamyeon",
+    "name": "수타면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#b45309",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "samyang-spicy-cup",
+    "name": "삼양라면 매운맛 큰컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "buldak-cup-small",
+    "name": "불닭볶음면 소컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_SMALL",
+    "bg": "#171717",
+    "text": "#ef4444"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "cheese-buldak-cup",
+    "name": "치즈 불닭볶음면 큰컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#eab308",
+    "text": "#713f12"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "ganjjamppong-cup",
+    "name": "간짬뽕 큰컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#c2410c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "samyang.ts",
+    "id": "nagasaki-jjamppong-cup",
+    "name": "나가사키 짬뽕 큰컵",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#475569",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-ramen-spicy",
+    "name": "진라면 매운맛",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#1d4ed8",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-ramen-mild",
+    "name": "진라면 순한맛",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#eab308",
+    "text": "#713f12"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "yeol-ramyun",
+    "name": "열라면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "ma-yeol",
+    "name": "마열라면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#9a3412",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "chamkkae",
+    "name": "참깨라면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#ca8a04",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "snack-myeon",
+    "name": "스낵면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#eab308",
+    "text": "#1e293b"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-jjamppong",
+    "name": "진짬뽕",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#c2410c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-jjajang",
+    "name": "진짜장",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#451a03",
+    "text": "#fef3c7"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "odongtong",
+    "name": "오동통면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "ottogi-spaghetti",
+    "name": "스파게티 (봉지)",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#dc2626",
+    "text": "#fef08a"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-bibimmyeon",
+    "name": "진비빔면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#2563eb",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "beef-seaweed-ramen",
+    "name": "쇠고기미역국라면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#065f46",
+    "text": "#d1fae5"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "bukeotguk-ramen",
+    "name": "북엇국라면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#78716c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-ramen-spicy-cup",
+    "name": "진라면 매운맛 큰컵",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#1d4ed8",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "yeol-ramyun-cup",
+    "name": "열라면 큰컵",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "chamkkae-cup",
+    "name": "참깨라면 큰컵",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#ca8a04",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "cup-noodle-spicy",
+    "name": "컵누들 매콤한맛",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_SMALL",
+    "bg": "#e11d48",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "kok-kok-spaghetti-cup",
+    "name": "콕콕콕 스파게티",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#dc2626",
+    "text": "#fef08a"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "kok-kok-cheese-bokki",
+    "name": "콕콕콕 치즈볶이",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#f59e0b",
+    "text": "#78350f"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-jin-jjara",
+    "name": "진진짜라",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#451a03",
+    "text": "#fde047"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "ottogi-curry-ramen",
+    "name": "오뚜기 카레라면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#eab308",
+    "text": "#713f12"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "beijing-jjajang",
+    "name": "북경짜장",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#1c1917",
+    "text": "#facc15"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "beijing-jjamppong",
+    "name": "북경짬뽕",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "real-cheese-ramen",
+    "name": "리얼치즈라면",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#f59e0b",
+    "text": "#78350f"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-ramen-mild-cup",
+    "name": "진라면 순한맛 컵",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_SMALL",
+    "bg": "#2563eb",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "snack-myeon-cup",
+    "name": "스낵면 컵",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_SMALL",
+    "bg": "#ca8a04",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "jin-jjamppong-cup",
+    "name": "진짬뽕 큰컵",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "cup-noodle-udon",
+    "name": "컵누들 우동맛",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_SMALL",
+    "bg": "#0284c7",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "cup-noodle-rose",
+    "name": "컵누들 로제맛",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_SMALL",
+    "bg": "#f43f5e",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "cup-noodle-tom-yum",
+    "name": "컵누들 똠얌꿍맛",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_SMALL",
+    "bg": "#059669",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "kok-kok-ramen-bokki",
+    "name": "콕콕콕 라면볶이",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#dc2626",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "kok-kok-jjajang-bokki",
+    "name": "콕콕콕 짜장볶이",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#1c1917",
+    "text": "#fde047"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "ramen-sari",
+    "name": "오뚜기 라면사리",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#ca8a04",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "ppushu-ppushu-bulgogi",
+    "name": "뿌셔뿌셔 불고기맛",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "ottogi.ts",
+    "id": "beef-seaweed-ramen-cup",
+    "name": "쇠고기미역국라면 용기",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#065f46",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "paldo-bibim",
+    "name": "팔도비빔면",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#2563eb",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "paldo-nememttin",
+    "name": "팔도비빔면 매운맛 (괄도네넴띤)",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "teumsae-bbalggyettok",
+    "name": "틈새라면 빨계떡",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#991b1b",
+    "text": "#fef2f2"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "teumsae-extreme",
+    "name": "틈새라면 극한체험",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#000000",
+    "text": "#ef4444"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "teumsae-meat-champong",
+    "name": "틈새라면 고기짬뽕",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#7f1d1d",
+    "text": "#fef08a"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "kkokko-myeon",
+    "name": "꼬꼬면",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#fef08a",
+    "text": "#854d0e"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "namja-ramen",
+    "name": "남자라면",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#1c1917",
+    "text": "#f59e0b"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "ilpum-seafood",
+    "name": "일품해물라면",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#0369a1",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "ilpum-jjajang",
+    "name": "일품 삼선짜장",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#3f2c1d",
+    "text": "#fef3c7"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "wang-lid-original",
+    "name": "왕뚜껑 (오리지널)",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#dc2626",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "wang-lid-kimchi",
+    "name": "김치 왕뚜껑",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "wang-lid-jjamppong",
+    "name": "짬뽕 왕뚜껑",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#c2410c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "paldo-doshirak",
+    "name": "도시락 (원조 사각용기)",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#e11d48",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "paldo-bibim-cup",
+    "name": "팔도비빔면 컵",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#2563eb",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "paldo-bibim-spicy",
+    "name": "팔도 비빔면 매운맛",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "wang-lid-udon",
+    "name": "우동 왕뚜껑",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#0284c7",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "wang-lid-mara",
+    "name": "마라 왕뚜껑",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#831843",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "teumsae-cup",
+    "name": "틈새라면 빨계떡 큰컵",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "paldo-buljjamppong",
+    "name": "팔도 불짬뽕",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "paldo-tantanmyeon",
+    "name": "팔도 탄탄면",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#c2410c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "kkokko-myeon-cup",
+    "name": "꼬꼬면 큰컵",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#fef08a",
+    "text": "#713f12"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "dosirak-kimchi",
+    "name": "팔도 도시락 김치맛",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#dc2626",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "paldo-jjajangmyeon",
+    "name": "팔도 짜장면",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#1c1917",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "wang-lid-kimchi-cup",
+    "name": "김치 왕뚜껑 소컵",
+    "manufacturer": "팔도",
+    "packageType": "CUP_SMALL",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "paldo.ts",
+    "id": "teumsae-curry",
+    "name": "틈새라면 매운카레",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#b45309",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-hongmyeon",
+    "name": "자연은 맛있다 홍면",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-baekmyeon",
+    "name": "자연은 맛있다 백면",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#e2e8f0",
+    "text": "#1e293b"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-jeongmyeon",
+    "name": "자연은 맛있다 정면 (비건 식물성)",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#15803d",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-roasting-jjajang-scallion",
+    "name": "로스팅 짜장면 파기름",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#365314",
+    "text": "#fef08a"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-roasting-jjamppong-crab",
+    "name": "로스팅 짬뽕 홍게",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#c2410c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "harim-artisan-spicy",
+    "name": "더미식 장인라면 얼큰한맛",
+    "manufacturer": "하림",
+    "packageType": "BAG",
+    "bg": "#1c1917",
+    "text": "#ef4444"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "harim-artisan-mild",
+    "name": "더미식 장인라면 담백한맛",
+    "manufacturer": "하림",
+    "packageType": "BAG",
+    "bg": "#292524",
+    "text": "#facc15"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "harim-uni-jjajang",
+    "name": "더미식 유니자장면",
+    "manufacturer": "하림",
+    "packageType": "BAG",
+    "bg": "#1c1917",
+    "text": "#e7e5e4"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-memil-soba",
+    "name": "풀무원 메밀소바",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#334155",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-donkotsu",
+    "name": "풀무원 돈코츠라멘",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#78350f",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-kalguksu",
+    "name": "풀무원 꽃게짬뽕",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#c0392b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-spicy-cold",
+    "name": "풀무원 매콤비빔면",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#e11d48",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "pulmuone-roasting-jjajang-truffle",
+    "name": "풀무원 로스팅 짜장면 트러플오일",
+    "manufacturer": "풀무원",
+    "packageType": "BAG",
+    "bg": "#1c1917",
+    "text": "#facc15"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "harim-artisan-spicy-cup",
+    "name": "더미식 장인라면 얼큰한맛 컵",
+    "manufacturer": "하림",
+    "packageType": "CUP_LARGE",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "harim-artisan-mild-cup",
+    "name": "더미식 장인라면 담백한맛 컵",
+    "manufacturer": "하림",
+    "packageType": "CUP_LARGE",
+    "bg": "#d97706",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "harim-bibimmyeon",
+    "name": "더미식 비빔면",
+    "manufacturer": "하림",
+    "packageType": "BAG",
+    "bg": "#dc2626",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "harim-champion-ramen",
+    "name": "더미식 챔피언스라면",
+    "manufacturer": "하림",
+    "packageType": "BAG",
+    "bg": "#1d4ed8",
+    "text": "#ffffff"
+  },
+  {
+    "file": "pulmuone_harim.ts",
+    "id": "harim-kimchi-ramen",
+    "name": "더미식 김치통통라면",
+    "manufacturer": "하림",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "gs25-omori-kimchi",
+    "name": "오모리 김치찌개라면",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#b91c1c",
+    "text": "#fef08a"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "gs25-omori-budae",
+    "name": "오모리 부대찌개라면",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "gs25-gonghwachun-jjamppong",
+    "name": "공화춘 아주매운짬뽕",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#831843",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "gs25-gonghwachun-jjajang",
+    "name": "공화춘 자장 (삼선짜장)",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#451a03",
+    "text": "#fef3c7"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "paldo-jumbo-doshirak",
+    "name": "점보 도시락 (8인분)",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#e11d48",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "cu-sokcho-redcrab",
+    "name": "헤이루 속초홍게라면",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#c2410c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "cu-cheongyang-pepper",
+    "name": "헤이루 청양고추라면",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#15803d",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "cu-baek-meat-champong",
+    "name": "백종원의 고기짬뽕",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "emart24-sokpul-ramen",
+    "name": "속풀라면 (헛개나무 추출물)",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#b45309",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "emart24-minsaeng",
+    "name": "민생라면 (초가성비)",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#1c1917",
+    "text": "#facc15"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "seven-gyodong-jjamppong",
+    "name": "강릉교동반점 짬뽕",
+    "manufacturer": "삼양식품",
+    "packageType": "CUP_LARGE",
+    "bg": "#831843",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "seven-daepa-yeol",
+    "name": "대파열라면",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "gs25-omori-kimchi-bag",
+    "name": "오모리 김치찌개라면 봉지",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "gs25-omori-chamchi",
+    "name": "오모리 참치찌개라면",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#c0392b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "gs25-youus-haejang",
+    "name": "유어스 해장라면",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#dc2626",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "gs25-gap-champong",
+    "name": "유어스 갑오징어 짬뽕",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#991b1b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "cu-heyroo-sokpul",
+    "name": "헤이루 속풀이라면",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#2563eb",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "cu-heyroo-deuktem",
+    "name": "헤이루 득템라면",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#ea580c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "cu-baek-pa-bbibim",
+    "name": "백종원의 백비빔면",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#e11d48",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "cu-gompyo-seafood",
+    "name": "곰표 해물라면",
+    "manufacturer": "오뚜기",
+    "packageType": "CUP_LARGE",
+    "bg": "#15803d",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "emart24-haru-e",
+    "name": "하루이(e)라면",
+    "manufacturer": "팔도",
+    "packageType": "BAG",
+    "bg": "#d97706",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "emart24-sok-taneun",
+    "name": "속타는라면",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#7f1d1d",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "emart24-sok-chan",
+    "name": "속찬라면",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#ca8a04",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "seven-dongwon-chamchi",
+    "name": "동원참치라면 매운맛",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#b91c1c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "convenience_pb.ts",
+    "id": "seven-dongwon-chamchi-mild",
+    "name": "동원참치라면 살코기",
+    "manufacturer": "팔도",
+    "packageType": "CUP_LARGE",
+    "bg": "#2563eb",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "samyang-chicken-1963",
+    "name": "삼양라면 (1963년 초판)",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#e58e26",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "lotte-ramen-1965",
+    "name": "롯데라면 (1965년)",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#c0392b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "binggrae-maeunkong",
+    "name": "매운콩라면 (빙그레)",
+    "manufacturer": "기타국내제조사",
+    "packageType": "BAG",
+    "bg": "#e67e22",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "nongshim-kkamanso",
+    "name": "까만소 (농심)",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#2c3e50",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "nongshim-newmyeon",
+    "name": "뉴면 (농심)",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#27ae60",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "samyang-200-nyang",
+    "name": "삼양 200냥",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#e74c3c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "samyang-300-nyang",
+    "name": "삼양 300냥",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#8e44ad",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "cheongbo-gobandong",
+    "name": "청보 곱배기라면 (1985년)",
+    "manufacturer": "기타국내제조사",
+    "packageType": "BAG",
+    "bg": "#16a085",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "cheongbo-yeol-ramyun",
+    "name": "청보 열(熱)라면 (1985년)",
+    "manufacturer": "기타국내제조사",
+    "packageType": "BAG",
+    "bg": "#d35400",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "ottogi-ramencham",
+    "name": "라면참 (오뚜기)",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#f39c12",
+    "text": "#2c3e50"
+  },
+  {
+    "file": "historical.ts",
+    "id": "binggrae-chosun-ramen",
+    "name": "조선라면 (빙그레)",
+    "manufacturer": "기타국내제조사",
+    "packageType": "BAG",
+    "bg": "#8b4513",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "samyang-gold",
+    "name": "삼양라면 골드",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#f1c40f",
+    "text": "#2c3e50"
+  },
+  {
+    "file": "historical.ts",
+    "id": "nongshim-v2",
+    "name": "V2 라면 (농심)",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#e74c3c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "samyang-chocheop-1960s",
+    "name": "삼양 초첩면 (1960년대)",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#34495e",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "ottogi-wangramen",
+    "name": "오뚜기 왕라면 (1990년대)",
+    "manufacturer": "오뚜기",
+    "packageType": "BAG",
+    "bg": "#e74c3c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "samyang-samgukji",
+    "name": "삼국지 라면 (삼양)",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#d35400",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "nongshim-matirang",
+    "name": "맛이랑 (농심)",
+    "manufacturer": "농심",
+    "packageType": "BAG",
+    "bg": "#e67e22",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "paldo-yukgaejang-1980s",
+    "name": "팔도 육개장 (1980년대)",
+    "manufacturer": "팔도",
+    "packageType": "BOWL",
+    "bg": "#c0392b",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "samyang-kimchi-1980s",
+    "name": "삼양 김치라면 (1980년대)",
+    "manufacturer": "삼양식품",
+    "packageType": "BAG",
+    "bg": "#e74c3c",
+    "text": "#ffffff"
+  },
+  {
+    "file": "historical.ts",
+    "id": "binggrae-yeolguksu",
+    "name": "열국수 (빙그레)",
+    "manufacturer": "기타국내제조사",
+    "packageType": "BAG",
+    "bg": "#c0392b",
+    "text": "#ffffff"
+  }
+]
