@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="cupBodyGrad_gs25-gonghwachun-jjajang" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1d0000" />
+      <stop offset="25%" stop-color="#6d422b" />
+      <stop offset="60%" stop-color="#451a03" />
+      <stop offset="100%" stop-color="#1d0000" />
+    </linearGradient>
+
+    <linearGradient id="lidGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="60%" stop-color="#e2e8f0" />
+      <stop offset="100%" stop-color="#cbd5e1" />
+    </linearGradient>
+
+    <filter id="cupShadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#000000" flood-opacity="0.32"/>
+    </filter>
+  </defs>
+
+  <!-- Cup 3D Body -->
+  <g filter="url(#cupShadow)">
+    
+      <!-- Tapered Cup Silhouette -->
+      <path d="M 60 110 L 85 345 Q 160 365 235 345 L 260 110 Z" fill="url(#cupBodyGrad_gs25-gonghwachun-jjajang)" />
+      <ellipse cx="160" cy="345" rx="75" ry="15" fill="#1d0000" />
+    
+  </g>
+
+  <!-- Body Color Ribbon & Manufacturer Badge -->
+  <g transform="translate(160, 155)">
+    <rect x="-60" y="0" width="120" height="24" rx="12" fill="rgba(0,0,0,0.3)" />
+    <text x="0" y="16" fill="#ffffff" font-family="'Pretendard', sans-serif" font-size="12" font-weight="900" text-anchor="middle">
+      팔도
+    </text>
+  </g>
+
+  <!-- Large Product Title on Cup -->
+  <text x="160" y="215" fill="#fef3c7" font-family="'Pretendard', 'Malgun Gothic', sans-serif" font-size="28" font-weight="900" text-anchor="middle" letter-spacing="-1" style="filter: drop-shadow(0 3px 5px rgba(0,0,0,0.5));">
+    공화춘 자장 (삼
+  </text>
+
+  <!-- Instant Cup Ramen Icon Graphic -->
+  <g transform="translate(160, 275)">
+    <!-- Mini Noodles Bowl Graphic -->
+    <ellipse cx="0" cy="15" rx="45" ry="18" fill="rgba(0,0,0,0.25)" />
+    <ellipse cx="0" cy="10" rx="42" ry="16" fill="#fef08a" />
+    <path d="M -25 8 Q 0 18 25 8" stroke="#ca8a04" stroke-width="3" fill="none" stroke-linecap="round" />
+    <circle cx="0" cy="8" r="4" fill="#dc2626" />
+    <!-- Steam -->
+    <path d="M -10 -4 Q -15 -18 -8 -26" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+    <path d="M 10 -4 Q 15 -18 8 -26" stroke="rgba(255,255,255,0.7)" stroke-width="2.5" fill="none" stroke-linecap="round" />
+  </g>
+
+  <!-- Hot Water 3-min Mark -->
+  <text x="160" y="325" fill="#fef3c7" opacity="0.9" font-family="'Pretendard', sans-serif" font-size="11" font-weight="800" text-anchor="middle">
+    뜨거운 물 3~4분 완성
+  </text>
+
+  <!-- 3D Foil Lid Top Rim -->
+  <g transform="translate(160, 105)">
+    <!-- Lid Outer Rim Rim -->
+    <ellipse cx="0" cy="0" rx="104" ry="26" fill="url(#lidGrad)" stroke="#94a3b8" stroke-width="2.5" />
+    <ellipse cx="0" cy="-2" rx="98" ry="23" fill="#ffffff" />
+    <!-- Inner Lid Branding -->
+    <ellipse cx="0" cy="-2" rx="70" ry="16" fill="#451a03" opacity="0.9" />
+    <text x="0" y="3" fill="#fef3c7" font-family="'Pretendard', sans-serif" font-size="12" font-weight="900" text-anchor="middle">
+      팔도 · 큰컵
+    </text>
+    <!-- Pull Tab (뜯는곳) -->
+    <path d="M 90 -8 Q 115 -14 110 6 Q 95 8 90 -8 Z" fill="#ef4444" stroke="#b91c1c" stroke-width="1.5" />
+    <text x="102" y="-1" fill="#ffffff" font-family="'Pretendard', sans-serif" font-size="8" font-weight="900">
+      OPEN
+    </text>
+  </g>
+</svg>
