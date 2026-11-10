@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../utils/imageUrl';
 import { useState } from 'react';
 import { X, Check, ArrowRight, RotateCcw } from 'lucide-react';
 import { FACTION_TAXONOMY, type FactionNode, getFactionMembers } from '../data/factionTaxonomy';
@@ -247,7 +248,7 @@ export function FactionQuizModal({
                   .filter((p) => p.isActive)
                   .slice(0, 3)
                   .map((product) => {
-                    const defaultSvg = `/images/products/${product.id}.svg`;
+                    const defaultSvg = getAssetUrl("/images/products/${product.id}.svg");
                     return (
                       <div
                         key={product.id}

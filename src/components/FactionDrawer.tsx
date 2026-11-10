@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../utils/imageUrl';
 import { useEffect } from 'react';
 import type { RamenProduct } from '../types/ramen';
 import type { FactionNode } from '../data/factionTaxonomy';
@@ -158,7 +159,7 @@ export function FactionDrawer({ faction, onClose, onSelectProduct }: FactionDraw
 
               <div className="grid grid-cols-2 gap-3">
                 {repMembers.map((product) => {
-                  const defaultSvg = `/images/products/${product.id}.svg`;
+                  const defaultSvg = getAssetUrl("/images/products/${product.id}.svg");
                   const is1963 = product.id === 'samyang-chicken-1963';
                   return (
                     <div
@@ -213,7 +214,7 @@ export function FactionDrawer({ faction, onClose, onSelectProduct }: FactionDraw
 
                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                   {otherMembers.slice(0, 12).map((product) => {
-                    const defaultSvg = `/images/products/${product.id}.svg`;
+                    const defaultSvg = getAssetUrl("/images/products/${product.id}.svg");
                     return (
                       <div
                         key={product.id}

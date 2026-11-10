@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../utils/imageUrl';
 import { useState, useMemo } from 'react';
 import type { RamenProduct } from '../types/ramen';
 import { RAMEN_DATASET } from '../data/ramenDataset';
@@ -269,10 +270,10 @@ export function RankingPage({ onSelectProduct }: RankingPageProps) {
                   </div>
                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-stone-50 p-2 mb-3 flex items-center justify-center">
                     <img
-                      src={top3[1].product.imageUrl || `/images/products/${top3[1].product.id}.svg`}
+                      src={top3[1].product.imageUrl || getAssetUrl("/images/products/${top3[1].product.id}.svg")}
                       alt={top3[1].product.name}
                       onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = `/images/products/${top3[1].product.id}.svg`;
+                        (e.currentTarget as HTMLImageElement).src = getAssetUrl("/images/products/${top3[1].product.id}.svg");
                       }}
                       className="max-h-full max-w-full object-contain drop-shadow"
                     />
@@ -307,10 +308,10 @@ export function RankingPage({ onSelectProduct }: RankingPageProps) {
                   </div>
                   <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden bg-white p-3 mb-3 flex items-center justify-center border border-amber-100 shadow-inner">
                     <img
-                      src={top3[0].product.imageUrl || `/images/products/${top3[0].product.id}.svg`}
+                      src={top3[0].product.imageUrl || getAssetUrl("/images/products/${top3[0].product.id}.svg")}
                       alt={top3[0].product.name}
                       onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = `/images/products/${top3[0].product.id}.svg`;
+                        (e.currentTarget as HTMLImageElement).src = getAssetUrl("/images/products/${top3[0].product.id}.svg");
                       }}
                       className="max-h-full max-w-full object-contain drop-shadow-md"
                     />
@@ -345,10 +346,10 @@ export function RankingPage({ onSelectProduct }: RankingPageProps) {
                   </div>
                   <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-stone-50 p-2 mb-3 flex items-center justify-center">
                     <img
-                      src={top3[2].product.imageUrl || `/images/products/${top3[2].product.id}.svg`}
+                      src={top3[2].product.imageUrl || getAssetUrl("/images/products/${top3[2].product.id}.svg")}
                       alt={top3[2].product.name}
                       onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).src = `/images/products/${top3[2].product.id}.svg`;
+                        (e.currentTarget as HTMLImageElement).src = getAssetUrl("/images/products/${top3[2].product.id}.svg");
                       }}
                       className="max-h-full max-w-full object-contain drop-shadow"
                     />
@@ -403,11 +404,11 @@ export function RankingPage({ onSelectProduct }: RankingPageProps) {
 
                     <div className="w-12 h-12 rounded-lg bg-stone-50 p-1 flex items-center justify-center shrink-0 border border-stone-100 overflow-hidden">
                       <img
-                        src={product.imageUrl || `/images/products/${product.id}.svg`}
+                        src={product.imageUrl || getAssetUrl("/images/products/${product.id}.svg")}
                         alt={product.name}
                         loading="lazy"
                         onError={(e) => {
-                          (e.currentTarget as HTMLImageElement).src = `/images/products/${product.id}.svg`;
+                          (e.currentTarget as HTMLImageElement).src = getAssetUrl("/images/products/${product.id}.svg");
                         }}
                         className="max-h-full max-w-full object-contain"
                       />

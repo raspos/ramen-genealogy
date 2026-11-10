@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../utils/imageUrl';
 import { useState, useMemo } from 'react';
 import type { RamenProduct } from '../types/ramen';
 import { RAMEN_DATASET } from '../data/ramenDataset';
@@ -137,13 +138,13 @@ export function MainVisualMosaic({
                 {/* Package Image Viewport */}
                 <div className="w-full flex-1 flex items-center justify-center p-1 overflow-hidden">
                   <img
-                    src={product.imageUrl || `/images/products/${product.id}.svg`}
+                    src={product.imageUrl || getAssetUrl("/images/products/${product.id}.svg")}
                     alt={product.name}
                     loading="lazy"
                     onError={(e) => {
                       const target = e.currentTarget as HTMLImageElement;
                       if (!target.src.endsWith('.svg')) {
-                        target.src = `/images/products/${product.id}.svg`;
+                        target.src = getAssetUrl("/images/products/${product.id}.svg");
                       }
                     }}
                     className="max-h-full max-w-full object-contain drop-shadow transition-transform group-hover:scale-110"

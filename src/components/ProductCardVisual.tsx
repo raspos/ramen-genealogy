@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../utils/imageUrl';
 import { useState, useEffect } from 'react';
 import type { RamenProduct } from '../types/ramen';
 import { Flame, Droplets, Clock } from 'lucide-react';
@@ -17,12 +18,12 @@ export function ProductCardVisual({
   onClick,
   selected = false,
 }: ProductCardVisualProps) {
-  const defaultSvg = `/images/products/${product.id}.svg`;
+  const defaultSvg = getAssetUrl("/images/products/${product.id}.svg");
   const [imgSrc, setImgSrc] = useState(product.imageUrl || defaultSvg);
   const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
-    setImgSrc(product.imageUrl || `/images/products/${product.id}.svg`);
+    setImgSrc(product.imageUrl || getAssetUrl("/images/products/${product.id}.svg"));
     setImgError(false);
   }, [product.id, product.imageUrl]);
   const isLg = size === 'lg';

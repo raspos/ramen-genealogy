@@ -1,3 +1,4 @@
+import { getAssetUrl } from '../utils/imageUrl';
 import type { RamenProduct } from '../types/ramen';
 import { RAMEN_DATASET } from './ramenDataset';
 
@@ -221,7 +222,7 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
 
 // ================= 3. 25대 기수 대표 라면 (Nodes) =================
 // 캔버스 좌표 (Canvas 1200 x 920): 시간(X: 1963~2026), 계파 성격(Y: 국물얼큰 상단 ~ 해물/사골 중단 ~ 비국물 하단)
-export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
+const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
   // --- ROOT ---
   {
     id: 'samyang-chicken-1963',
@@ -240,8 +241,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '시원 (始原)',
     doctrineQuote: '“배고픈 국민의 식생활을 해결하는 10원의 즉석 영양식”',
     editorialNote: '한국 최초의 라면. 일본 명성식품에서 전수받은 닭고기 육수 베이스로 출발해 우지(소기름) 튀김면으로 서민의 굶주림을 달랜 대한민국 라면의 단일 뿌리다.',
-    canvasX: 80,
-    canvasY: 380
+    canvasX: 100,
+    canvasY: 460
   },
 
   // --- 소고기 얼큰계 (辛牛派) TRUNK ---
@@ -261,8 +262,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '장국 평정',
     doctrineQuote: '“내 입에 안성맞춤, 구수한 우거지 장국과 소고기 육수의 만남”',
     editorialNote: '1982년 안성스프공장 준공 후 1983년 출시. 된장과 소고기 우거지장국을 현대적 분말스프로 구현해 1980년대 초반 시장을 완전히 평정했다.',
-    canvasX: 250,
-    canvasY: 200
+    canvasX: 330,
+    canvasY: 310
   },
   {
     id: 'shin-ramyun',
@@ -280,8 +281,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '절대 집권',
     doctrineQuote: '“사나이 울리는 매운맛, 얼큰한 소고기 국물이야말로 라면의 으뜸”',
     editorialNote: '1986년 10월 출시. 강렬한 붉은 바탕에 한자 ‘辛’을 내걸고 한국인이 가장 사랑하는 얼큰하고 시원한 소고기 표고버섯 국물로 40년 독점적 1위 정권을 수립했다.',
-    canvasX: 430,
-    canvasY: 150
+    canvasX: 570,
+    canvasY: 290
   },
   {
     id: 'jin-ramen-spicy',
@@ -299,8 +300,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '호적수 ( 라이벌 )',
     doctrineQuote: '“진하고 부드러운 소고기 국물과 쫄깃한 면발의 착한 승부”',
     editorialNote: '1988년 출시. 청보식품을 인수한 오뚜기가 신라면에 맞서 선보인 간판 제품으로, 수십 년간 팽팽한 양강 구도를 형성하며 신라면 정권의 유일한 대항마로 군림했다.',
-    canvasX: 430,
-    canvasY: 260
+    canvasX: 570,
+    canvasY: 400
   },
   {
     id: 'yukgaejang-sabal',
@@ -318,8 +319,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '용기면 평정',
     doctrineQuote: '“한국인의 입맛에 가장 친숙한 가볍고 칼칼한 육개장 한 그릇”',
     editorialNote: '1982년 출시. 얇고 꼬들꼬들한 면발과 소고기 육개장 풍미로 컵라면 시장 점유율 1위를 수십 년간 수성한 국민 사발면의 절대강자.',
-    canvasX: 250,
-    canvasY: 300
+    canvasX: 330,
+    canvasY: 220
   },
   {
     id: 'shin-non-frying',
@@ -337,8 +338,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '웰빙 진화',
     doctrineQuote: '“기름에 튀기지 않은 면으로 칼로리는 낮추고 본연의 칼칼함은 극대화”',
     editorialNote: '신라면의 얼큰한 육수를 유지하면서 350kcal로 칼로리를 30% 낮춘 3세대 신라면. 건면(Non-fried) 시장을 주류 반열에 올린 분파.',
-    canvasX: 950,
-    canvasY: 150
+    canvasX: 1050,
+    canvasY: 290
   },
   {
     id: 'shin-the-red',
@@ -356,8 +357,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '스코빌 반격',
     doctrineQuote: '“더 맵고 더 깊다, 7500 SHU로 재정립한 매운맛의 황제”',
     editorialNote: '신라면 37주년 한정판으로 출시되었다가 열풍 속에 정식 출시. 기존 신라면(3400 SHU)의 두 배가 넘는 매운맛과 소고기 표고 후첨으로 극초매운계 시장을 평정했다.',
-    canvasX: 1100,
-    canvasY: 80
+    canvasX: 1280,
+    canvasY: 260
   },
 
   // --- 극초매운계 (極辛派) ---
@@ -377,8 +378,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '매운맛 반역',
     doctrineQuote: '“열나게 화끈한 매운맛, 청양고추의 얼얼한 카타르시스”',
     editorialNote: '1996년 출시. 5000 SHU급 매운맛으로 마니아층을 형성했으며, 2020년대 ‘순두부 열라면’ 모디슈머 레시피로 역주행 흥행을 달성한 극초매운계의 거두.',
-    canvasX: 620,
-    canvasY: 100
+    canvasX: 810,
+    canvasY: 170
   },
   {
     id: 'teumsae-bbalggyettok',
@@ -396,8 +397,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '스코빌 도발',
     doctrineQuote: '“명동 골목의 전설, 9413 SHU 극강의 캡사이신 지옥”',
     editorialNote: '명동 분식집 ‘틈새라면’의 전설적인 빨계떡을 팔도가 인스턴트화. 시판 국물 라면 중 최고 스코빌을 기록하며 한국 라면의 매운맛 상한선을 파괴했다.',
-    canvasX: 790,
-    canvasY: 70
+    canvasX: 1050,
+    canvasY: 170
   },
   {
     id: 'ma-yeol',
@@ -415,7 +416,7 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '알싸 융합',
     doctrineQuote: '“마늘과 후추의 알싸한 풍미가 결합된 신세대 매운맛”',
     editorialNote: '열라면의 매운 베이스에 제주 대정 마늘과 굵은 흑후추를 후첨 블렌딩하여 알싸한 감칠맛으로 진화한 극초매운계의 최신예 기수.',
-    canvasX: 1100,
+    canvasX: 1280,
     canvasY: 170
   },
 
@@ -436,8 +437,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '해물 독립',
     doctrineQuote: '“굵은 면발에 통다시마, 바다의 깊고 시원한 얼큰함”',
     editorialNote: '1982년 출시. 소고기 국물 일색이던 시장에 최초로 우동 굵기의 통통한 면발과 완도산 다시마, 미역을 도입하여 해물 라면 계파를 단독 창설했다.',
-    canvasX: 250,
-    canvasY: 480
+    canvasX: 330,
+    canvasY: 620
   },
   {
     id: 'ojingeo-jjamppong',
@@ -455,8 +456,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '짬뽕 태동',
     doctrineQuote: '“오징어와 양배추, 불맛 머금은 정통 중화 짬뽕의 서민화”',
     editorialNote: '1992년 출시. 오징어 건더기와 칼칼한 짬뽕 국물을 대중화하여 2015년 프리미엄 짬뽕 대전이 발발하기 전까지 20여 년간 해물 짬뽕계의 영수로 군림했다.',
-    canvasX: 620,
-    canvasY: 480
+    canvasX: 810,
+    canvasY: 620
   },
   {
     id: 'myeolchi-kalguksu',
@@ -474,8 +475,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '어육 맑은탕',
     doctrineQuote: '“남해 멸치로 맑게 우려낸 비유탕 칼국수의 담백함”',
     editorialNote: '1997년 출시. 기름에 튀기지 않은 건면과 멸치, 무, 미나리의 시원한 장국으로 고춧가루 없는 해물 국물의 절제미를 확립했다.',
-    canvasX: 620,
-    canvasY: 380
+    canvasX: 810,
+    canvasY: 710
   },
   {
     id: 'jin-jjamppong',
@@ -493,8 +494,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '중화대전 승자',
     doctrineQuote: '“불맛 유성스프와 3mm 태면으로 완성한 프리미엄 짬뽕의 정점”',
     editorialNote: '2015년 겨울 출시 50일 만에 1000만 개 돌파. 농심 맛짬뽕, 삼양 갓짬뽕을 물리치고 1500원대 프리미엄 라면 시장을 개척한 짬뽕 대전의 최종 승자.',
-    canvasX: 950,
-    canvasY: 480
+    canvasX: 1280,
+    canvasY: 620
   },
 
   // --- 사골·우골 구수계 (牛骨派) ---
@@ -514,8 +515,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '백탕 보신',
     doctrineQuote: '“고춧가루 한 점 없이 깊고 진하게 우려낸 소뼈 곰탕”',
     editorialNote: '1988년 서울올림픽 즈음 출시. 자극적인 매운맛에 반대하여 전통 한식 곰탕을 즉석면화, 밥 말아먹는 백탕 라면의 대표 주자로 자리매김했다.',
-    canvasX: 430,
-    canvasY: 380
+    canvasX: 570,
+    canvasY: 510
   },
   {
     id: 'snack-myeon',
@@ -533,8 +534,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '2분 조리',
     doctrineQuote: '“밥 말아먹을 때 가장 맛있는 2분 완성 얇은 면”',
     editorialNote: '1992년 출시. 얇은 면발과 자극적이지 않고 슴슴한 쇠고기 사골 국물로 밥을 말았을 때 최고의 궁합을 자랑하는 가성비 스테디셀러.',
-    canvasX: 620,
-    canvasY: 290
+    canvasX: 810,
+    canvasY: 510
   },
 
   // --- 백탕 혁명계 (白湯派) ---
@@ -554,8 +555,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '백탕의 난 영수',
     doctrineQuote: '“하얀 국물에 청양고추의 알싸한 반전, 30년 빨간 국물의 벽을 깨다”',
     editorialNote: '2011년 방송 요리대회에서 이경규의 레시피를 상용화. 출시 5개월 만에 1억 개를 판매하며 대한민국 라면 시장을 일시적으로 백탕 천하로 만든 혁명적 사건.',
-    canvasX: 790,
-    canvasY: 350
+    canvasX: 1050,
+    canvasY: 400
   },
   {
     id: 'nagasaki-jjamppong',
@@ -573,8 +574,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '백탕 연합군',
     doctrineQuote: '“돼지뼈와 해물의 진한 백탕에 청양고추 칼칼함의 배합”',
     editorialNote: '꼬꼬면과 함께 2011년 백탕 신드롬의 양대 축. 삼양식품의 부활을 알렸으며 진한 육수와 칼칼한 해물맛으로 겨울철 백탕 열풍을 이끌었다.',
-    canvasX: 790,
-    canvasY: 430
+    canvasX: 1050,
+    canvasY: 490
   },
 
   // --- 비탕파: 춘장 짜장계 (炸醬派) ---
@@ -594,8 +595,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '춘장 천하통일',
     doctrineQuote: '“일요일은 내가 짜파게티 요리사, 과립 춘장스프와 올리브유의 혁신”',
     editorialNote: '1984년 3월 출시. 기존 액상 짜장면의 뭉침 현상을 그래뉼(과립) 공법으로 해결하고 올리브유 조미유를 더해 40년간 짜장라면 시장의 90%를 지배했다.',
-    canvasX: 350,
-    canvasY: 660
+    canvasX: 330,
+    canvasY: 800
   },
   {
     id: 'spicy-chapagetti',
@@ -613,8 +614,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '매콤 사천 분파',
     doctrineQuote: '“고추기름과 해물 풍미를 더해 느끼함을 잡은 사천식 짜장”',
     editorialNote: '2000년 출시. 오리지널 짜파게티에 매콤한 고추기름과 해물 풍미를 결합하여 느끼한 뒷맛을 쇄신, 성인층의 입맛을 사로잡은 장수 분파.',
-    canvasX: 620,
-    canvasY: 660
+    canvasX: 810,
+    canvasY: 800
   },
 
   // --- 비탕파: 냉비빔계 (冷排派) ---
@@ -634,8 +635,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '냉비빔 창설',
     doctrineQuote: '“오른손으로 비비고 왼손으로 비비고, 찬물에 헹궈 먹는 여름의 전설”',
     editorialNote: '1984년 6월 출시. 뜨거운 국물 일색이던 라면 시장에 ‘찬물에 헹궈 비벼 먹는다’는 충격적인 발상을 도입하여 40년간 비빔면 시장 점유율 1위를 수성했다.',
-    canvasX: 350,
-    canvasY: 790
+    canvasX: 330,
+    canvasY: 920
   },
   {
     id: 'baehongdong',
@@ -653,8 +654,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '신흥 대항마',
     doctrineQuote: '“배, 홍고추, 동치미를 갈아 넣어 더 새콤달콤한 비빔의 신흥 강자”',
     editorialNote: '2021년 농심이 팔도의 독주를 저지하기 위해 출시. 배·홍고추·동치미 숙성 비빔장과 넉넉한 소스 양으로 3년 만에 시장 2위로 도약했다.',
-    canvasX: 1100,
-    canvasY: 790
+    canvasX: 1280,
+    canvasY: 920
   },
 
   // --- 비탕파: 화마 매운볶음계 (火魔派) & 퓨전계 (融合派) ---
@@ -674,8 +675,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '화마 강림',
     doctrineQuote: '“국물 없이 졸여내는 4404 SHU의 불지옥, K-라면 세계 정복의 기수”',
     editorialNote: '2012년 4월 출시. 초기엔 너무 매워 실패작 소리를 들었으나 유튜브 ‘Fire Noodle Challenge’를 통해 전 세계적 문화 현상으로 폭발, 삼양식품을 시총 5조 대기업으로 이끌었다.',
-    canvasX: 790,
-    canvasY: 600
+    canvasX: 1050,
+    canvasY: 780
   },
   {
     id: 'carbo-buldak',
@@ -693,8 +694,8 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '크림 퓨전 혁명',
     doctrineQuote: '“매운 불닭에 부드러운 크림과 모짜렐라 치즈의 황금 배합”',
     editorialNote: '2017년 12월 10억 개 판매 기념 한정판으로 출시 후 역대급 대히트를 기록하며 정식 출시. 매운맛에 약한 서양인과 Z세대를 불닭 신도로 끌어들인 퓨전의 정점.',
-    canvasX: 950,
-    canvasY: 620
+    canvasX: 1280,
+    canvasY: 730
   },
   {
     id: 'shin-toomba',
@@ -712,10 +713,15 @@ export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     historicalRole: '투움바 집대성',
     doctrineQuote: '“신라면의 칼칼한 매운맛에 생크림, 치즈를 더한 투움바 파스타의 공식화”',
     editorialNote: '인터넷 모디슈머 인기 레시피인 ‘신라면 투움바’를 농심이 공식 제품화. 2024년 가을 출시 후 2개월 만에 1100만 개를 판매하며 비국물 퓨전계의 주류성을 입증했다.',
-    canvasX: 1100,
-    canvasY: 680
+    canvasX: 1280,
+    canvasY: 820
   }
 ];
+
+export const LINEAGE_LEGEND_NODES: LineageLegendNode[] = RAW_LINEAGE_LEGEND_NODES.map((n) => ({
+  ...n,
+  imageUrl: getAssetUrl(n.imageUrl),
+}));
 
 // ================= 4. 계보도 연결선 (Edges & Historical Branches) =================
 export const LINEAGE_EDGES: LineageEdge[] = [
