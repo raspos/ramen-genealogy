@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { GitFork, FlaskConical, Trophy, BookOpen } from 'lucide-react';
+import { GitFork, FlaskConical, Trophy, BookOpen, ExternalLink } from 'lucide-react';
 
 interface HeaderProps {
   onOpenMethodology?: () => void;
@@ -98,13 +98,6 @@ function RamenNoodleLogo() {
 }
 
 export function Header({ onOpenMethodology: _onOpenMethodology }: HeaderProps) {
-  const navItems = [
-    { to: '/', label: '라면의 계보', icon: GitFork, end: true },
-    { to: '/lab', label: '라면 조합 연구소', icon: FlaskConical },
-    { to: '/ranking', label: '라면 랭킹', icon: Trophy },
-    { to: '/encyclopedia', label: '라면 도감', icon: BookOpen },
-  ];
-
   // 라면의 계보 클릭 시 새로고침 (초기화)
   const handleReloadToHome = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -154,33 +147,87 @@ export function Header({ onOpenMethodology: _onOpenMethodology }: HeaderProps) {
           </a>
         </div>
 
-        {/* 4 Independent Navigation Tabs */}
+        {/* 5 Independent Navigation Tabs (라면의 계보 + 농심 라면의 계보 상단 연결) */}
         <nav className="flex items-center gap-1 sm:gap-2 overflow-x-auto pb-1 md:pb-0 text-xs sm:text-sm font-medium">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            return (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.end}
-                onClick={(e) => {
-                  if (item.to === '/' && (window.location.hash === '#/' || window.location.hash === '')) {
-                    handleReloadToHome(e);
-                  }
-                }}
-                className={({ isActive }) =>
-                  `flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer text-xs sm:text-sm font-bold ${
-                    isActive
-                      ? 'bg-stone-900 text-amber-300 shadow-sm'
-                      : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
-                  }`
-                }
-              >
-                <Icon className="w-4 h-4" />
-                <span>{item.label}</span>
-              </NavLink>
-            );
-          })}
+          {/* 라면의 계보 (현재 아카이브) */}
+          <NavLink
+            to="/"
+            end
+            onClick={(e) => {
+              if (window.location.hash === '#/' || window.location.hash === '') {
+                handleReloadToHome(e);
+              }
+            }}
+            className={({ isActive }) =>
+              `flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer text-xs sm:text-sm font-bold ${
+                isActive
+                  ? 'bg-stone-900 text-amber-300 shadow-sm'
+                  : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
+              }`
+            }
+          >
+            <GitFork className="w-4 h-4" />
+            <span>라면의 계보</span>
+          </NavLink>
+
+          {/* 농심 라면의 계보 (단독 60년 아카이브 바로가기) */}
+          <a
+            href="https://raspos.github.io/nongshim-genealogy/"
+            title="한국 라면 40년 1위 종가 '농심 라면의 계보'로 이동"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer text-xs sm:text-sm font-bold text-red-900 hover:text-red-950 hover:bg-red-100/70 border border-red-300/80 bg-red-50/70 shadow-2xs group"
+          >
+            <span className="w-2 h-2 rounded-full bg-red-600" />
+            <span>농심 라면의 계보</span>
+            <span className="text-[10px] px-1.5 py-0.2 rounded bg-red-100 text-red-700 border border-red-200 font-bold group-hover:bg-red-200 flex items-center gap-0.5">
+              <span>60년 족보</span>
+              <ExternalLink className="w-2.5 h-2.5" />
+            </span>
+          </a>
+
+          {/* 라면 조합 연구소 */}
+          <NavLink
+            to="/lab"
+            className={({ isActive }) =>
+              `flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer text-xs sm:text-sm font-bold ${
+                isActive
+                  ? 'bg-stone-900 text-amber-300 shadow-sm'
+                  : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
+              }`
+            }
+          >
+            <FlaskConical className="w-4 h-4" />
+            <span>라면 조합 연구소</span>
+          </NavLink>
+
+          {/* 라면 랭킹 */}
+          <NavLink
+            to="/ranking"
+            className={({ isActive }) =>
+              `flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer text-xs sm:text-sm font-bold ${
+                isActive
+                  ? 'bg-stone-900 text-amber-300 shadow-sm'
+                  : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
+              }`
+            }
+          >
+            <Trophy className="w-4 h-4" />
+            <span>라면 랭킹</span>
+          </NavLink>
+
+          {/* 라면 도감 */}
+          <NavLink
+            to="/encyclopedia"
+            className={({ isActive }) =>
+              `flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer text-xs sm:text-sm font-bold ${
+                isActive
+                  ? 'bg-stone-900 text-amber-300 shadow-sm'
+                  : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/60'
+              }`
+            }
+          >
+            <BookOpen className="w-4 h-4" />
+            <span>라면 도감</span>
+          </NavLink>
         </nav>
       </div>
     </header>
