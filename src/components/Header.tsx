@@ -129,16 +129,9 @@ export function Header({ onOpenMethodology: _onOpenMethodology }: HeaderProps) {
                 <span className="text-[10px] tracking-widest font-black uppercase text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300/60">
                   1963 — 2026 ARCHIVE
                 </span>
-                <a
-                  href="https://raspos.github.io/databrew/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="text-xs font-black text-stone-600 hover:text-rose-700 underline underline-offset-2 transition-colors"
-                  title="databrew 방문하기"
-                >
-                  © databrew
-                </a>
+                <span className="text-[10px] font-mono font-bold text-stone-500 hidden sm:inline">
+                  대한민국 60년 라면 전사
+                </span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight font-serif mt-0.5 group-hover:text-rose-700 transition-colors flex items-center gap-1.5">
                 <span>라면의 계보</span>
