@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4a2511" />
+      <stop offset="100%" stop-color="#1e0e05" />
+    </radialGradient>
+    <linearGradient id="packGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fdfbf7" />
+      <stop offset="50%" stop-color="#f5ede0" />
+      <stop offset="100%" stop-color="#e8dac4" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Background circle -->
+  <circle cx="200" cy="200" r="190" fill="url(#bgGrad)" stroke="#d97706" stroke-width="4" />
+  
+  <!-- Outer retro seal ring -->
+  <circle cx="200" cy="200" r="182" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6,4" opacity="0.6"/>
+
+  <!-- Vintage Product Bag -->
+  <g filter="url(#shadow)">
+    <!-- Bag body -->
+    <rect x="75" y="70" width="250" height="260" rx="16" fill="url(#packGrad)" stroke="#c2410c" stroke-width="5"/>
+    <!-- Top & bottom crimp seals -->
+    <path d="M 75 70 Q 85 78 95 70 Q 105 78 115 70 Q 125 78 135 70 Q 145 78 155 70 Q 165 78 175 70 Q 185 78 195 70 Q 205 78 215 70 Q 225 78 235 70 Q 245 78 255 70 Q 265 78 275 70 Q 285 78 295 70 Q 305 78 315 70 Q 325 78 325 70" fill="none" stroke="#c2410c" stroke-width="3"/>
+    <path d="M 75 330 Q 85 322 95 330 Q 105 322 115 330 Q 125 322 135 330 Q 145 322 155 330 Q 165 322 175 330 Q 185 322 195 330 Q 205 322 215 330 Q 225 322 235 330 Q 245 322 255 330 Q 265 322 275 330 Q 285 322 295 330 Q 305 322 315 330 Q 325 322 325 330" fill="none" stroke="#c2410c" stroke-width="3"/>
+
+    <!-- Retro Header Ribbon -->
+    <rect x="85" y="90" width="230" height="42" rx="6" fill="#c2410c"/>
+    <text x="200" y="108" font-family="'Pretendard', sans-serif" font-weight="900" font-size="13" fill="#fef08a" text-anchor="middle" letter-spacing="2">1970 韓國 최초 인스턴트 짜장</text>
+    <text x="200" y="124" font-family="'Pretendard', sans-serif" font-weight="800" font-size="11" fill="#ffffff" text-anchor="middle">롯데공업 (現 농심)</text>
+
+    <!-- Main Title -->
+    <text x="200" y="175" font-family="'Noto Serif KR', serif" font-weight="900" font-size="34" fill="#261208" text-anchor="middle" letter-spacing="3">롯데짜장면</text>
+
+    <!-- Jjajang noodle bowl graphic -->
+    <g transform="translate(130, 195)">
+      <!-- Bowl base -->
+      <ellipse cx="70" cy="80" rx="62" ry="24" fill="#3b2012" opacity="0.3"/>
+      <ellipse cx="70" cy="65" rx="60" ry="26" fill="#f8fafc" stroke="#475569" stroke-width="3"/>
+      <!-- Jjajang sauce & noodles -->
+      <ellipse cx="70" cy="62" rx="52" ry="20" fill="#2d150b"/>
+      <path d="M 35 60 Q 55 45 75 60 Q 95 72 105 58" fill="none" stroke="#1c0b05" stroke-width="7" stroke-linecap="round"/>
+      <path d="M 40 66 Q 60 75 80 62 Q 100 52 102 65" fill="none" stroke="#1c0b05" stroke-width="6" stroke-linecap="round"/>
+      <!-- Cucumber green garnish & peas -->
+      <circle cx="58" cy="58" r="4" fill="#84cc16"/>
+      <circle cx="70" cy="54" r="3.5" fill="#65a30d"/>
+      <circle cx="82" cy="60" r="4" fill="#84cc16"/>
+      <!-- Gloss highlight -->
+      <ellipse cx="65" cy="58" rx="20" ry="6" fill="#522512" opacity="0.8"/>
+      <!-- Chopsticks -->
+      <line x1="20" y1="35" x2="100" y2="75" stroke="#b45309" stroke-width="3.5" stroke-linecap="round"/>
+      <line x1="20" y1="28" x2="105" y2="72" stroke="#d97706" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Badge -->
+    <g transform="translate(95, 275)">
+      <rect x="0" y="0" width="82" height="24" rx="4" fill="#854d0e"/>
+      <text x="41" y="16" font-family="'Pretendard', sans-serif" font-weight="700" font-size="10.5" fill="#fef08a" text-anchor="middle">짜장라면의 시초</text>
+    </g>
+
+    <!-- 1970 Release Tag -->
+    <g transform="translate(230, 275)">
+      <rect x="0" y="0" width="75" height="24" rx="4" fill="#dc2626"/>
+      <text x="37" y="16" font-family="'Pretendard', sans-serif" font-weight="800" font-size="11" fill="#ffffff" text-anchor="middle">1970년 출시</text>
+    </g>
+  </g>
+
+  <!-- Retro corner stars -->
+  <polygon points="200,35 204,45 215,45 206,51 210,61 200,55 190,61 194,51 185,45 196,45" fill="#f59e0b" />
+</svg>
