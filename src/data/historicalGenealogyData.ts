@@ -299,10 +299,10 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
 ];
 
 // ================= 3. 23대 기수 대표 라면 (Nodes) =================
-// 캔버스 좌표 (Canvas 1850 x 1080): 수학적 충돌 검증 완료 (겹침 0건)
-// X축: 시간의 흐름 (1963 -> 2024), Y축: 맛의 파벌 레인 (얼큰탕 상단, 해물/백탕 중단, 비국물/퓨전 하단)
+// 캔버스 좌표 (Canvas 1850 x 1120): 수학적 충돌 검증 완료 (겹침 0건)
+// Y축 분리: Y=55~135(분기점 전용 밴드), Y=220(용기/사골/극매운), Y=390(소고기장국/얼큰), Y=560(원조/해물/하얀국물), Y=750(짜장/불닭/크림), Y=940(냉비빔면)
 const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
-  // --- 1963 단일 뿌리 (X: 70) ---
+  // --- 1963 단일 뿌리 (X: 70, Y: 560) ---
   {
     id: 'samyang-chicken-1963',
     name: '삼양라면 (1963)',
@@ -316,12 +316,12 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     packageType: 'BAG',
     imageUrl: '/images/products/samyang-1963-original-10won.png',
     isVintagePhoto: true,
-    vintageYearNote: '1963년 10원 출시 당시 실물 봉지',
+    vintageYearNote: '1963년 10원 출시 당시 실물 봉지 (明星식품 기술제휴 원형)',
     historicalRole: '원조 시작',
     doctrineQuote: '“배고픈 국민의 식생활을 해결하는 10원의 즉석 영양식”',
     editorialNote: '한국 최초의 라면. 일본 명성식품에서 전수받은 닭고기 육수 베이스로 출발해 우지(소기름) 튀김면으로 서민의 굶주림을 달랜 대한민국 라면의 단일 뿌리다.',
     canvasX: 70,
-    canvasY: 340
+    canvasY: 560
   },
 
   // --- 1970 대분기: 소고기 국물 & 최초의 짜장 (X: 270) ---
@@ -343,7 +343,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“닭육수에서 토종 쇠고기 장국으로, 한국인 맞춤형 진국의 시작”',
     editorialNote: '1970년 출시. 맑고 담백하던 치킨 육수에서 탈피해 한국인이 가장 선호하는 쇠고기 육개장·장국 맛을 최초로 라면에 구현하여 훗날 탕류 라면의 기틀을 닦았다.',
     canvasX: 270,
-    canvasY: 170
+    canvasY: 390
   },
   {
     id: 'lotte-jjajang-1970',
@@ -363,7 +363,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“국물을 따라내고 비벼먹는 대한민국 최초의 인스턴트 짜장면”',
     editorialNote: '1970년 롯데공업(현 농심)이 내놓은 국내 최초의 비국물 라면. 고급 외식이던 짜장면을 대중화했으며 1984년 짜파게티로 직계 계승되는 역사적 첫걸음이다.',
     canvasX: 270,
-    canvasY: 720
+    canvasY: 750
   },
 
   // --- 1982 ~ 1984 폭발기 (X: 500 ~ 690) ---
@@ -384,7 +384,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“한국인의 입맛에 가장 친숙한 가볍고 칼칼한 육개장 한 그릇”',
     editorialNote: '1982년 11월 출시. 얇고 꼬들꼬들한 면발과 얼큰한 소고기 육개장 국물로 40년 넘게 컵라면 시장 점유율 1위를 굳건히 지키고 있는 국민 사발면.',
     canvasX: 500,
-    canvasY: 70
+    canvasY: 220
   },
   {
     id: 'anseongtangmyeon',
@@ -403,7 +403,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“내 입에 안성맞춤, 구수한 우거지 장국과 소고기 육수의 만남”',
     editorialNote: '1983년 출시. 된장과 소고기 우거지장국을 현대적 분말스프로 구현해 1980년대 초중반 시장을 평정하며 신라면 등장 전까지 최고 인기를 누렸다.',
     canvasX: 500,
-    canvasY: 250
+    canvasY: 390
   },
   {
     id: 'neoguri',
@@ -422,7 +422,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“오동통통 굵은 면발에 완도산 통다시마, 해물 국물의 독자적 길”',
     editorialNote: '1982년 출시. 소고기 일변도이던 라면 시장에 두툼한 우동 면발과 완도산 청정 다시마를 통째로 넣어 시원한 해물 라면이라는 새로운 장르를 개척했다.',
     canvasX: 500,
-    canvasY: 450
+    canvasY: 560
   },
   {
     id: 'chapagetti',
@@ -441,7 +441,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“일요일은 내가 짜파게티 요리사, 과립 춘장스프와 올리브유의 혁신”',
     editorialNote: '1984년 3월 출시. 기존 액상 짜장면의 뭉침 현상을 그래뉼(과립) 공법으로 해결하고 올리브유 조미유를 더해 40년간 짜장라면 시장의 90%를 지배했다.',
     canvasX: 690,
-    canvasY: 700
+    canvasY: 750
   },
   {
     id: 'paldo-bibim',
@@ -460,29 +460,10 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“오른손으로 비비고 왼손으로 비비고, 찬물에 헹궈먹는 사계절 별미”',
     editorialNote: '1984년 6월 출시. 뜨거운 국물 라면의 상식을 깨고 찬물에 헹궈 매콤달콤한 사과 과즙 초고추장에 비벼 먹는 여름 계절면 시장의 절대강자로 군림했다.',
     canvasX: 690,
-    canvasY: 890
+    canvasY: 940
   },
 
   // --- 1986 ~ 1994 주류 집권과 라이벌전 (X: 890 ~ 1080) ---
-  {
-    id: 'shin-ramyun',
-    name: '신라면',
-    brand: '신라면',
-    manufacturer: '농심',
-    releaseYear: 1986,
-    epochId: 'epoch-3',
-    factionId: 'spicy-beef',
-    factionName: '정통 소고기 얼큰계',
-    hanjaFaction: '정통 얼큰 소고기파',
-    packageType: 'BAG',
-    imageUrl: '/images/products/shin-ramyun.jpg',
-    isVintagePhoto: false,
-    historicalRole: '절대 집권',
-    doctrineQuote: '“사나이 울리는 매운맛, 얼큰한 소고기 국물이야말로 라면의 으뜸”',
-    editorialNote: '1986년 10월 출시. 강렬한 붉은 바탕에 매울 신(辛)을 내걸고 한국인이 가장 사랑하는 얼큰하고 시원한 소고기 표고버섯 국물로 40년 독점적 1위 정권을 수립했다.',
-    canvasX: 890,
-    canvasY: 250
-  },
   {
     id: 'sari-gomtang',
     name: '사리곰탕면',
@@ -500,7 +481,26 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“고춧가루 한 점 없이 깊고 진하게 우려낸 소뼈 곰탕”',
     editorialNote: '1988년 서울올림픽 즈음 출시. 자극적인 매운맛에 반대하여 전통 한식 곰탕을 즉석면화, 밥 말아먹는 백탕 라면의 대표 주자로 자리매김했다.',
     canvasX: 890,
-    canvasY: 70
+    canvasY: 220
+  },
+  {
+    id: 'shin-ramyun',
+    name: '신라면',
+    brand: '신라면',
+    manufacturer: '농심',
+    releaseYear: 1986,
+    epochId: 'epoch-3',
+    factionId: 'spicy-beef',
+    factionName: '정통 소고기 얼큰계',
+    hanjaFaction: '정통 얼큰 소고기파',
+    packageType: 'BAG',
+    imageUrl: '/images/products/shin-ramyun.jpg',
+    isVintagePhoto: false,
+    historicalRole: '절대 집권',
+    doctrineQuote: '“사나이 울리는 매운맛, 얼큰한 소고기 국물이야말로 라면의 으뜸”',
+    editorialNote: '1986년 10월 출시. 강렬한 붉은 바탕에 매울 신(辛)을 내걸고 한국인이 가장 사랑하는 얼큰하고 시원한 소고기 표고버섯 국물로 40년 독점적 1위 정권을 수립했다.',
+    canvasX: 890,
+    canvasY: 390
   },
   {
     id: 'jin-ramen-spicy',
@@ -519,26 +519,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“진하고 부드러운 소고기 국물과 쫄깃한 면발의 착한 승부”',
     editorialNote: '1988년 출시. 청보식품을 인수한 오뚜기가 신라면에 맞서 선보인 간판 제품으로, 수십 년간 팽팽한 양강 구도를 형성하며 신라면 정권의 유일한 대항마로 군림했다.',
     canvasX: 890,
-    canvasY: 430
-  },
-  {
-    id: 'ojingeo-jjamppong',
-    name: '오징어짬뽕',
-    brand: '오징어짬뽕',
-    manufacturer: '농심',
-    releaseYear: 1992,
-    epochId: 'epoch-3',
-    factionId: 'seafood-ocean',
-    factionName: '얼큰 해물 짬뽕계',
-    hanjaFaction: '얼큰 해물 짬뽕파',
-    packageType: 'BAG',
-    imageUrl: '/images/products/ojingeo-jjamppong.jpg',
-    isVintagePhoto: false,
-    historicalRole: '짬뽕 대중화',
-    doctrineQuote: '“구운 오징어의 진한 풍미와 시원 칼칼한 해물 짬뽕 국물”',
-    editorialNote: '1992년 출시. 동해산 오징어와 양배추, 버섯 등 푸짐한 건더기와 시원하고 얼큰한 짬뽕 국물로 해물 라면의 짬뽕화를 이끌었다.',
-    canvasX: 1080,
-    canvasY: 450
+    canvasY: 560
   },
   {
     id: 'chamkkae',
@@ -557,7 +538,26 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“계란 블록과 고소한 참기름 유성스프가 빚어낸 얼큰한 조화”',
     editorialNote: '1994년 컵라면으로 첫선을 보인 후 봉지면으로 확장. 고춧가루 얼큰탕에 동결건조 계란블록과 고소한 참기름을 더해 젊은 층의 열렬한 지지를 받았다.',
     canvasX: 1080,
-    canvasY: 250
+    canvasY: 390
+  },
+  {
+    id: 'ojingeo-jjamppong',
+    name: '오징어짬뽕',
+    brand: '오징어짬뽕',
+    manufacturer: '농심',
+    releaseYear: 1992,
+    epochId: 'epoch-3',
+    factionId: 'seafood-ocean',
+    factionName: '얼큰 해물 짬뽕계',
+    hanjaFaction: '얼큰 해물 짬뽕파',
+    packageType: 'BAG',
+    imageUrl: '/images/products/ojingeo-jjamppong.jpg',
+    isVintagePhoto: false,
+    historicalRole: '짬뽕 대중화',
+    doctrineQuote: '“구운 오징어의 진한 풍미와 시원 칼칼한 해물 짬뽕 국물”',
+    editorialNote: '1992년 출시. 동해산 오징어와 양배추, 버섯 등 푸짐한 건더기와 시원하고 얼큰한 짬뽕 국물로 해물 라면의 짬뽕화를 이끌었다.',
+    canvasX: 1080,
+    canvasY: 560
   },
 
   // --- 2009 ~ 2015 극매운맛 분화와 하얀국물, 짬뽕 대전 (X: 1270 ~ 1450) ---
@@ -578,7 +578,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“명동 뒷골목의 전설, 9413 SHU 극강의 매운맛으로 입안을 강타하다”',
     editorialNote: '명동의 소문난 분식점 레시피를 팔도가 2009년 상용화. 스코빌 지수 9,413SHU라는 당시 시판 라면 최고 수치로 매운맛 마니아들의 성지가 되었다.',
     canvasX: 1270,
-    canvasY: 90
+    canvasY: 220
   },
   {
     id: 'kkokko-myeon',
@@ -597,7 +597,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“하얀 국물에 청양고추의 알싸한 반전, 30년 빨간 국물의 벽을 깨다”',
     editorialNote: '2011년 방송 요리대회에서 이경규의 레시피를 상용화. 출시 5개월 만에 1억 개를 판매하며 대한민국 라면 시장을 일시적으로 백탕 천하로 만든 혁명적 사건.',
     canvasX: 1270,
-    canvasY: 270
+    canvasY: 390
   },
   {
     id: 'nagasaki-jjamppong',
@@ -616,7 +616,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“돼지뼈와 해물의 진한 백탕에 청양고추 칼칼함의 배합”',
     editorialNote: '꼬꼬면과 함께 2011년 백탕 신드롬의 양대 축. 삼양식품의 부활을 알렸으며 진한 해물돈골 육수와 칼칼한 뒷맛으로 겨울철 백탕 열풍을 이끌었다.',
     canvasX: 1270,
-    canvasY: 450
+    canvasY: 560
   },
   {
     id: 'buldak',
@@ -635,7 +635,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“국물 없이 졸여내는 4404 SHU의 불지옥, K-라면 세계 정복의 기수”',
     editorialNote: '2012년 4월 출시. 초기엔 너무 매워 호불호가 갈렸으나 유튜브 ‘Fire Noodle Challenge’를 통해 전 세계적 문화 현상으로 폭발, 삼양식품을 글로벌 식품기업으로 도약시켰다.',
     canvasX: 1270,
-    canvasY: 720
+    canvasY: 750
   },
   {
     id: 'jin-jjamppong',
@@ -654,7 +654,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“3mm 극후면과 불맛 유성스프가 빚어낸 프리미엄 중화 짬뽕의 정점”',
     editorialNote: '2015년 말 출시 50여 일 만에 1000만 개 돌파. 은은한 불맛 액상소스와 두툼한 칼국수형 면발로 중화요리 짬뽕을 인스턴트 라면의 주류로 격상시켰다.',
     canvasX: 1450,
-    canvasY: 450
+    canvasY: 560
   },
   {
     id: 'jin-jjajang',
@@ -673,48 +673,10 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“진한 볶음 춘장 액상소스와 쫄깃한 면발로 짜파게티 아성에 도전”',
     editorialNote: '2015년 출시. 분말스프가 아닌 직화 솥에서 볶아낸 진한 춘장 액상스프를 채택해 짜장라면의 고급화 경쟁을 촉발했다.',
     canvasX: 1450,
-    canvasY: 700
+    canvasY: 750
   },
 
   // --- 2017 ~ 2024 현대 퓨전과 백가쟁명 (X: 1630) ---
-  {
-    id: 'carbo-buldak',
-    name: '까르보불닭볶음면',
-    brand: '불닭볶음면',
-    manufacturer: '삼양식품',
-    releaseYear: 2017,
-    epochId: 'epoch-6',
-    factionId: 'cream-fusion',
-    factionName: '크림·치즈 퓨전계',
-    hanjaFaction: '치즈·크림 퓨전파',
-    packageType: 'BAG',
-    imageUrl: '/images/products/carbo-buldak.png',
-    isVintagePhoto: false,
-    historicalRole: '크림 퓨전 혁명',
-    doctrineQuote: '“매운 불닭에 부드러운 크림과 모짜렐라 치즈의 황금 배합”',
-    editorialNote: '2017년 12월 출시 후 역대급 대히트를 기록하며 정식 출시. 매운맛에 약한 서양인과 Z세대를 사로잡으며 전 세계적 K-크림 퓨전 열풍을 일으켰다.',
-    canvasX: 1630,
-    canvasY: 720
-  },
-  {
-    id: 'baehongdong',
-    name: '배홍동 비빔면',
-    brand: '배홍동',
-    manufacturer: '농심',
-    releaseYear: 2021,
-    epochId: 'epoch-6',
-    factionId: 'bibim-cold',
-    factionName: '동치미 과즙 비빔계',
-    hanjaFaction: '원조 냉비빔파',
-    packageType: 'BAG',
-    imageUrl: '/images/products/baehongdong.jpg',
-    isVintagePhoto: false,
-    historicalRole: '비빔면 신흥 라이벌',
-    doctrineQuote: '“배, 홍고추, 동치미를 갈아 넣어 시원하고 깔끔한 매콤새콤의 반격”',
-    editorialNote: '2021년 출시. 37년간 굳건했던 팔도비빔면의 독점 체제에 정면 도전해 단숨에 시장 2위로 올라선 비빔면 카테고리의 강력한 맞수.',
-    canvasX: 1630,
-    canvasY: 890
-  },
   {
     id: 'shin-the-red',
     name: '신라면 더 레드',
@@ -732,7 +694,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“스코빌 7500 SHU, 신라면 고유의 정통 얼큰 소고기 국물의 극한 진화”',
     editorialNote: '기존 신라면의 2배가 넘는 7,500SHU와 큼직한 소고기·표고버섯 고명을 더해 한정판 완판 후 정식 출시된 정통 얼큰탕의 최신 진화형.',
     canvasX: 1630,
-    canvasY: 90
+    canvasY: 220
   },
   {
     id: 'shin-toomba',
@@ -751,7 +713,45 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     doctrineQuote: '“신라면의 매운맛에 생크림, 치즈를 더한 모디슈머 투움바의 정식 제품화”',
     editorialNote: '인터넷 모디슈머 인기 레시피인 ‘신라면 투움바’를 농심이 공식 제품화. 2024년 가을 출시 후 2개월 만에 1,100만 개를 판매하며 비국물 퓨전계의 주류성을 입증했다.',
     canvasX: 1630,
-    canvasY: 360
+    canvasY: 390
+  },
+  {
+    id: 'carbo-buldak',
+    name: '까르보불닭볶음면',
+    brand: '불닭볶음면',
+    manufacturer: '삼양식품',
+    releaseYear: 2017,
+    epochId: 'epoch-6',
+    factionId: 'cream-fusion',
+    factionName: '크림·치즈 퓨전계',
+    hanjaFaction: '치즈·크림 퓨전파',
+    packageType: 'BAG',
+    imageUrl: '/images/products/carbo-buldak.png',
+    isVintagePhoto: false,
+    historicalRole: '크림 퓨전 혁명',
+    doctrineQuote: '“매운 불닭에 부드러운 크림과 모짜렐라 치즈의 황금 배합”',
+    editorialNote: '2017년 12월 출시 후 역대급 대히트를 기록하며 정식 출시. 매운맛에 약한 서양인과 Z세대를 사로잡으며 전 세계적 K-크림 퓨전 열풍을 일으켰다.',
+    canvasX: 1630,
+    canvasY: 750
+  },
+  {
+    id: 'baehongdong',
+    name: '배홍동 비빔면',
+    brand: '배홍동',
+    manufacturer: '농심',
+    releaseYear: 2021,
+    epochId: 'epoch-6',
+    factionId: 'bibim-cold',
+    factionName: '동치미 과즙 비빔계',
+    hanjaFaction: '원조 냉비빔파',
+    packageType: 'BAG',
+    imageUrl: '/images/products/baehongdong.jpg',
+    isVintagePhoto: false,
+    historicalRole: '비빔면 신흥 라이벌',
+    doctrineQuote: '“배, 홍고추, 동치미를 갈아 넣어 시원하고 깔끔한 매콤새콤의 반격”',
+    editorialNote: '2021년 출시. 37년간 굳건했던 팔도비빔면의 독점 체제에 정면 도전해 단숨에 시장 2위로 올라선 비빔면 카테고리의 강력한 맞수.',
+    canvasX: 1630,
+    canvasY: 940
   }
 ];
 

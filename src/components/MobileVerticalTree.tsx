@@ -94,6 +94,42 @@ export function MobileVerticalTree({
           </div>
         </div>
 
+        {/* Milestone Pills for 1970 Forks */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+          {getMilestone('ms-1970-beef') && (
+            <button
+              onClick={() => onSelectMilestone(getMilestone('ms-1970-beef')!)}
+              className="p-2.5 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 flex items-center justify-between gap-1.5 text-left cursor-pointer transition group"
+            >
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="w-2 h-2 rounded-full bg-rose-500 shrink-0" />
+                <span className="text-[11px] font-serif font-black text-rose-950 truncate">
+                  1970년 쇠고기 국물의 부상
+                </span>
+              </div>
+              <span className="text-[9px] font-bold text-rose-700 bg-rose-200/80 px-2 py-0.5 rounded-full shrink-0">
+                기록 보기
+              </span>
+            </button>
+          )}
+          {getMilestone('ms-1970-jjajang') && (
+            <button
+              onClick={() => onSelectMilestone(getMilestone('ms-1970-jjajang')!)}
+              className="p-2.5 rounded-2xl bg-amber-50 hover:bg-amber-100 border border-amber-200 flex items-center justify-between gap-1.5 text-left cursor-pointer transition group"
+            >
+              <div className="flex items-center gap-1.5 min-w-0">
+                <span className="w-2 h-2 rounded-full bg-amber-600 shrink-0" />
+                <span className="text-[11px] font-serif font-black text-amber-950 truncate">
+                  1970년 비국물 라면의 태동
+                </span>
+              </div>
+              <span className="text-[9px] font-bold text-amber-700 bg-amber-200/80 px-2 py-0.5 rounded-full shrink-0">
+                기록 보기
+              </span>
+            </button>
+          )}
+        </div>
+
         {/* 1970 Branch Products */}
         <div className="grid grid-cols-2 gap-2.5 pt-1">
           {/* Soup Branch: Samyang Beef 1970 */}
