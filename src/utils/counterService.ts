@@ -1,5 +1,6 @@
 // Visitor Counter API Service for Ramen Genealogy
 // Uses CountAPI (mileshilliard.com) with sessionStorage deduplication and localStorage fallback
+// Strictly displays real, non-inflated visitor session counts starting from actual data.
 
 export interface VisitorStats {
   today: number;
@@ -8,7 +9,8 @@ export interface VisitorStats {
 }
 
 const TOTAL_KEY = 'raspos_ramen_genealogy_total_v1';
-const SESSION_KEY = 'ramen_pub_session_counted_v1';
+const SESSION_KEY = 'ramen_pub_session_counted_v2';
+const STORAGE_PREFIX = 'ramen_pub_v2_';
 
 function getTodayKey(): string {
   const now = new Date();
@@ -26,26 +28,22 @@ function getStoredDateStr(): string {
   return `${yyyy}${mm}${dd}`;
 }
 
-// Initial sensible baseline for pleasant display while loading / offline
-const BASELINE_TOTAL = 2480;
-const BASELINE_TODAY = 42;
-
 export function getLocalCachedStats(): VisitorStats {
   try {
     const todayStr = getStoredDateStr();
-    const savedDate = localStorage.getItem('ramen_pub_date_v1');
-    const savedToday = parseInt(localStorage.getItem('ramen_pub_today_v1') || '0', 10);
-    const savedTotal = parseInt(localStorage.getItem('ramen_pub_total_v1') || '0', 10);
+    const savedDate = localStorage.getItem(`${STORAGE_PREFIX}date`);
+    const savedToday = parseInt(localStorage.getItem(`${STORAGE_PREFIX}today`) || '1', 10);
+    const savedTotal = parseInt(localStorage.getItem(`${STORAGE_PREFIX}total`) || '1', 10);
 
     return {
-      today: savedDate === todayStr && savedToday > 0 ? savedToday : BASELINE_TODAY,
-      total: savedTotal > 0 ? savedTotal : BASELINE_TOTAL,
+      today: savedDate === todayStr && savedToday > 0 ? savedToday : 1,
+      total: savedTotal > 0 ? savedTotal : 1,
       isRemoteVerified: false,
     };
   } catch {
     return {
-      today: BASELINE_TODAY,
-      total: BASELINE_TOTAL,
+      today: 1,
+      total: 1,
       isRemoteVerified: false,
     };
   }
@@ -100,14 +98,19 @@ export async function fetchVisitorStats(): Promise<VisitorStats> {
       if (typeof initToday?.value === 'number') remoteToday = initToday.value;
     }
 
-    const finalTotal = remoteTotal !== null ? Math.max(BASELINE_TOTAL, remoteTotal) : local.total;
+    const finalTotal = remoteTotal !== null ? Math.max(1, remoteTotal) : local.total;
     const finalToday = remoteToday !== null ? Math.max(1, remoteToday) : local.today;
     const isVerified = remoteTotal !== null || remoteToday !== null;
 
     try {
-      localStorage.setItem('ramen_pub_date_v1', todayStr);
-      localStorage.setItem('ramen_pub_today_v1', String(finalToday));
-      localStorage.setItem('ramen_pub_total_v1', String(finalTotal));
+      localStorage.setItem(`${STORAGE_PREFIX}date`, todayStr);
+      localStorage.setItem(`${STORAGE_PREFIX}today`, String(finalToday));
+      localStorage.setItem(`${STORAGE_PREFIX}total`, String(finalTotal));
+      // Remove any legacy v1 fake baseline from localStorage
+      localStorage.removeItem('ramen_pub_date_v1');
+      localStorage.removeItem('ramen_pub_today_v1');
+      localStorage.removeItem('ramen_pub_total_v1');
+
       if (isNewSession) {
         sessionStorage.setItem(SESSION_KEY, '1');
       }
