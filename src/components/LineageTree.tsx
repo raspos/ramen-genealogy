@@ -12,6 +12,8 @@ import {
   type LineageLegendNode,
   type LineageEdge,
 } from '../data/historicalGenealogyData';
+import { LineageMilestoneModal } from './LineageMilestoneModal';
+import { MobileVerticalTree } from './MobileVerticalTree';
 import {
   Sparkles,
   RotateCcw,
@@ -19,7 +21,6 @@ import {
   Swords,
   ChevronRight,
   X,
-  BookOpen,
   ArrowRight,
 } from 'lucide-react';
 
@@ -36,7 +37,7 @@ export function LineageTree({
   highlightedFactionId,
   searchQuery = '',
 }: LineageTreeProps) {
-  // Mobile display mode
+  // Mobile display mode: CHRONICLE (세로형 계보도) is primary
   const [mobileMode, setMobileMode] = useState<'CANVAS' | 'CHRONICLE'>('CHRONICLE');
 
   // Filters
@@ -119,34 +120,34 @@ export function LineageTree({
         });
       }
 
-      // 3. Rivals traversal
+      // 3. Rivals traversal (direct bidirectional)
       LINEAGE_EDGES.forEach((edge) => {
-        if (edge.relationType === 'HISTORICAL_RIVALRY') {
+        if (edge.relationType === 'MARKET_RIVALRY') {
           if (edge.fromId === startId) {
+            connectedEdgeIds.add(edge.id);
             connectedNodeIds.add(edge.toId);
-            connectedEdgeIds.add(edge.id);
           } else if (edge.toId === startId) {
-            connectedNodeIds.add(edge.fromId);
             connectedEdgeIds.add(edge.id);
+            connectedNodeIds.add(edge.fromId);
           }
         }
       });
     });
 
-    return { nodeIds: connectedNodeIds, edgeIds: connectedEdgeIds };
+    return {
+      nodeIds: connectedNodeIds,
+      edgeIds: connectedEdgeIds,
+    };
   }, [activeNodeId, highlightedFactionId]);
 
-  // Lookup node by ID
   const getNodeById = (id: string): LineageLegendNode | undefined => {
     return LINEAGE_LEGEND_NODES.find((n) => n.id === id);
   };
 
-  // Lookup full ramen product by ID
   const getFullProduct = (id: string): RamenProduct | undefined => {
     return RAMEN_DATASET.find((p) => p.id === id);
   };
 
-  // Lookup faction taxonomy node
   const getFactionNode = (factionId: string): FactionNode | undefined => {
     return FACTION_TAXONOMY.find((f) => f.id === factionId);
   };
@@ -176,7 +177,7 @@ export function LineageTree({
       if (selectedBranch === 'RIVALRY') {
         const isRivalryNode = LINEAGE_EDGES.some(
           (e) =>
-            e.relationType === 'HISTORICAL_RIVALRY' &&
+            e.relationType === 'MARKET_RIVALRY' &&
             (e.fromId === n.id || e.toId === n.id)
         );
         return isRivalryNode;
@@ -197,7 +198,7 @@ export function LineageTree({
 
       // 2. In RIVALRY mode, show strictly rivalry edges
       if (selectedBranch === 'RIVALRY') {
-        return edge.relationType === 'HISTORICAL_RIVALRY';
+        return edge.relationType === 'MARKET_RIVALRY';
       }
 
       const isSoup = (f: string) =>
@@ -234,14 +235,13 @@ export function LineageTree({
     });
   }, [filteredNodes, selectedBranch]);
 
-
-  // Dynamic Y-coordinate calculator: in NON_SOUP mode, pull lanes 5 & 6 up to the top!
+  // Dynamic Y-coordinate calculator: in NON_SOUP mode, pull non-soup lanes up to the top
   const getNodeY = (node: LineageLegendNode) => {
     if (selectedBranch === 'NON_SOUP') {
       if (node.canvasY >= 850) {
-        return 380; // Lane 6: 새콤달콤 냉비빔면파 (팔도비빔면, 배홍동)
+        return 380; // Lane: 냉비빔면파 (팔도비빔면, 배홍동)
       }
-      return 190; // Lane 5: 짜장 · 불닭 · 퓨전파 (짜파게티, 불닭, 툼바 등)
+      return 190; // Lane: 짜장 · 불닭 · 퓨전파 (짜파게티, 불닭, 툼바 등)
     }
     return node.canvasY;
   };
@@ -255,12 +255,11 @@ export function LineageTree({
     const isActive = activePath ? activePath.edgeIds.has(edge.id) : true;
     const isDimmed = activePath && !activePath.edgeIds.has(edge.id);
 
-    // Coordinate calculation (Node width is 132px, so half is 66px)
     let d = '';
     let labelX = 0;
     let labelY = 0;
 
-    if (edge.relationType === 'HISTORICAL_RIVALRY') {
+    if (edge.relationType === 'MARKET_RIVALRY') {
       if (Math.abs(fromNode.canvasX - toNode.canvasX) < 50) {
         // Vertical rivalry curve (Shin Ramyun vs Jin Ramen Spicy)
         const x1 = fromNode.canvasX + 66;
@@ -273,7 +272,7 @@ export function LineageTree({
         labelX = midX + 6;
         labelY = midY;
       } else {
-        // Horizontal rivalry arc (Paldo vs Baehongdong)
+        // Horizontal rivalry arc (Paldo vs Baehongdong, Chapagetti vs Jin Jjajang)
         const x1 = fromNode.canvasX + 66;
         const y1 = getNodeY(fromNode);
         const x2 = toNode.canvasX - 66;
@@ -308,21 +307,40 @@ export function LineageTree({
     if (edge.relationType === 'DIRECT_LINEAGE') {
       strokeWidth = isActive ? 3.5 : 2.5;
       strokeColor = '#ef4444'; // Radiant red for direct lineage
-    } else if (edge.relationType === 'REVOLUTIONARY_SCHISM') {
-      strokeWidth = 3;
+    } else if (edge.relationType === 'FACTION_SPLIT') {
+      strokeWidth = 2.5;
       strokeDasharray = '6 4';
-      strokeColor = '#f97316'; // Warning fire amber for rebels
-    } else if (edge.relationType === 'HISTORICAL_RIVALRY') {
+      strokeColor = '#d97706'; // Amber for faction split
+    } else if (edge.relationType === 'MARKET_RIVALRY') {
       strokeWidth = 3;
-      strokeDasharray = '5 3';
+      strokeDasharray = '4 3';
       strokeColor = '#a855f7'; // Vibrant purple for rivalry
+    } else if (edge.relationType === 'PARADIGM_SHIFT') {
+      strokeWidth = 3;
+      strokeDasharray = '8 4';
+      strokeColor = '#f59e0b'; // Gold for paradigm shift
     }
 
     return (
       <g
         key={edge.id}
-        className={`transition-all duration-300 ${isDimmed ? 'opacity-20' : 'opacity-100'}`}
+        className={`transition-opacity duration-300 ${
+          isDimmed ? 'opacity-15' : 'opacity-100'
+        }`}
       >
+        {/* Glow backdrop when active */}
+        {isActive && activePath && (
+          <path
+            d={d}
+            fill="none"
+            stroke={strokeColor}
+            strokeWidth={strokeWidth + 4}
+            strokeOpacity="0.35"
+            strokeLinecap="round"
+          />
+        )}
+
+        {/* Main curve */}
         <path
           d={d}
           fill="none"
@@ -330,33 +348,48 @@ export function LineageTree({
           strokeWidth={strokeWidth}
           strokeDasharray={strokeDasharray}
           strokeLinecap="round"
-          className="transition-all"
+          markerEnd={
+            edge.relationType === 'DIRECT_LINEAGE'
+              ? 'url(#arrowhead-direct)'
+              : edge.relationType === 'MARKET_RIVALRY'
+              ? 'url(#arrowhead-rivalry)'
+              : 'url(#arrowhead-split)'
+          }
         />
 
         {/* Midpoint Label Badge */}
-        {isActive && !isDimmed && (
-          <g transform={`translate(${labelX}, ${labelY})`}>
+        {edge.label && (
+          <g
+            transform={`translate(${labelX}, ${labelY})`}
+            className="cursor-pointer pointer-events-auto"
+          >
             <rect
-              x="-52"
+              x="-48"
               y="-11"
-              width="104"
+              width="96"
               height="22"
               rx="11"
-              fill={edge.relationType === 'HISTORICAL_RIVALRY' ? '#7e22ce' : '#0c0a09'}
-              fillOpacity="0.95"
-              stroke={edge.relationType === 'HISTORICAL_RIVALRY' ? '#d8b4fe' : '#57534e'}
-              strokeWidth="1.2"
+              fill={
+                edge.relationType === 'DIRECT_LINEAGE'
+                  ? '#7f1d1d'
+                  : edge.relationType === 'MARKET_RIVALRY'
+                  ? '#581c87'
+                  : '#292524'
+              }
+              stroke={strokeColor}
+              strokeWidth="1.5"
+              className="drop-shadow-md"
             />
             <text
               x="0"
               y="4"
               textAnchor="middle"
               fill="#ffffff"
-              fontSize="10.5"
+              fontSize="10"
               fontWeight="bold"
               fontFamily="sans-serif"
             >
-              {edge.label}
+              {edge.relationType === 'MARKET_RIVALRY' ? `VS ${edge.label.split(' ')[0]}` : edge.label}
             </text>
           </g>
         )}
@@ -366,12 +399,12 @@ export function LineageTree({
 
   // Role Badge Styling Helper
   const getRoleBadgeStyle = (role: string) => {
-    if (role.includes('시원')) return 'bg-amber-400 text-stone-950 font-black shadow-xs';
+    if (role.includes('시작') || role.includes('시초')) return 'bg-amber-400 text-stone-950 font-black shadow-xs';
     if (role.includes('통일') || role.includes('집권')) return 'bg-rose-600 text-white font-black';
-    if (role.includes('독립') || role.includes('태동')) return 'bg-sky-600 text-white font-bold';
-    if (role.includes('반란') || role.includes('도발')) return 'bg-orange-500 text-white font-black';
-    if (role.includes('라이벌') || role.includes('대항마')) return 'bg-purple-600 text-white font-black';
-    if (role.includes('화마') || role.includes('융합')) return 'bg-amber-500 text-stone-950 font-black';
+    if (role.includes('독립') || role.includes('개척')) return 'bg-sky-600 text-white font-bold';
+    if (role.includes('영수') || role.includes('연합')) return 'bg-amber-500 text-stone-950 font-black';
+    if (role.includes('라이벌') || role.includes('맞수')) return 'bg-purple-600 text-white font-black';
+    if (role.includes('혁명') || role.includes('강화')) return 'bg-rose-500 text-white font-black';
     return 'bg-stone-700 text-stone-100 font-bold';
   };
 
@@ -394,19 +427,19 @@ export function LineageTree({
           <div className="flex flex-wrap items-center gap-4 text-xs font-medium text-stone-600">
             <span className="inline-flex items-center gap-1.5">
               <span className="w-4 h-1 bg-rose-500 rounded-full inline-block"></span>
-              <span className="font-bold text-stone-800">정통 계승</span>
+              <span className="font-bold text-stone-800">직접 계승</span>
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <span className="w-4 h-1 bg-amber-500 rounded-full inline-block"></span>
-              <span>계열 분화</span>
-            </span>
-            <span className="inline-flex items-center gap-1.5">
-              <span className="w-4 border-b-2 border-dashed border-orange-500 inline-block"></span>
-              <span className="font-bold text-orange-700">사조 반란</span>
+              <span className="w-4 border-b-2 border-dashed border-amber-500 inline-block"></span>
+              <span className="font-bold text-amber-700">계열 분화</span>
             </span>
             <span className="inline-flex items-center gap-1.5">
               <span className="w-4 border-b-2 border-dotted border-purple-500 inline-block"></span>
-              <span className="font-bold text-purple-700">숙명의 라이벌</span>
+              <span className="font-bold text-purple-700">시장 경쟁 (라이벌)</span>
+            </span>
+            <span className="inline-flex items-center gap-1.5">
+              <span className="w-4 border-b-2 border-dashed border-amber-400 inline-block"></span>
+              <span className="font-bold text-amber-600">사조 전환</span>
             </span>
           </div>
         </div>
@@ -423,7 +456,7 @@ export function LineageTree({
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
-              전체 계보 (25기수)
+              전체 계보 (23기수)
             </button>
             <button
               onClick={() => setSelectedBranch('SOUP')}
@@ -439,7 +472,7 @@ export function LineageTree({
               onClick={() => setSelectedBranch('NON_SOUP')}
               className={`px-3.5 py-2 text-xs font-bold rounded-xl transition cursor-pointer ${
                 selectedBranch === 'NON_SOUP'
-                  ? 'bg-amber-600 text-white shadow-xs'
+                  ? 'bg-amber-700 text-white shadow-xs'
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >
@@ -511,14 +544,14 @@ export function LineageTree({
       </div>
 
       {/* ================= 2. MOBILE VIEW SWITCHER ================= */}
-      <div className="md:hidden flex items-center justify-center gap-1 p-1 bg-stone-200 rounded-2xl max-w-xs mx-auto">
+      <div className="md:hidden flex items-center justify-center gap-1 p-1 bg-stone-200 rounded-2xl max-w-sm mx-auto">
         <button
           onClick={() => setMobileMode('CHRONICLE')}
           className={`flex-1 py-2 text-xs font-bold rounded-xl transition cursor-pointer ${
             mobileMode === 'CHRONICLE' ? 'bg-stone-900 text-white shadow-xs' : 'text-stone-700'
           }`}
         >
-          시대별 연대기 흐름
+          세로형 분파 족보 (추천)
         </button>
         <button
           onClick={() => setMobileMode('CANVAS')}
@@ -526,151 +559,44 @@ export function LineageTree({
             mobileMode === 'CANVAS' ? 'bg-stone-900 text-white shadow-xs' : 'text-stone-700'
           }`}
         >
-          가로 계보도 캔버스
+          가로 캔버스 뷰
         </button>
       </div>
 
-      {/* ================= 3. MOBILE CHRONICLE FLOW VIEW ================= */}
+      {/* ================= 3. MOBILE VERTICAL TREE (When CHRONICLE active on mobile) ================= */}
       {mobileMode === 'CHRONICLE' && (
-        <div className="md:hidden space-y-6">
-          <div className="text-center p-3 bg-stone-100 rounded-2xl text-xs text-stone-600 font-medium">
-            조선시대 붕당정치처럼 6개 시대로 이어지는 라면의 흥망성쇠를 아래로 탐색하세요.
-          </div>
-
-          {HISTORICAL_EPOCHS.map((epoch) => {
-            const epochNodes = filteredNodes.filter((n) => n.epochId === epoch.id);
-            const epochMilestone = HISTORICAL_MILESTONES.find((m) => m.epochId === epoch.id);
-
-            return (
-              <div
-                key={epoch.id}
-                className="bg-white border-2 border-stone-300 rounded-3xl p-5 shadow-sm space-y-4"
-              >
-                {/* Epoch Header */}
-                <div className="border-b border-stone-200 pb-3">
-                  <div className="flex items-center justify-between gap-2 mb-1">
-                    <span className="text-xs font-black text-rose-700 font-mono tracking-wider">
-                      {epoch.period}
-                    </span>
-                    <span className="text-xs font-serif font-black px-2.5 py-0.5 bg-stone-900 text-amber-300 rounded-md">
-                      {epoch.hanja}
-                    </span>
-                  </div>
-                  <h3 className="text-lg font-black text-stone-900 font-serif">{epoch.name}</h3>
-                  <p className="text-xs text-stone-600 mt-1 font-medium leading-relaxed">
-                    {epoch.narrative}
-                  </p>
-                </div>
-
-                {/* Epoch Milestone Callout if any */}
-                {epochMilestone && (
-                  <div
-                    onClick={() => setSelectedMilestone(epochMilestone)}
-                    className="p-3.5 bg-amber-50/90 border border-amber-300 rounded-2xl cursor-pointer hover:bg-amber-100 transition shadow-xs"
-                  >
-                    <div className="flex items-center justify-between text-xs font-black text-amber-950 mb-1">
-                      <span>역사적 분기점 · {epochMilestone.year}년</span>
-                      <span className="font-serif font-bold text-amber-800">
-                        {epochMilestone.hanjaTitle}
-                      </span>
-                    </div>
-                    <h4 className="text-xs font-black text-stone-900">{epochMilestone.title}</h4>
-                    <p className="text-[11.5px] text-stone-600 mt-0.5 line-clamp-2">
-                      {epochMilestone.summary}
-                    </p>
-                  </div>
-                )}
-
-                {/* Nodes in this Epoch */}
-                <div className="grid grid-cols-2 gap-3">
-                  {epochNodes.map((node) => {
-                    const is1963 = node.id === 'samyang-chicken-1963';
-
-                    return (
-                      <div
-                        key={node.id}
-                        onClick={() => setSelectedLegendNode(node)}
-                        className={`p-3 rounded-2xl border-2 transition-all cursor-pointer flex flex-col justify-between ${
-                          is1963
-                            ? 'bg-amber-50 border-amber-400 ring-2 ring-amber-300 shadow-md'
-                            : 'bg-stone-50 border-stone-200 hover:border-stone-400 hover:bg-white shadow-xs'
-                        }`}
-                      >
-                        {/* Packaging Photo */}
-                        <div className="relative w-full aspect-square rounded-xl bg-white p-1.5 mb-2 flex items-center justify-center overflow-hidden border border-stone-200 shadow-inner">
-                          <img
-                            src={getAssetUrl(node.imageUrl)}
-                            alt={node.name}
-                            loading="lazy"
-                            onError={(e) => {
-                              const target = e.currentTarget as HTMLImageElement;
-                              target.src = getAssetUrl(`/images/products/${node.id}.svg`);
-                            }}
-                            className="max-h-full max-w-full object-contain drop-shadow-sm"
-                          />
-                          {is1963 && (
-                            <span className="absolute top-1 left-1 bg-amber-600 text-[9px] font-black text-white px-2 py-0.5 rounded-md shadow-xs">
-                              1963년 실물봉지
-                            </span>
-                          )}
-                        </div>
-
-                        {/* Node Info */}
-                        <div>
-                          <div className="flex items-center justify-between mb-1.5">
-                            <span
-                              className={`text-[9.5px] px-2 py-0.5 rounded-full ${getRoleBadgeStyle(
-                                node.historicalRole
-                              )}`}
-                            >
-                              {node.historicalRole}
-                            </span>
-                            <span className="text-[11px] font-mono font-bold text-stone-600">
-                              {node.releaseYear}년
-                            </span>
-                          </div>
-
-                          <h4 className="text-xs font-black text-stone-900 line-clamp-1">
-                            {node.name}
-                          </h4>
-
-                          <p className="text-[10px] text-stone-500 mt-0.5 font-serif line-clamp-1">
-                            {node.hanjaFaction} · {node.manufacturer}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
+        <div className="md:hidden">
+          <MobileVerticalTree
+            nodes={filteredNodes}
+            edges={filteredEdges}
+            epochs={HISTORICAL_EPOCHS}
+            milestones={HISTORICAL_MILESTONES}
+            onSelectNode={(node) => {
+              setActiveNodeId(node.id);
+              setSelectedLegendNode(node);
+            }}
+            onSelectMilestone={(ms) => setSelectedMilestone(ms)}
+          />
         </div>
       )}
 
-      {/* ================= 4. DESKTOP / TABLET / SCROLL SVG CANVAS ================= */}
+      {/* ================= 4. DESKTOP CANVAS VIEW (Also visible on mobile when CANVAS toggled) ================= */}
       <div
         className={`${
           mobileMode === 'CHRONICLE' ? 'hidden md:block' : 'block'
-        } relative w-full bg-stone-900 border-2 border-stone-800 rounded-3xl overflow-hidden shadow-2xl`}
+        } bg-stone-950 border border-stone-800 rounded-3xl overflow-hidden shadow-2xl relative`}
       >
-        {/* Mobile Canvas Scroll Prompt */}
-        <div className="md:hidden bg-stone-950 py-2.5 px-4 text-center text-amber-300 text-xs font-bold border-b border-stone-800 flex items-center justify-center gap-1.5">
-          <span>← 좌우로 자유롭게 스크롤하여 60년 계보도를 탐색하세요 →</span>
-        </div>
-
-        {/* Scrollable Canvas Viewport */}
         <div
           ref={canvasScrollRef}
-          className="overflow-x-auto overflow-y-auto scrollbar-thin scrollbar-thumb-stone-700 scrollbar-track-stone-900"
-          style={{ WebkitOverflowScrolling: 'touch' }}
+          className="relative overflow-x-auto overflow-y-hidden cursor-grab active:cursor-grabbing p-6"
+          style={{ minHeight: '620px', maxHeight: '1120px' }}
         >
-          {/* Inner Canvas: 1420 x 1040 */}
+          {/* Virtual SVG Canvas: 1850px x 1080px */}
           <div
             className="relative select-none"
             style={{
-              width: '1420px',
-              height: selectedBranch === 'NON_SOUP' ? '540px' : selectedBranch === 'SOUP' ? '740px' : '1040px',
+              width: '1850px',
+              height: selectedBranch === 'NON_SOUP' ? '560px' : selectedBranch === 'SOUP' ? '760px' : '1080px',
               backgroundColor: '#121110',
               backgroundImage: `
                 radial-gradient(circle at 10% 45%, rgba(217, 119, 6, 0.09) 0%, transparent 45%),
@@ -681,62 +607,53 @@ export function LineageTree({
               backgroundSize: '100% 100%, 100% 100%, 48px 48px, 48px 48px',
             }}
           >
-            {/* Top Epoch Banners (Time Axis X) */}
-            <div className="absolute top-0 left-0 right-0 h-16 border-b border-stone-800/90 flex text-center z-10 bg-stone-950/80 backdrop-blur-md">
-              <div className="w-[220px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
-                <span className="text-[11px] font-mono text-amber-400 font-bold">1963~1970s</span>
+            {/* Top Epoch Banners (Time Axis X across 1850px) */}
+            <div className="absolute top-0 left-0 right-0 h-16 border-b border-stone-800/90 flex text-center z-10 bg-stone-950/85 backdrop-blur-md">
+              <div className="w-[380px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
+                <span className="text-[11px] font-mono text-amber-400 font-bold">1963 ~ 1970년대</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  제1기: 최초의 탄생 (개척기)
+                  제1기: 건국과 원조의 태동 (단일 뿌리에서 분기로)
                 </span>
               </div>
-              <div className="w-[240px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
-                <span className="text-[11px] font-mono text-amber-400 font-bold">1980~1985</span>
+              <div className="w-[380px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
+                <span className="text-[11px] font-mono text-amber-400 font-bold">1980 ~ 1985</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  제2·3기: 장국 혁신과 분파기
+                  제2기: 탕과 건의 대분화 (너구리·안성·짜파·비빔)
                 </span>
               </div>
-              <div className="w-[240px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
-                <span className="text-[11px] font-mono text-amber-400 font-bold">1986~1988</span>
+              <div className="w-[380px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
+                <span className="text-[11px] font-mono text-amber-400 font-bold">1986 ~ 1994</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  신라면 천하통일 & 라이벌전
+                  제3기: 신라면 천하통일 & 영구적 라이벌전
                 </span>
               </div>
-              <div className="w-[240px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
-                <span className="text-[11px] font-mono text-amber-400 font-bold">1992~2000s</span>
+              <div className="w-[280px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
+                <span className="text-[11px] font-mono text-amber-400 font-bold">2009 ~ 2011</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  제4기: 다양화 전성기
-                </span>
-              </div>
-              <div className="w-[240px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
-                <span className="text-[11px] font-mono text-amber-400 font-bold">2009~2012</span>
-                <span className="text-xs font-serif font-black text-stone-100">
-                  제5기: 백탕의 난 & 화마 강림
+                  제4기: 하얀 국물의 난 & 극매운맛
                 </span>
               </div>
               <div className="flex-1 p-2 flex flex-col justify-center">
-                <span className="text-[11px] font-mono text-amber-400 font-bold">2015~2026</span>
+                <span className="text-[11px] font-mono text-amber-400 font-bold">2012 ~ 2026</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  제6기: 중화대전 & 크림퓨전 현대
+                  제5·6기: 불닭 혁명 & K-크림 퓨전 백가쟁명
                 </span>
               </div>
             </div>
 
             {/* Horizontal Faction Lane Guides (Clear boundaries behind cards) */}
             <div className="absolute inset-0 pt-16 pointer-events-none z-5">
-              {/* If NON_SOUP is selected, display Lane 5 and Lane 6 directly at the top! */}
               {selectedBranch === 'NON_SOUP' ? (
                 <>
-                  {/* Lane 5 in NON_SOUP mode (at top: 100px) */}
                   <div
                     className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
                     style={{ top: '100px', height: '170px' }}
                   >
                     <span className="text-[10px] font-serif font-black tracking-wider text-amber-500/90 bg-stone-950/90 px-3 py-1 rounded-md border border-amber-900 shadow-md">
-                      짜장 · 불닭 볶음 · 크림 퓨전파 (짜파게티 · 사천짜파게티 · 불닭볶음면 · 까르보불닭 · 신라면 툼바)
+                      짜장 · 불닭 볶음 · 크림 퓨전파 (롯데짜장 · 짜파게티 · 불닭볶음면 · 까르보불닭 · 신라면 툼바)
                     </span>
                   </div>
 
-                  {/* Lane 6 in NON_SOUP mode (at top: 290px) */}
                   <div
                     className="absolute inset-x-0 flex items-center px-4"
                     style={{ top: '290px', height: '170px' }}
@@ -748,68 +665,59 @@ export function LineageTree({
                 </>
               ) : (
                 <>
-                  {/* Lane 1: Extreme Spicy */}
                   <div
                     className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                    style={{ top: '120px', height: '110px' }}
+                    style={{ top: '60px', height: '110px' }}
                   >
                     <span className="text-[10px] font-serif font-black tracking-wider text-rose-500/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-950">
-                      극초매운 국물파 (열라면 · 틈새라면 · 마열 · 더레드)
+                      사발 용기면 & 전통 곰탕 사골 백탕파 (육개장 사발면 · 사리곰탕)
                     </span>
                   </div>
 
-                  {/* Lane 2: Spicy Beef */}
                   <div
                     className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                    style={{ top: '230px', height: '140px' }}
+                    style={{ top: '180px', height: '150px' }}
                   >
-                    <span className="text-[10px] font-serif font-black tracking-wider text-rose-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-950">
-                      정통 얼큰 소고기파 (신라면 · 진라면 매운맛 · 안성탕면 · 육개장)
+                    <span className="text-[10px] font-serif font-black tracking-wider text-rose-400 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-900">
+                      정통 소고기 장국 & 얼큰탕 집권파 (삼양쇠고기면 · 안성탕면 · 신라면)
                     </span>
                   </div>
 
-                  {/* Lane 3: Origin & Bone Broth & White Broth */}
                   <div
                     className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                    style={{ top: '370px', height: '180px' }}
+                    style={{ top: '340px', height: '150px' }}
                   >
-                    <span className="text-[10px] font-serif font-black tracking-wider text-amber-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
-                      원조 백탕 · 진한 사골파 · 하얀국물의 난 (삼양라면 · 사리곰탕 · 꼬꼬면)
+                    <span className="text-[10px] font-serif font-black tracking-wider text-sky-400 bg-stone-950/80 px-2.5 py-1 rounded-md border border-sky-950">
+                      얼큰 해물·우동·짬뽕파 (너구리 · 오징어짬뽕 · 진짬뽕)
                     </span>
                   </div>
 
-                  {/* Lane 4: Seafood */}
                   <div
                     className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                    style={{ top: '550px', height: '180px' }}
+                    style={{ top: '500px', height: '150px' }}
                   >
-                    <span className="text-[10px] font-serif font-black tracking-wider text-sky-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-sky-950">
-                      시원한 해물 · 짬뽕파 (너구리 · 오징어짬뽕 · 진짬뽕)
+                    <span className="text-[10px] font-serif font-black tracking-wider text-amber-400 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
+                      하얀국물 반란파 & 크림 퓨전파 (꼬꼬면 · 나가사끼 짬뽕 · 신라면 툼바)
                     </span>
                   </div>
 
-                  {/* Lane 5 & 6 (Only in ALL or RIVALRY mode) */}
-                  {selectedBranch !== 'SOUP' && (
-                    <>
-                      <div
-                        className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                        style={{ top: '730px', height: '140px' }}
-                      >
-                        <span className="text-[10px] font-serif font-black tracking-wider text-amber-500/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
-                          짜장 · 불닭 볶음 · 크림 퓨전파 (짜파게티 · 불닭볶음면 · 신라면 툼바)
-                        </span>
-                      </div>
+                  <div
+                    className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
+                    style={{ top: '660px', height: '150px' }}
+                  >
+                    <span className="text-[10px] font-serif font-black tracking-wider text-amber-600 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
+                      비국물 춘장 짜장 & 화마 볶음파 (롯데짜장 · 짜파게티 · 불닭볶음면)
+                    </span>
+                  </div>
 
-                      <div
-                        className="absolute inset-x-0 flex items-center px-4"
-                        style={{ top: '870px', height: '130px' }}
-                      >
-                        <span className="text-[10px] font-serif font-black tracking-wider text-cyan-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-cyan-950">
-                          새콤달콤 냉비빔면파 (팔도비빔면 vs 배홍동)
-                        </span>
-                      </div>
-                    </>
-                  )}
+                  <div
+                    className="absolute inset-x-0 flex items-center px-4"
+                    style={{ top: '830px', height: '150px' }}
+                  >
+                    <span className="text-[10px] font-serif font-black tracking-wider text-blue-400 bg-stone-950/80 px-2.5 py-1 rounded-md border border-blue-950">
+                      새콤달콤 냉비빔면파 (팔도비빔면 vs 배홍동)
+                    </span>
+                  </div>
                 </>
               )}
             </div>
@@ -817,20 +725,22 @@ export function LineageTree({
             {/* Epoch Historical Milestones (Flags / Clickable Badges at Y=75) */}
             <div className="absolute top-[72px] left-0 right-0 z-20 pointer-events-auto">
               {HISTORICAL_MILESTONES.map((ms) => {
-                let xPos = 100;
-                if (ms.year === 1963) xPos = 100;
-                else if (ms.year === 1982) xPos = 270;
-                else if (ms.year === 1984) xPos = 380;
-                else if (ms.year === 1986) xPos = 570;
-                else if (ms.year === 2011) xPos = 980;
-                else if (ms.year === 2012) xPos = 1090;
-                else if (ms.year === 2015) xPos = 1280;
+                let xPos = 70;
+                if (ms.id === 'ms-1963') xPos = 70;
+                else if (ms.id === 'ms-1970-beef') xPos = 270;
+                else if (ms.id === 'ms-1970-jjajang') xPos = 360;
+                else if (ms.id === 'ms-1980s') xPos = 500;
+                else if (ms.id === 'ms-1984') xPos = 690;
+                else if (ms.id === 'ms-2011') xPos = 1270;
+                else if (ms.id === 'ms-2012') xPos = 1360;
+                else if (ms.id === 'ms-2015') xPos = 1450;
+                else if (ms.id === 'ms-2020s') xPos = 1630;
 
                 return (
                   <button
                     key={ms.id}
                     onClick={() => setSelectedMilestone(ms)}
-                    className="absolute -translate-x-1/2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-700 shadow-lg cursor-pointer hover:scale-105 transition-transform"
+                    className="absolute -translate-x-1/2 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-stone-900 hover:bg-stone-800 text-stone-200 border border-stone-700 shadow-lg cursor-pointer hover:scale-105 transition-transform"
                     style={{ left: `${xPos}px` }}
                     title={`${ms.year}년 ${ms.title}`}
                   >
@@ -851,11 +761,46 @@ export function LineageTree({
               className="absolute inset-0 w-full h-full pointer-events-none z-15"
               style={{ overflow: 'visible' }}
             >
-              {/* Render All 24 Edges */}
+              <defs>
+                <marker
+                  id="arrowhead-direct"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#ef4444" />
+                </marker>
+                <marker
+                  id="arrowhead-split"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#d97706" />
+                </marker>
+                <marker
+                  id="arrowhead-rivalry"
+                  viewBox="0 0 10 10"
+                  refX="8"
+                  refY="5"
+                  markerWidth="6"
+                  markerHeight="6"
+                  orient="auto"
+                >
+                  <path d="M 0 1 L 10 5 L 0 9 z" fill="#a855f7" />
+                </marker>
+              </defs>
+
               {filteredEdges.map((edge) => renderEdgeSvgPath(edge))}
             </svg>
 
-            {/* Absolute Positioned 25 Legend Nodes (HTML Elements for Crisp Cards) */}
+            {/* Absolute Positioned 23 Legend Nodes (HTML Elements for Crisp Cards) */}
             <div className="absolute inset-0 z-20 pointer-events-none">
               {filteredNodes.map((node) => {
                 const isSelected = activeNodeId === node.id;
@@ -891,7 +836,7 @@ export function LineageTree({
                     {/* Header: Role Badge + Year */}
                     <div className="flex items-center justify-between gap-1 mb-1">
                       <span
-                        className={`text-[9.5px] px-2 py-0.5 rounded-full leading-none font-bold ${getRoleBadgeStyle(
+                        className={`text-[9px] px-1.5 py-0.5 rounded-full leading-none font-bold ${getRoleBadgeStyle(
                           node.historicalRole
                         )}`}
                       >
@@ -902,7 +847,7 @@ export function LineageTree({
                       </span>
                     </div>
 
-                    {/* Packaging Photo (Authentic Image with GitHub Pages Base URL!) */}
+                    {/* Packaging Photo */}
                     <div className="relative w-full h-[62px] rounded-xl bg-stone-950 p-1 flex items-center justify-center overflow-hidden border border-stone-800 group-hover:scale-105 transition-transform">
                       <img
                         src={getAssetUrl(node.imageUrl)}
@@ -950,7 +895,7 @@ export function LineageTree({
 
           <div className="flex items-center gap-3">
             <span className="text-[11px] font-mono text-stone-400">
-              전체 25대 기수 대표 라면 수록
+              전체 23대 기수 대표 라면 수록
             </span>
           </div>
         </div>
@@ -996,57 +941,49 @@ export function LineageTree({
 
             {/* Modal Body */}
             <div className="p-6 space-y-6 max-h-[75vh] overflow-y-auto">
-              {/* Product Photo Showcase */}
               <div className="flex flex-col sm:flex-row items-center gap-6 p-4 rounded-2xl bg-stone-50 border border-stone-200">
-                <div className="w-36 h-36 shrink-0 rounded-2xl bg-white p-2 border border-stone-200 flex items-center justify-center shadow-sm">
+                <div className="w-32 h-32 rounded-2xl bg-white p-2 border border-stone-200 flex items-center justify-center shrink-0 shadow-sm">
                   <img
                     src={getAssetUrl(selectedLegendNode.imageUrl)}
                     alt={selectedLegendNode.name}
-                    className="max-h-full max-w-full object-contain drop-shadow"
+                    className="max-h-full max-w-full object-contain drop-shadow-md"
                   />
                 </div>
-
-                <div className="flex-1 space-y-2 text-center sm:text-left">
-                  {selectedLegendNode.isVintagePhoto && (
-                    <span className="inline-block bg-amber-500 text-stone-950 text-xs font-black px-2.5 py-0.5 rounded-full shadow-xs">
-                      {selectedLegendNode.vintageYearNote || '역사적 실물 패키지 사진'}
+                <div className="space-y-2 text-center sm:text-left">
+                  <div className="text-xs font-mono font-bold text-amber-700">
+                    {selectedLegendNode.manufacturer} · {selectedLegendNode.brand}
+                  </div>
+                  <blockquote className="text-sm font-serif italic font-bold text-stone-800 border-l-2 sm:border-amber-400 sm:pl-3">
+                    {selectedLegendNode.doctrineQuote}
+                  </blockquote>
+                  {selectedLegendNode.vintageYearNote && (
+                    <span className="inline-block text-[11px] font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded">
+                      {selectedLegendNode.vintageYearNote}
                     </span>
                   )}
-                  <p className="text-sm font-serif italic text-stone-800 leading-relaxed font-bold">
-                    {selectedLegendNode.doctrineQuote}
-                  </p>
-                  <p className="text-xs text-stone-500 font-medium">
-                    제조사: {selectedLegendNode.manufacturer} · 브랜드: {selectedLegendNode.brand} ·
-                    용기형태: {selectedLegendNode.packageType === 'BAG' ? '봉지면' : '용기면'}
-                  </p>
                 </div>
               </div>
 
-              {/* Datajournalism Editorial Historical Narrative */}
               <div>
-                <h3 className="text-xs font-black text-stone-500 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                  <BookOpen className="w-3.5 h-3.5 text-stone-700" />
-                  <span>붕당사 실록 및 계보상 의의</span>
-                </h3>
-                <p className="text-sm text-stone-800 font-medium leading-relaxed bg-stone-50 p-4 rounded-2xl border border-stone-200">
+                <h4 className="text-xs font-black text-stone-500 uppercase tracking-wider mb-2">
+                  역사적 서사와 사조 평정기
+                </h4>
+                <p className="text-sm text-stone-700 leading-relaxed bg-stone-50 p-4 rounded-2xl border border-stone-200/80">
                   {selectedLegendNode.editorialNote}
                 </p>
               </div>
 
-              {/* Connected Lineage Relations */}
+              {/* Connected Lineage Edges */}
               <div>
-                <h3 className="text-xs font-black text-stone-500 uppercase tracking-wider mb-2">
-                  이 제품을 관통하는 계보 전승선
-                </h3>
+                <h4 className="text-xs font-black text-stone-500 uppercase tracking-wider mb-2">
+                  계보상의 직접 연결 관계
+                </h4>
                 <div className="space-y-2">
                   {LINEAGE_EDGES.filter(
                     (e) => e.fromId === selectedLegendNode.id || e.toId === selectedLegendNode.id
                   ).map((edge) => {
-                    const otherNodeId =
-                      edge.fromId === selectedLegendNode.id ? edge.toId : edge.fromId;
-                    const otherNode = getNodeById(otherNodeId);
                     const isOutgoing = edge.fromId === selectedLegendNode.id;
-
+                    const otherNode = getNodeById(isOutgoing ? edge.toId : edge.fromId);
                     return (
                       <div
                         key={edge.id}
@@ -1057,9 +994,9 @@ export function LineageTree({
                             className={`px-2 py-0.5 rounded text-[10px] font-bold ${
                               edge.relationType === 'DIRECT_LINEAGE'
                                 ? 'bg-rose-100 text-rose-800'
-                                : edge.relationType === 'HISTORICAL_RIVALRY'
+                                : edge.relationType === 'MARKET_RIVALRY'
                                 ? 'bg-purple-100 text-purple-800'
-                                : edge.relationType === 'REVOLUTIONARY_SCHISM'
+                                : edge.relationType === 'FACTION_SPLIT'
                                 ? 'bg-amber-100 text-amber-800'
                                 : 'bg-stone-200 text-stone-700'
                             }`}
@@ -1112,80 +1049,15 @@ export function LineageTree({
 
       {/* ================= 6. HISTORICAL MILESTONE MODAL ================= */}
       {selectedMilestone && (
-        <div className="fixed inset-0 z-50 overflow-y-auto bg-stone-950/70 backdrop-blur-xs flex items-center justify-center p-4">
-          <div
-            className="relative bg-white border-2 border-stone-800 rounded-3xl max-w-xl w-full shadow-2xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="p-6 bg-stone-900 text-white relative">
-              <button
-                onClick={() => setSelectedMilestone(null)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-stone-800 hover:bg-stone-700 text-stone-300 hover:text-white cursor-pointer transition"
-                aria-label="닫기"
-              >
-                <X className="w-5 h-5" />
-              </button>
-
-              <div className="flex items-center gap-2 mb-2">
-                <span className="px-2.5 py-0.5 rounded-md bg-amber-400 text-stone-950 text-xs font-black font-mono">
-                  {selectedMilestone.year}년 라면사 분기점
-                </span>
-                <span className="text-xs font-serif font-black text-amber-300">
-                  {selectedMilestone.hanjaTitle}
-                </span>
-              </div>
-
-              <h2 className="text-2xl font-black text-white font-serif">
-                {selectedMilestone.title}
-              </h2>
-            </div>
-
-            <div className="p-6 space-y-4">
-              <p className="text-sm text-stone-700 font-medium leading-relaxed bg-amber-50/70 p-4 rounded-2xl border border-amber-200/80">
-                {selectedMilestone.summary}
-              </p>
-
-              <div>
-                <h4 className="text-xs font-black text-stone-500 uppercase tracking-wider mb-2">
-                  이 사건의 핵심 주역 제품
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {selectedMilestone.keyProducts.map((pId) => {
-                    const node = getNodeById(pId);
-                    if (!node) return null;
-                    return (
-                      <div
-                        key={node.id}
-                        onClick={() => {
-                          setSelectedMilestone(null);
-                          setSelectedLegendNode(node);
-                        }}
-                        className="p-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 border border-stone-300 flex items-center gap-3 cursor-pointer transition"
-                      >
-                        <img
-                          src={getAssetUrl(node.imageUrl)}
-                          alt={node.name}
-                          className="w-8 h-8 object-contain"
-                        />
-                        <span className="text-xs font-bold text-stone-900">{node.name}</span>
-                        <ChevronRight className="w-3.5 h-3.5 text-stone-400" />
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-
-            <div className="p-4 bg-stone-50 border-t border-stone-200 text-right">
-              <button
-                onClick={() => setSelectedMilestone(null)}
-                className="px-4 py-2 rounded-xl bg-stone-900 text-white font-bold text-xs cursor-pointer hover:bg-stone-800 transition"
-              >
-                닫기
-              </button>
-            </div>
-          </div>
-        </div>
+        <LineageMilestoneModal
+          milestone={selectedMilestone}
+          onClose={() => setSelectedMilestone(null)}
+          onSelectProductNode={(node) => {
+            setActiveNodeId(node.id);
+            setSelectedLegendNode(node);
+          }}
+          getNodeById={getNodeById}
+        />
       )}
     </div>
   );

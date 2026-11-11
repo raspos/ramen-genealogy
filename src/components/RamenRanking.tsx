@@ -21,12 +21,18 @@ type RankingCategory =
 export function RamenRanking({ onOpenProductModal }: RamenRankingProps) {
   const [category, setCategory] = useState<RankingCategory>('SPICY_SCOVILLE');
   const [productTypeFilter, setProductTypeFilter] = useState<'ALL' | 'SOUP' | 'STIR_BIBIM'>('ALL');
+  const [scovilleProvenanceFilter, setScovilleProvenanceFilter] = useState<'ALL' | 'VERIFIED' | 'ESTIMATED'>('ALL');
 
   // Filter products by type if needed
   const filterByType = (list: RamenProduct[]) => {
-    if (productTypeFilter === 'ALL') return list;
-    if (productTypeFilter === 'SOUP') return list.filter((p) => p.productType === 'SOUP');
-    return list.filter((p) => p.productType === 'STIR_FRY' || p.productType === 'BIBIM');
+    let result = list;
+    if (productTypeFilter === 'SOUP') result = result.filter((p) => p.productType === 'SOUP');
+    else if (productTypeFilter === 'STIR_BIBIM') result = result.filter((p) => p.productType === 'STIR_FRY' || p.productType === 'BIBIM');
+
+    if (category === 'SPICY_SCOVILLE' && scovilleProvenanceFilter !== 'ALL') {
+      result = result.filter((p) => p.spiciness.scovilleProvenance === scovilleProvenanceFilter);
+    }
+    return result;
   };
 
   const getSortedRanking = (): {
@@ -236,27 +242,55 @@ export function RamenRanking({ onOpenProductModal }: RamenRankingProps) {
             </span>
           </div>
 
-          {/* Soup vs Stir-fry filter */}
-          <div className="flex items-center gap-1">
-            <span className="text-stone-500 mr-1">분류:</span>
-            {[
-              { id: 'ALL', label: '전체' },
-              { id: 'SOUP', label: '국물 라면' },
-              { id: 'STIR_BIBIM', label: '볶음/비빔 라면' },
-            ].map((f) => (
-              <button
-                key={f.id}
-                type="button"
-                onClick={() => setProductTypeFilter(f.id as typeof productTypeFilter)}
-                className={`px-2.5 py-1 rounded-lg font-semibold transition cursor-pointer ${
-                  productTypeFilter === f.id
-                    ? 'bg-stone-900 text-white'
-                    : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
+          {/* Filter options */}
+          <div className="flex flex-wrap items-center gap-3">
+            {/* Scoville Provenance Filter (Only in SPICY_SCOVILLE category) */}
+            {category === 'SPICY_SCOVILLE' && (
+              <div className="flex items-center gap-1 bg-amber-50/80 p-1 rounded-xl border border-amber-200">
+                <span className="text-amber-900 font-bold px-1.5">출처:</span>
+                {[
+                  { id: 'ALL', label: '전체 (공식+추정)' },
+                  { id: 'VERIFIED', label: '공식 발표만' },
+                  { id: 'ESTIMATED', label: '추정치만' },
+                ].map((f) => (
+                  <button
+                    key={f.id}
+                    type="button"
+                    onClick={() => setScovilleProvenanceFilter(f.id as typeof scovilleProvenanceFilter)}
+                    className={`px-2 py-0.5 rounded-lg text-[11px] font-bold transition cursor-pointer ${
+                      scovilleProvenanceFilter === f.id
+                        ? 'bg-amber-700 text-white shadow-2xs'
+                        : 'text-amber-800 hover:bg-amber-100'
+                    }`}
+                  >
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            {/* Soup vs Stir-fry filter */}
+            <div className="flex items-center gap-1">
+              <span className="text-stone-500 mr-1">분류:</span>
+              {[
+                { id: 'ALL', label: '전체' },
+                { id: 'SOUP', label: '국물 라면' },
+                { id: 'STIR_BIBIM', label: '볶음/비빔 라면' },
+              ].map((f) => (
+                <button
+                  key={f.id}
+                  type="button"
+                  onClick={() => setProductTypeFilter(f.id as typeof productTypeFilter)}
+                  className={`px-2.5 py-1 rounded-lg font-semibold transition cursor-pointer ${
+                    productTypeFilter === f.id
+                      ? 'bg-stone-900 text-white'
+                      : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -305,6 +339,17 @@ export function RamenRanking({ onOpenProductModal }: RamenRankingProps) {
                         <span className="text-xs text-stone-400">
                           {item.product.releaseYear}년
                         </span>
+                        {category === 'SPICY_SCOVILLE' && (
+                          <span
+                            className={`text-[10px] font-bold px-1.5 py-0.2 rounded ${
+                              item.product.spiciness.scovilleProvenance === 'VERIFIED'
+                                ? 'bg-emerald-100 text-emerald-800 border border-emerald-300'
+                                : 'bg-amber-100 text-amber-800 border border-amber-300'
+                            }`}
+                          >
+                            {item.product.spiciness.scovilleProvenance === 'VERIFIED' ? '공식 발표' : '추정치'}
+                          </span>
+                        )}
                       </div>
                       <h4 className="font-bold text-stone-900 text-base group-hover:text-rose-600 transition">
                         {item.product.name}

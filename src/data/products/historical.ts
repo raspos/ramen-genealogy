@@ -551,6 +551,64 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
     priceKrw: 200, officialDataSource: '삼양식품 아카이브', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
   },
   {
+    id: 'samyang-beef-1970',
+    name: '삼양 쇠고기면 (1970년)',
+    manufacturer: '삼양식품',
+    brand: '삼양라면',
+    releaseYear: 1970,
+    productType: 'SOUP',
+    packageType: 'BAG',
+    salesChannel: 'DISCONTINUED',
+    isPB: false,
+    brothType: 'BEEF',
+    noodleType: 'STANDARD',
+    isActive: false,
+    packagingThemeColor: { bg: '#c2410c', text: '#ffffff', border: '#7c2d12' },
+    imageUrl: '/images/products/samyang-beef-1970.svg',
+    imageSource: '삼양식품 역사관 및 1970년 패키지',
+    imageStatus: 'VERIFIED_PHOTO',
+    nutrition: { weightG: 120, caloriesKcal: 480, sodiumMg: 1780, carbsG: 75, proteinG: 10, fatG: 15, sodiumSeparated: false, soupSodiumRatioEstimated: 0.58 },
+    spiciness: { scovilleShu: 1000, scovilleProvenance: 'ESTIMATED', capsaicinSoupMgPerKg: null, capsaicinPreparedMgPerL: null, capsaicinProvenance: 'MISSING', spicinessGrade: 1 },
+    cooking: {
+      waterMl: 550, cookTimeSec: 240, isDrainWater: false, soupAdditionTiming: 'WITH_NOODLE',
+      steps: ['물 550ml에 면과 쇠고기스프를 넣고 4분간 끓입니다.']
+    },
+    flavorProfile: { primaryFlavors: ['닭육수에서 전환된 최초의 한국식 쇠고기 장국', '진하고 구수한 소고기 육수', '토종 입맛 맞춤'], savoryScore: 5, oilinessScore: 3, saltinessScore: 4, sweetnessScore: 1 },
+    lineage: [
+      { targetId: 'anseongtangmyeon', relation: 'ORIGIN', description: '한국인 입맛에 맞춘 최초의 쇠고기 국물 라면으로 이후 안성탕면과 육개장 사발면의 모태', year: 1970 }
+    ],
+    priceKrw: 20, officialDataSource: '삼양식품 60년사', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
+  },
+  {
+    id: 'lotte-jjajang-1970',
+    name: '롯데짜장면 (1970년)',
+    manufacturer: '농심', // 롯데공업
+    brand: '롯데짜장면',
+    releaseYear: 1970,
+    productType: 'STIR_FRY',
+    packageType: 'BAG',
+    salesChannel: 'DISCONTINUED',
+    isPB: false,
+    brothType: 'JJAJANG',
+    noodleType: 'STANDARD',
+    isActive: false,
+    packagingThemeColor: { bg: '#451a03', text: '#ffffff', border: '#78350f' },
+    imageUrl: '/images/products/lotte-jjajang-1970.svg',
+    imageSource: '농심 사사 (구 롯데공업주식회사)',
+    imageStatus: 'VERIFIED_PHOTO',
+    nutrition: { weightG: 120, caloriesKcal: 510, sodiumMg: 1100, carbsG: 78, proteinG: 10, fatG: 18, sodiumSeparated: true, soupSodiumRatioEstimated: 0.4 },
+    spiciness: { scovilleShu: 0, scovilleProvenance: 'VERIFIED', capsaicinSoupMgPerKg: 0, capsaicinPreparedMgPerL: 0, capsaicinProvenance: 'VERIFIED', spicinessGrade: 0 },
+    cooking: {
+      waterMl: 600, cookTimeSec: 270, isDrainWater: true, soupAdditionTiming: 'AFTER_BOIL_DRAIN',
+      steps: ['끓는 물 600ml에 면을 삶은 후 물을 따라내고 춘장 스프와 비벼냅니다.']
+    },
+    flavorProfile: { primaryFlavors: ['국내 최초 인스턴트 짜장면', '구수하고 달콤 짭조름한 춘장 소스'], savoryScore: 5, oilinessScore: 4, saltinessScore: 3, sweetnessScore: 3 },
+    lineage: [
+      { targetId: 'chapagetti', relation: 'ORIGIN', description: '한국 인스턴트 짜장면의 시초. 이후 농심 짜파게티(1984)로 계승됨', year: 1970 }
+    ],
+    priceKrw: 30, officialDataSource: '농심 50년사', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
+  },
+  {
     id: 'binggrae-yeolguksu',
     name: '열국수 (빙그레)',
     manufacturer: '기타국내제조사',
