@@ -234,6 +234,18 @@ export function LineageTree({
     });
   }, [filteredNodes, selectedBranch]);
 
+
+  // Dynamic Y-coordinate calculator: in NON_SOUP mode, pull lanes 5 & 6 up to the top!
+  const getNodeY = (node: LineageLegendNode) => {
+    if (selectedBranch === 'NON_SOUP') {
+      if (node.canvasY >= 850) {
+        return 380; // Lane 6: 새콤달콤 냉비빔면파 (팔도비빔면, 배홍동)
+      }
+      return 190; // Lane 5: 짜장 · 불닭 · 퓨전파 (짜파게티, 불닭, 툼바 등)
+    }
+    return node.canvasY;
+  };
+
   // Render edge curve
   const renderEdgeSvgPath = (edge: LineageEdge) => {
     const fromNode = getNodeById(edge.fromId);
@@ -252,9 +264,9 @@ export function LineageTree({
       if (Math.abs(fromNode.canvasX - toNode.canvasX) < 50) {
         // Vertical rivalry curve (Shin Ramyun vs Jin Ramen Spicy)
         const x1 = fromNode.canvasX + 66;
-        const y1 = fromNode.canvasY;
+        const y1 = getNodeY(fromNode);
         const x2 = toNode.canvasX + 66;
-        const y2 = toNode.canvasY;
+        const y2 = getNodeY(toNode);
         const midX = Math.max(x1, x2) + 55;
         const midY = (y1 + y2) / 2;
         d = `M ${x1} ${y1} Q ${midX} ${midY} ${x2} ${y2}`;
@@ -263,9 +275,9 @@ export function LineageTree({
       } else {
         // Horizontal rivalry arc (Paldo vs Baehongdong)
         const x1 = fromNode.canvasX + 66;
-        const y1 = fromNode.canvasY;
+        const y1 = getNodeY(fromNode);
         const x2 = toNode.canvasX - 66;
-        const y2 = toNode.canvasY;
+        const y2 = getNodeY(toNode);
         const midX = (x1 + x2) / 2;
         const midY = Math.min(y1, y2) - 45;
         d = `M ${x1} ${y1} Q ${midX} ${midY} ${x2} ${y2}`;
@@ -275,9 +287,9 @@ export function LineageTree({
     } else {
       // Flow from left to right
       const x1 = fromNode.canvasX + 66;
-      const y1 = fromNode.canvasY;
+      const y1 = getNodeY(fromNode);
       const x2 = toNode.canvasX - 66;
-      const y2 = toNode.canvasY;
+      const y2 = getNodeY(toNode);
       const dx = x2 - x1;
       const cp1x = x1 + Math.max(dx * 0.45, 30);
       const cp1y = y1;
@@ -658,7 +670,7 @@ export function LineageTree({
             className="relative select-none"
             style={{
               width: '1420px',
-              height: '1040px',
+              height: selectedBranch === 'NON_SOUP' ? '540px' : selectedBranch === 'SOUP' ? '740px' : '1040px',
               backgroundColor: '#121110',
               backgroundImage: `
                 radial-gradient(circle at 10% 45%, rgba(217, 119, 6, 0.09) 0%, transparent 45%),
@@ -711,65 +723,95 @@ export function LineageTree({
 
             {/* Horizontal Faction Lane Guides (Clear boundaries behind cards) */}
             <div className="absolute inset-0 pt-16 pointer-events-none z-5">
-              {/* Lane 1: Extreme Spicy */}
-              <div
-                className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                style={{ top: '120px', height: '110px' }}
-              >
-                <span className="text-[10px] font-serif font-black tracking-wider text-rose-500/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-950">
-                  극초매운 국물파 (열라면 · 틈새라면 · 마열 · 더레드)
-                </span>
-              </div>
+              {/* If NON_SOUP is selected, display Lane 5 and Lane 6 directly at the top! */}
+              {selectedBranch === 'NON_SOUP' ? (
+                <>
+                  {/* Lane 5 in NON_SOUP mode (at top: 100px) */}
+                  <div
+                    className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
+                    style={{ top: '100px', height: '170px' }}
+                  >
+                    <span className="text-[10px] font-serif font-black tracking-wider text-amber-500/90 bg-stone-950/90 px-3 py-1 rounded-md border border-amber-900 shadow-md">
+                      짜장 · 불닭 볶음 · 크림 퓨전파 (짜파게티 · 사천짜파게티 · 불닭볶음면 · 까르보불닭 · 신라면 툼바)
+                    </span>
+                  </div>
 
-              {/* Lane 2: Spicy Beef */}
-              <div
-                className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                style={{ top: '230px', height: '140px' }}
-              >
-                <span className="text-[10px] font-serif font-black tracking-wider text-rose-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-950">
-                  정통 얼큰 소고기파 (신라면 · 진라면 매운맛 · 안성탕면 · 육개장)
-                </span>
-              </div>
+                  {/* Lane 6 in NON_SOUP mode (at top: 290px) */}
+                  <div
+                    className="absolute inset-x-0 flex items-center px-4"
+                    style={{ top: '290px', height: '170px' }}
+                  >
+                    <span className="text-[10px] font-serif font-black tracking-wider text-cyan-400/90 bg-stone-950/90 px-3 py-1 rounded-md border border-cyan-900 shadow-md">
+                      새콤달콤 냉비빔면파 (팔도비빔면 vs 배홍동)
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Lane 1: Extreme Spicy */}
+                  <div
+                    className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
+                    style={{ top: '120px', height: '110px' }}
+                  >
+                    <span className="text-[10px] font-serif font-black tracking-wider text-rose-500/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-950">
+                      극초매운 국물파 (열라면 · 틈새라면 · 마열 · 더레드)
+                    </span>
+                  </div>
 
-              {/* Lane 3: Origin & Bone Broth & White Broth */}
-              <div
-                className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                style={{ top: '370px', height: '180px' }}
-              >
-                <span className="text-[10px] font-serif font-black tracking-wider text-amber-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
-                  원조 백탕 · 진한 사골파 · 하얀국물의 난 (삼양라면 · 사리곰탕 · 꼬꼬면)
-                </span>
-              </div>
+                  {/* Lane 2: Spicy Beef */}
+                  <div
+                    className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
+                    style={{ top: '230px', height: '140px' }}
+                  >
+                    <span className="text-[10px] font-serif font-black tracking-wider text-rose-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-950">
+                      정통 얼큰 소고기파 (신라면 · 진라면 매운맛 · 안성탕면 · 육개장)
+                    </span>
+                  </div>
 
-              {/* Lane 4: Seafood */}
-              <div
-                className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                style={{ top: '550px', height: '180px' }}
-              >
-                <span className="text-[10px] font-serif font-black tracking-wider text-sky-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-sky-950">
-                  시원한 해물 · 짬뽕파 (너구리 · 오징어짬뽕 · 진짬뽕)
-                </span>
-              </div>
+                  {/* Lane 3: Origin & Bone Broth & White Broth */}
+                  <div
+                    className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
+                    style={{ top: '370px', height: '180px' }}
+                  >
+                    <span className="text-[10px] font-serif font-black tracking-wider text-amber-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
+                      원조 백탕 · 진한 사골파 · 하얀국물의 난 (삼양라면 · 사리곰탕 · 꼬꼬면)
+                    </span>
+                  </div>
 
-              {/* Lane 5: Jjajang & Fire & Fusion */}
-              <div
-                className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
-                style={{ top: '730px', height: '140px' }}
-              >
-                <span className="text-[10px] font-serif font-black tracking-wider text-amber-500/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
-                  짜장 · 불닭 볶음 · 크림 퓨전파 (짜파게티 · 불닭볶음면 · 신라면 툼바)
-                </span>
-              </div>
+                  {/* Lane 4: Seafood */}
+                  <div
+                    className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
+                    style={{ top: '550px', height: '180px' }}
+                  >
+                    <span className="text-[10px] font-serif font-black tracking-wider text-sky-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-sky-950">
+                      시원한 해물 · 짬뽕파 (너구리 · 오징어짬뽕 · 진짬뽕)
+                    </span>
+                  </div>
 
-              {/* Lane 6: Bibim Cold */}
-              <div
-                className="absolute inset-x-0 flex items-center px-4"
-                style={{ top: '870px', height: '130px' }}
-              >
-                <span className="text-[10px] font-serif font-black tracking-wider text-cyan-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-cyan-950">
-                  새콤달콤 냉비빔면파 (팔도비빔면 vs 배홍동)
-                </span>
-              </div>
+                  {/* Lane 5 & 6 (Only in ALL or RIVALRY mode) */}
+                  {selectedBranch !== 'SOUP' && (
+                    <>
+                      <div
+                        className="absolute inset-x-0 border-b border-stone-800/40 flex items-center px-4"
+                        style={{ top: '730px', height: '140px' }}
+                      >
+                        <span className="text-[10px] font-serif font-black tracking-wider text-amber-500/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
+                          짜장 · 불닭 볶음 · 크림 퓨전파 (짜파게티 · 불닭볶음면 · 신라면 툼바)
+                        </span>
+                      </div>
+
+                      <div
+                        className="absolute inset-x-0 flex items-center px-4"
+                        style={{ top: '870px', height: '130px' }}
+                      >
+                        <span className="text-[10px] font-serif font-black tracking-wider text-cyan-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-cyan-950">
+                          새콤달콤 냉비빔면파 (팔도비빔면 vs 배홍동)
+                        </span>
+                      </div>
+                    </>
+                  )}
+                </>
+              )}
             </div>
 
             {/* Epoch Historical Milestones (Flags / Clickable Badges at Y=75) */}
@@ -842,7 +884,7 @@ export function LineageTree({
                     }`}
                     style={{
                       left: `${node.canvasX}px`,
-                      top: `${node.canvasY}px`,
+                      top: `${getNodeY(node)}px`,
                       height: '146px',
                     }}
                   >
