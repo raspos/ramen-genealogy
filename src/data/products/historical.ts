@@ -159,7 +159,7 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
     noodleType: 'STANDARD',
     isActive: false,
     packagingThemeColor: { bg: '#e74c3c', text: '#ffffff', border: '#c0392b' },
-    imageUrl: '/images/products/samyang-200-nyang.svg',
+    imageUrl: '/images/products/samyang-200-nyang.jpg',
     imageSource: '삼양식품 60주년 기념관',
     imageStatus: 'VERIFIED_PHOTO',
     nutrition: { weightG: 110, caloriesKcal: 470, sodiumMg: 1750, carbsG: 72, proteinG: 9, fatG: 16, sodiumSeparated: false, soupSodiumRatioEstimated: 0.58 },
@@ -188,7 +188,7 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
     noodleType: 'STANDARD',
     isActive: false,
     packagingThemeColor: { bg: '#8e44ad', text: '#ffffff', border: '#71368a' },
-    imageUrl: '/images/products/samyang-300-nyang.svg',
+    imageUrl: '/images/products/samyang-200-nyang.jpg',
     imageSource: '삼양식품 아카이브',
     imageStatus: 'VERIFIED_PHOTO',
     nutrition: { weightG: 120, caloriesKcal: 490, sodiumMg: 1780, carbsG: 76, proteinG: 10, fatG: 16, sodiumSeparated: false, soupSodiumRatioEstimated: 0.58 },
@@ -377,33 +377,33 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
     priceKrw: 250, officialDataSource: '농심 40년사', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
   },
   {
-    id: 'samyang-chocheop-1960s',
-    name: '삼양 초첩면 (1960년대)',
+    id: 'samyang-1963',
+    name: '삼양1963 (우지 파개장)',
     manufacturer: '삼양식품',
-    brand: '삼양라면',
-    releaseYear: 1968,
+    brand: '삼양1963',
+    releaseYear: 2025,
     productType: 'SOUP',
     packageType: 'BAG',
-    salesChannel: 'DISCONTINUED',
+    salesChannel: 'ALL',
     isPB: false,
     brothType: 'BEEF',
     noodleType: 'STANDARD',
-    isActive: false,
-    packagingThemeColor: { bg: '#34495e', text: '#ffffff', border: '#1c2833' },
-    imageUrl: '/images/products/samyang-chocheop-1960s.svg',
-    imageSource: '삼양식품 60년사 사사',
+    isActive: true,
+    packagingThemeColor: { bg: '#c2410c', text: '#ffffff', border: '#7c2d12' },
+    imageUrl: '/images/products/samyang-1963.png',
+    imageSource: '삼양식품 공식 브랜드관 (삼양1963)',
     imageStatus: 'VERIFIED_PHOTO',
-    nutrition: { weightG: 100, caloriesKcal: 440, sodiumMg: 1600, carbsG: 68, proteinG: 8, fatG: 14, sodiumSeparated: false, soupSodiumRatioEstimated: 0.55 },
-    spiciness: { scovilleShu: 200, scovilleProvenance: 'ESTIMATED', capsaicinSoupMgPerKg: null, capsaicinPreparedMgPerL: null, capsaicinProvenance: 'MISSING', spicinessGrade: 0 },
+    nutrition: { weightG: 131, caloriesKcal: 530, sodiumMg: 1790, carbsG: 82, proteinG: 11, fatG: 18, sodiumSeparated: false, soupSodiumRatioEstimated: 0.58 },
+    spiciness: { scovilleShu: 1800, scovilleProvenance: 'ESTIMATED', capsaicinSoupMgPerKg: null, capsaicinPreparedMgPerL: null, capsaicinProvenance: 'MISSING', spicinessGrade: 1 },
     cooking: {
-      waterMl: 550, cookTimeSec: 180, isDrainWater: false, soupAdditionTiming: 'WITH_NOODLE',
-      steps: ['물 550ml에 면과 스프를 넣고 3분간 끓입니다.']
+      waterMl: 550, cookTimeSec: 270, isDrainWater: false, soupAdditionTiming: 'WITH_NOODLE',
+      steps: ['물 550ml에 면과 스프, 후레이크를 넣고 4분 30초간 끓입니다.']
     },
-    flavorProfile: { primaryFlavors: ['쇠고기 장국 베이스', '한국인 입맛에 맞춘 최초의 육류 국물 배합'], savoryScore: 4, oilinessScore: 3, saltinessScore: 3, sweetnessScore: 1 },
+    flavorProfile: { primaryFlavors: ['우지(소기름) 특유의 깊은 풍미', '대파의 시원하고 달큰한 육개장 파개장 국물', '정통 복각의 맛'], savoryScore: 5, oilinessScore: 4, saltinessScore: 4, sweetnessScore: 2 },
     lineage: [
-      { targetId: 'samyang-chicken-1963', relation: 'SUCCESSOR', description: '닭고기 육수에서 한국형 쇠고기 육수로 전환하는 계기가 된 역사적 제품', year: 1968 }
+      { targetId: 'samyang-chicken-1963', relation: 'SUCCESSOR', description: '우지 파동 30여 년 만의 대법원 무죄 확정 후 정식 복각된 삼양식품의 역사적 야심작', year: 2025 }
     ],
-    priceKrw: 15, officialDataSource: '삼양식품 역사관', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
+    priceKrw: 1600, officialDataSource: '삼양식품 공식몰', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
   },
   {
     id: 'ottogi-wangramen',
@@ -435,33 +435,33 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
     priceKrw: 450, officialDataSource: '오뚜기 제품 기록', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
   },
   {
-    id: 'samyang-samgukji',
-    name: '삼국지 라면 (삼양)',
+    id: 'jjajaroni',
+    name: '짜짜로니',
     manufacturer: '삼양식품',
-    brand: '삼국지',
-    releaseYear: 1992,
-    productType: 'SOUP',
+    brand: '짜짜로니',
+    releaseYear: 1985,
+    productType: 'STIR_FRY',
     packageType: 'BAG',
-    salesChannel: 'DISCONTINUED',
+    salesChannel: 'ALL',
     isPB: false,
-    brothType: 'BEEF',
+    brothType: 'JJAJANG',
     noodleType: 'STANDARD',
-    isActive: false,
-    packagingThemeColor: { bg: '#d35400', text: '#ffffff', border: '#ba4a00' },
-    imageUrl: '/images/products/samyang-samgukji.svg',
-    imageSource: '삼양식품 60년사 사사',
+    isActive: true,
+    packagingThemeColor: { bg: '#27ae60', text: '#ffffff', border: '#1e8449' },
+    imageUrl: '/images/products/jjajaroni.png',
+    imageSource: '삼양식품 공식몰',
     imageStatus: 'VERIFIED_PHOTO',
-    nutrition: { weightG: 120, caloriesKcal: 490, sodiumMg: 1790, carbsG: 77, proteinG: 9, fatG: 16, sodiumSeparated: false, soupSodiumRatioEstimated: 0.58 },
-    spiciness: { scovilleShu: 2300, scovilleProvenance: 'ESTIMATED', capsaicinSoupMgPerKg: null, capsaicinPreparedMgPerL: null, capsaicinProvenance: 'MISSING', spicinessGrade: 2 },
+    nutrition: { weightG: 140, caloriesKcal: 565, sodiumMg: 1190, carbsG: 87, proteinG: 12, fatG: 19, sodiumSeparated: true, soupSodiumRatioEstimated: 0.4 },
+    spiciness: { scovilleShu: 0, scovilleProvenance: 'VERIFIED', capsaicinSoupMgPerKg: 0, capsaicinPreparedMgPerL: 0, capsaicinProvenance: 'VERIFIED', spicinessGrade: 0 },
     cooking: {
-      waterMl: 550, cookTimeSec: 240, isDrainWater: false, soupAdditionTiming: 'WITH_NOODLE',
-      steps: ['물 550ml에 면과 스프를 넣고 4분간 끓입니다.']
+      waterMl: 600, cookTimeSec: 330, isDrainWater: true, drainWaterRetainSpoons: 8, soupAdditionTiming: 'AFTER_BOIL_DRAIN',
+      steps: ['끓는 물 600ml에 면과 후레이크를 넣고 5분 30초간 끓입니다.', '물 8스푼 정도 남기고 따라낸 후 볶음짜장 소스를 넣고 1분 30초 이상 볶습니다.']
     },
-    flavorProfile: { primaryFlavors: ['삼국지 영웅 캐릭터 마케팅', '칼칼하고 얼큰한 사골 소고기 육수'], savoryScore: 4, oilinessScore: 3, saltinessScore: 4, sweetnessScore: 1 },
+    flavorProfile: { primaryFlavors: ['직화 볶음 춘장 소스', '전통적인 중국집 불맛 짜장', '부드럽고 쫄깃한 면발'], savoryScore: 5, oilinessScore: 4, saltinessScore: 3, sweetnessScore: 3 },
     lineage: [
-      { targetId: 'samyang-ramen', relation: 'SPINOFF', description: '우지 파동 극복기 대중의 관심을 끌기 위해 캐릭터 마케팅을 펼친 제품', year: 1992 }
+      { targetId: 'chapagetti', relation: 'RIVAL', description: '농심 짜파게티(1984)의 독주에 맞서 액상 볶음춘장으로 40년간 맞붙은 삼양의 대표작', year: 1985 }
     ],
-    priceKrw: 300, officialDataSource: '삼양식품 아카이브', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
+    priceKrw: 1100, officialDataSource: '삼양식품 공식 웹사이트', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
   },
   {
     id: 'nongshim-matirang',
@@ -535,7 +535,7 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
     noodleType: 'STANDARD',
     isActive: false,
     packagingThemeColor: { bg: '#e74c3c', text: '#ffffff', border: '#b03a2e' },
-    imageUrl: '/images/products/samyang-kimchi-1980s.svg',
+    imageUrl: '/images/products/samyang-kimchi-1980s.png',
     imageSource: '삼양식품 60년사 사사',
     imageStatus: 'VERIFIED_PHOTO',
     nutrition: { weightG: 120, caloriesKcal: 490, sodiumMg: 1820, carbsG: 77, proteinG: 9, fatG: 16, sodiumSeparated: false, soupSodiumRatioEstimated: 0.6 },
@@ -564,7 +564,7 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
     noodleType: 'STANDARD',
     isActive: false,
     packagingThemeColor: { bg: '#c2410c', text: '#ffffff', border: '#7c2d12' },
-    imageUrl: '/images/products/samyang-beef-1970.svg',
+    imageUrl: '/images/products/samyang-beef-1970.png',
     imageSource: '삼양식품 역사관 및 1970년 패키지',
     imageStatus: 'VERIFIED_PHOTO',
     nutrition: { weightG: 120, caloriesKcal: 480, sodiumMg: 1780, carbsG: 75, proteinG: 10, fatG: 15, sodiumSeparated: false, soupSodiumRatioEstimated: 0.58 },

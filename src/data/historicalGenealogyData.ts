@@ -336,7 +336,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     factionName: '소고기 장국 개척계',
     hanjaFaction: '소고기 장국파',
     packageType: 'BAG',
-    imageUrl: '/images/products/samyang-beef-1970.svg',
+    imageUrl: '/images/products/samyang-beef-1970.png',
     isVintagePhoto: true,
     vintageYearNote: '1970년 소고기 국물 라면의 시초',
     historicalRole: '소고기탕 개척',
