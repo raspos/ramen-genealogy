@@ -45,7 +45,7 @@ export interface LineageLegendNode {
   imageUrl: string;
   isVintagePhoto: boolean;
   vintageYearNote?: string;
-  historicalRole: string; // 계보상의 역사적 역할 (예: '시원(始原)', '천하통일', '분당(分黨)', '반란(叛亂)')
+  historicalRole: string; // 계보상의 역사적 역할 (예: '원조 시작', '천하통일', '분파', '반란')
   doctrineQuote: string;  // 한 줄 사상/교리
   editorialNote: string;  // 데이터저널리즘 역사 서사
   // Layout coordinates in virtual SVG canvas (1200 x 860)
@@ -86,8 +86,8 @@ export interface FactionChronicle {
 export const HISTORICAL_EPOCHS: HistoricalEpoch[] = [
   {
     id: 'epoch-1',
-    name: '제1기: 건국과 시원 (始原)',
-    hanja: '開拓期',
+    name: '제1기: 건국과 원조 시작',
+    hanja: '개척기',
     period: '1963 ~ 1970년대',
     yearStart: 1963,
     yearEnd: 1979,
@@ -96,18 +96,18 @@ export const HISTORICAL_EPOCHS: HistoricalEpoch[] = [
   },
   {
     id: 'epoch-2',
-    name: '제2기: 소고기 얼큰탕의 천하통일 (天下統一)',
-    hanja: '辛湯執權期',
+    name: '제2기: 소고기 얼큰탕의 천하통일',
+    hanja: '소고기 국물 집권기',
     period: '1980 ~ 1988',
     yearStart: 1980,
     yearEnd: 1988,
     headline: '안성탕면의 평정, 그리고 1986년 신라면의 절대 집권',
-    narrative: '한국인의 입맛이 닭육수에서 된장·소고기 장국으로 급격히 이동했다. 1983년 안성탕면이 시골 장국맛으로 평정하고, 1986년 고춧가루와 표고버섯을 듬뿍 넣은 辛라면이 등장하며 빨간 매운 국물은 대한민국 라면의 불변의 주류로 등극했다.'
+    narrative: '한국인의 입맛이 닭육수에서 된장·소고기 장국으로 급격히 이동했다. 1983년 안성탕면이 시골 장국맛으로 평정하고, 1986년 고춧가루와 표고버섯을 듬뿍 넣은 신라면이 등장하며 빨간 매운 국물은 대한민국 라면의 불변의 주류로 등극했다.'
   },
   {
     id: 'epoch-3',
-    name: '제3기: 비탕파(非湯派)의 분당과 바다의 독립',
-    hanja: '分黨創設期',
+    name: '제3기: 비국물 라면의 등장과 해물 라면의 독립',
+    hanja: '분파 창설기',
     period: '1982 ~ 1984',
     yearStart: 1982,
     yearEnd: 1985,
@@ -117,7 +117,7 @@ export const HISTORICAL_EPOCHS: HistoricalEpoch[] = [
   {
     id: 'epoch-4',
     name: '제4기: 사골 구수파와 극매운맛의 분화',
-    hanja: '多極分化期',
+    hanja: '다양화 전성기',
     period: '1988 ~ 2000년대',
     yearStart: 1988,
     yearEnd: 2009,
@@ -127,7 +127,7 @@ export const HISTORICAL_EPOCHS: HistoricalEpoch[] = [
   {
     id: 'epoch-5',
     name: '제5기: 백탕의 난 / 하얀 국물 혁명',
-    hanja: '白湯叛亂期',
+    hanja: '하얀국물 반란기',
     period: '2011 ~ 2012',
     yearStart: 2011,
     yearEnd: 2012,
@@ -137,7 +137,7 @@ export const HISTORICAL_EPOCHS: HistoricalEpoch[] = [
   {
     id: 'epoch-6',
     name: '제6기: 비국물 화마의 난과 퓨전 르네상스',
-    hanja: '現代復興期',
+    hanja: '글로벌 현대 부흥기',
     period: '2012 ~ 2026',
     yearStart: 2012,
     yearEnd: 2026,
@@ -153,7 +153,7 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
     year: 1963,
     epochId: 'epoch-1',
     title: '대한민국 최초의 라면 탄생',
-    hanjaTitle: '始原之變',
+    hanjaTitle: '최초 라면 탄생',
     summary: '전중윤 회장이 식량난 타개를 위해 10원짜리 삼양라면 출시. 닭육수 백탕의 시대 개막.',
     impactFactionId: 'root-chicken',
     keyProducts: ['samyang-chicken-1963']
@@ -163,7 +163,7 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
     year: 1982,
     epochId: 'epoch-3',
     title: '해물계의 독립 선언',
-    hanjaTitle: '海鮮獨立',
+    hanjaTitle: '해물라면 독립',
     summary: '굵은 면발과 완도산 다시마를 통째로 넣은 너구리 출시. 소고기 육수 독점 탈피.',
     impactFactionId: 'seafood-ocean',
     keyProducts: ['neoguri']
@@ -172,8 +172,8 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
     id: 'ms-1984',
     year: 1984,
     epochId: 'epoch-3',
-    title: '비탕파(非湯派) 양대 세력의 정립',
-    hanjaTitle: '非湯分黨',
+    title: '비국물 라면 양대 세력의 정립',
+    hanjaTitle: '비국물 라면 등장',
     summary: '짜파게티(춘장 과립)와 팔도비빔면(차갑게 비비는 사계절면)이 국물 없는 라면의 새 장을 열다.',
     impactFactionId: 'jjajang-chunjang',
     keyProducts: ['chapagetti', 'paldo-bibim']
@@ -183,7 +183,7 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
     year: 1986,
     epochId: 'epoch-2',
     title: '신라면의 집권과 얼큰 소고기 천하통일',
-    hanjaTitle: '辛라면 執權',
+    hanjaTitle: '신라면 천하통일',
     summary: '‘사나이 울리는 매운맛’ 표방. 얼큰 소고기 표고버섯 국물이 국민 표준 맛으로 등극.',
     impactFactionId: 'spicy-beef',
     keyProducts: ['shin-ramyun', 'jin-ramen-spicy']
@@ -192,8 +192,8 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
     id: 'ms-2011',
     year: 2011,
     epochId: 'epoch-5',
-    title: '하얀 국물의 난 (白湯의 亂)',
-    hanjaTitle: '白湯叛亂',
+    title: '하얀 국물의 난',
+    hanjaTitle: '하얀국물의 난',
     summary: '꼬꼬면·나가사끼짬뽕의 기습. 빨간 국물이 절대적이던 시장을 단숨에 흔든 백탕 혁명.',
     impactFactionId: 'white-broth-rebel',
     keyProducts: ['kkokko-myeon', 'nagasaki-jjamppong']
@@ -202,8 +202,8 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
     id: 'ms-2012',
     year: 2012,
     epochId: 'epoch-6',
-    title: '불닭 화마(火魔)의 강림과 비국물 대세화',
-    hanjaTitle: '火魔降臨',
+    title: '불닭 화마의 강림과 비국물 대세화',
+    hanjaTitle: '불닭 화마 강림',
     summary: '국물 없는 매운 볶음면이 K-푸드 신드롬을 견인하며 비국물 라면의 글로벌 위상 확립.',
     impactFactionId: 'fire-bokkeum',
     keyProducts: ['buldak-original', 'carbo-buldak']
@@ -213,7 +213,7 @@ export const HISTORICAL_MILESTONES: HistoricalEventMilestone[] = [
     year: 2015,
     epochId: 'epoch-6',
     title: '프리미엄 짬뽕 대전',
-    hanjaTitle: '中華大戰',
+    hanjaTitle: '프리미엄 짬뽕 대전',
     summary: '진짬뽕의 불맛 유성스프와 극후면이 대흥행하며 중화 짬뽕이 독립 주류 세력으로 승격.',
     impactFactionId: 'seafood-ocean',
     keyProducts: ['jin-jjamppong']
@@ -233,19 +233,19 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-1',
     factionId: 'root-chicken',
     factionName: '원조 닭고기 백탕계',
-    hanjaFaction: '始原鷄湯派',
+    hanjaFaction: '원조 닭고기 백탕파',
     packageType: 'BAG',
     imageUrl: '/images/products/samyang-1963-original-10won.png',
     isVintagePhoto: true,
     vintageYearNote: '1963년 10원 출시 당시 실물 봉지',
-    historicalRole: '시원 (始原)',
+    historicalRole: '원조 시작',
     doctrineQuote: '“배고픈 국민의 식생활을 해결하는 10원의 즉석 영양식”',
     editorialNote: '한국 최초의 라면. 일본 명성식품에서 전수받은 닭고기 육수 베이스로 출발해 우지(소기름) 튀김면으로 서민의 굶주림을 달랜 대한민국 라면의 단일 뿌리다.',
     canvasX: 100,
     canvasY: 460
   },
 
-  // --- 소고기 얼큰계 (辛牛派) TRUNK ---
+  // --- 정통 소고기 얼큰파 TRUNK ---
   {
     id: 'anseongtangmyeon',
     name: '안성탕면',
@@ -255,7 +255,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-2',
     factionId: 'spicy-beef',
     factionName: '정통 소고기 장국계',
-    hanjaFaction: '辛牛派',
+    hanjaFaction: '정통 얼큰 소고기파',
     packageType: 'BAG',
     imageUrl: '/images/products/anseongtangmyeon.jpg',
     isVintagePhoto: false,
@@ -274,13 +274,13 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-2',
     factionId: 'spicy-beef',
     factionName: '정통 소고기 얼큰계',
-    hanjaFaction: '辛牛派',
+    hanjaFaction: '정통 얼큰 소고기파',
     packageType: 'BAG',
     imageUrl: '/images/products/shin-ramyun.jpg',
     isVintagePhoto: false,
     historicalRole: '절대 집권',
     doctrineQuote: '“사나이 울리는 매운맛, 얼큰한 소고기 국물이야말로 라면의 으뜸”',
-    editorialNote: '1986년 10월 출시. 강렬한 붉은 바탕에 한자 ‘辛’을 내걸고 한국인이 가장 사랑하는 얼큰하고 시원한 소고기 표고버섯 국물로 40년 독점적 1위 정권을 수립했다.',
+    editorialNote: '1986년 10월 출시. 강렬한 붉은 바탕에 매울 신 브랜드를 내걸고 한국인이 가장 사랑하는 얼큰하고 시원한 소고기 표고버섯 국물로 40년 독점적 1위 정권을 수립했다.',
     canvasX: 570,
     canvasY: 290
   },
@@ -293,7 +293,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-2',
     factionId: 'spicy-beef',
     factionName: '대중 소고기 얼큰계',
-    hanjaFaction: '辛牛派',
+    hanjaFaction: '정통 얼큰 소고기파',
     packageType: 'BAG',
     imageUrl: '/images/products/jin-ramen-spicy.jpg',
     isVintagePhoto: false,
@@ -312,7 +312,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-2',
     factionId: 'spicy-beef',
     factionName: '사발 용기 얼큰계',
-    hanjaFaction: '辛牛派',
+    hanjaFaction: '정통 얼큰 소고기파',
     packageType: 'BOWL',
     imageUrl: '/images/products/yukgaejang-sabal.jpg',
     isVintagePhoto: false,
@@ -331,7 +331,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-6',
     factionId: 'spicy-beef',
     factionName: '건면 웰빙계',
-    hanjaFaction: '辛牛派',
+    hanjaFaction: '정통 얼큰 소고기파',
     packageType: 'BAG',
     imageUrl: '/images/products/shin-non-frying.jpg',
     isVintagePhoto: false,
@@ -350,7 +350,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-6',
     factionId: 'extreme-spicy',
     factionName: '극초매운 소고기계',
-    hanjaFaction: '極辛派',
+    hanjaFaction: '극초매운맛파',
     packageType: 'BAG',
     imageUrl: '/images/products/shin-the-red.jpg',
     isVintagePhoto: false,
@@ -361,7 +361,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     canvasY: 260
   },
 
-  // --- 극초매운계 (極辛派) ---
+  // --- 극초매운계 (극초매운맛파) ---
   {
     id: 'yeol-ramyun',
     name: '열라면',
@@ -371,7 +371,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-4',
     factionId: 'extreme-spicy',
     factionName: '정통 극초매운계',
-    hanjaFaction: '極辛派',
+    hanjaFaction: '극초매운맛파',
     packageType: 'BAG',
     imageUrl: '/images/products/yeol-ramyun.jpg',
     isVintagePhoto: false,
@@ -389,8 +389,8 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     releaseYear: 2009,
     epochId: 'epoch-4',
     factionId: 'extreme-spicy',
-    factionName: '골목 출신 극강계',
-    hanjaFaction: '極辛派',
+    factionName: '골목 출신 극초매운파',
+    hanjaFaction: '극초매운맛파',
     packageType: 'BAG',
     imageUrl: '/images/products/teumsae-bbalggyettok.jpg',
     isVintagePhoto: false,
@@ -409,7 +409,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-6',
     factionId: 'extreme-spicy',
     factionName: '마늘·후추 융합계',
-    hanjaFaction: '極辛派',
+    hanjaFaction: '극초매운맛파',
     packageType: 'BAG',
     imageUrl: '/images/products/ma-yeol.jpg',
     isVintagePhoto: false,
@@ -420,7 +420,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     canvasY: 170
   },
 
-  // --- 해물 시원계 (海鮮派) ---
+  // --- 시원한 해물 짬뽕파 ---
   {
     id: 'neoguri',
     name: '너구리 (얼큰한맛)',
@@ -430,7 +430,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-3',
     factionId: 'seafood-ocean',
     factionName: '해물 시원계',
-    hanjaFaction: '海鮮派',
+    hanjaFaction: '시원한 해물 짬뽕파',
     packageType: 'BAG',
     imageUrl: '/images/products/neoguri.jpg',
     isVintagePhoto: false,
@@ -449,7 +449,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-4',
     factionId: 'seafood-ocean',
     factionName: '해물 중화계',
-    hanjaFaction: '海鮮派',
+    hanjaFaction: '시원한 해물 짬뽕파',
     packageType: 'BAG',
     imageUrl: '/images/products/ojingeo-jjamppong.jpg',
     isVintagePhoto: false,
@@ -468,7 +468,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-4',
     factionId: 'seafood-ocean',
     factionName: '멸치 어육 맑은계',
-    hanjaFaction: '海鮮派',
+    hanjaFaction: '시원한 해물 짬뽕파',
     packageType: 'BAG',
     imageUrl: '/images/products/myeolchi-kalguksu.jpg',
     isVintagePhoto: false,
@@ -487,7 +487,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-6',
     factionId: 'seafood-ocean',
     factionName: '프리미엄 불맛 짬뽕계',
-    hanjaFaction: '海鮮派',
+    hanjaFaction: '시원한 해물 짬뽕파',
     packageType: 'BAG',
     imageUrl: '/images/products/jin-jjamppong.jpg',
     isVintagePhoto: false,
@@ -498,7 +498,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     canvasY: 620
   },
 
-  // --- 사골·우골 구수계 (牛骨派) ---
+  // --- 사골·우골 구수계 (사골곰탕파) ---
   {
     id: 'sari-gomtang',
     name: '사리곰탕면',
@@ -508,7 +508,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-4',
     factionId: 'bone-broth',
     factionName: '사골·우골 구수계',
-    hanjaFaction: '牛骨派',
+    hanjaFaction: '진한 사골 곰탕파',
     packageType: 'BAG',
     imageUrl: '/images/products/sari-gomtang.jpg',
     isVintagePhoto: false,
@@ -527,7 +527,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-4',
     factionId: 'bone-broth',
     factionName: '담백 밥말이계',
-    hanjaFaction: '牛骨派',
+    hanjaFaction: '진한 사골 곰탕파',
     packageType: 'BAG',
     imageUrl: '/images/products/snack-myeon.jpg',
     isVintagePhoto: false,
@@ -538,7 +538,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     canvasY: 510
   },
 
-  // --- 백탕 혁명계 (白湯派) ---
+  // --- 백탕 혁명계 (하얀국물파) ---
   {
     id: 'kkokko-myeon',
     name: '꼬꼬면',
@@ -548,7 +548,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-5',
     factionId: 'white-broth-rebel',
     factionName: '칼칼 닭육수 백탕계',
-    hanjaFaction: '白湯派',
+    hanjaFaction: '하얀국물 반란파',
     packageType: 'BAG',
     imageUrl: '/images/products/kkokko-myeon.jpg',
     isVintagePhoto: false,
@@ -567,7 +567,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-5',
     factionId: 'white-broth-rebel',
     factionName: '해물 백짬뽕계',
-    hanjaFaction: '白湯派',
+    hanjaFaction: '하얀국물 반란파',
     packageType: 'BAG',
     imageUrl: '/images/products/nagasaki-jjamppong.jpg',
     isVintagePhoto: false,
@@ -578,7 +578,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     canvasY: 490
   },
 
-  // --- 비탕파: 춘장 짜장계 (炸醬派) ---
+  // --- 비탕파: 정통 춘장 짜장파 ---
   {
     id: 'chapagetti',
     name: '짜파게티',
@@ -588,7 +588,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-3',
     factionId: 'jjajang-chunjang',
     factionName: '정통 춘장 짜장계',
-    hanjaFaction: '炸醬派',
+    hanjaFaction: '정통 춘장 짜장파',
     packageType: 'BAG',
     imageUrl: '/images/products/chapagetti.jpg',
     isVintagePhoto: false,
@@ -607,7 +607,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-4',
     factionId: 'jjajang-chunjang',
     factionName: '매운 사천 춘장계',
-    hanjaFaction: '炸醬派',
+    hanjaFaction: '정통 춘장 짜장파',
     packageType: 'BAG',
     imageUrl: '/images/products/spicy-chapagetti.jpg',
     isVintagePhoto: false,
@@ -618,7 +618,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     canvasY: 800
   },
 
-  // --- 비탕파: 냉비빔계 (冷排派) ---
+  // --- 비탕파: 새콤달콤 냉비빔파 ---
   {
     id: 'paldo-bibim',
     name: '팔도비빔면',
@@ -628,7 +628,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-3',
     factionId: 'bibim-cold',
     factionName: '초고추장 냉비빔계',
-    hanjaFaction: '冷排派',
+    hanjaFaction: '새콤달콤 냉비빔파',
     packageType: 'BAG',
     imageUrl: '/images/products/paldo-bibim.jpg',
     isVintagePhoto: false,
@@ -647,7 +647,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-6',
     factionId: 'bibim-cold',
     factionName: '과채 숙성 비빔계',
-    hanjaFaction: '冷排派',
+    hanjaFaction: '새콤달콤 냉비빔파',
     packageType: 'BAG',
     imageUrl: '/images/products/baehongdong.jpg',
     isVintagePhoto: false,
@@ -658,7 +658,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     canvasY: 920
   },
 
-  // --- 비탕파: 화마 매운볶음계 (火魔派) & 퓨전계 (融合派) ---
+  // --- 비탕파: 화끈한 불닭 볶음파 & 치즈·크림 퓨전파 ---
   {
     id: 'buldak-original',
     name: '불닭볶음면',
@@ -668,7 +668,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-6',
     factionId: 'fire-bokkeum',
     factionName: '화마 매운볶음계',
-    hanjaFaction: '火魔派',
+    hanjaFaction: '화끈한 불닭 볶음파',
     packageType: 'BAG',
     imageUrl: '/images/products/buldak-original.png',
     isVintagePhoto: false,
@@ -687,7 +687,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-6',
     factionId: 'cream-fusion',
     factionName: '크림·치즈 퓨전계',
-    hanjaFaction: '融合派',
+    hanjaFaction: '치즈·크림 퓨전파',
     packageType: 'BAG',
     imageUrl: '/images/products/carbo-buldak.png',
     isVintagePhoto: false,
@@ -706,7 +706,7 @@ const RAW_LINEAGE_LEGEND_NODES: LineageLegendNode[] = [
     epochId: 'epoch-6',
     factionId: 'cream-fusion',
     factionName: '매콤 크림 퓨전계',
-    hanjaFaction: '融合派',
+    hanjaFaction: '치즈·크림 퓨전파',
     packageType: 'BAG',
     imageUrl: '/images/products/shin-toomba.jpg',
     isVintagePhoto: false,
@@ -742,7 +742,7 @@ export const LINEAGE_EDGES: LineageEdge[] = [
     fromId: 'anseongtangmyeon',
     toId: 'shin-ramyun',
     relationType: 'DIRECT_LINEAGE',
-    label: '1986 辛라면 집권',
+    label: '1986 신라면 집권',
     year: 1986,
     narrative: '소고기 장국의 감칠맛에 고춧가루와 표고버섯의 매운맛을 폭발시켜 대한민국 라면의 40년 절대 권력 수립',
     factionColor: '#dc2626'
@@ -969,7 +969,7 @@ export const LINEAGE_EDGES: LineageEdge[] = [
     fromId: 'yeol-ramyun',
     toId: 'buldak-original',
     relationType: 'REVOLUTIONARY_SCHISM',
-    label: '2012 화마(火魔) 강림',
+    label: '2012 불닭 화마 강림',
     year: 2012,
     narrative: '국물 없이 면을 바짝 볶아 혀를 마비시키는 4404 SHU 극강의 맛으로 글로벌 바이럴 신드롬 점화',
     factionColor: '#e11d48'
@@ -1003,11 +1003,11 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'root-chicken',
     name: '원조 닭고기 백탕계',
-    hanja: '始原鷄湯派',
+    hanja: '원조 닭고기 백탕파',
     themeColor: { primary: '#b45309', bg: '#fef3c7', text: '#78350f', border: '#f59e0b' },
     riseDecade: '1960년대',
     hegemonyStatus: 'HISTORIC_ORIGIN',
-    summary: '1963년 삼양라면에서 출발한 한국 라면의 단일 조종(祖宗). 닭육수와 소기름(우지)으로 서민을 구제한 시원.',
+    summary: '1963년 삼양라면에서 출발한 한국 라면의 단일 뿌리. 닭육수와 소기름(우지)으로 서민을 구제한 시원.',
     doctrine: '“배고픈 서민의 한 끼를 책임지는 10원의 즉석 영양식이 라면의 태생적 소명이다.”',
     chronicleStory: [
       '1963년 9월 15일, 삼양식품 전중윤 회장이 남대문 시장의 ‘꿀꿀이죽’ 행렬을 보고 10원짜리 삼양라면을 출시하며 역사 개막.',
@@ -1019,11 +1019,11 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'spicy-beef',
     name: '정통 소고기 얼큰계',
-    hanja: '辛牛派',
+    hanja: '정통 얼큰 소고기파',
     themeColor: { primary: '#dc2626', bg: '#fef2f2', text: '#991b1b', border: '#ef4444' },
     riseDecade: '1980년대',
     hegemonyStatus: 'RULING',
-    summary: '안성탕면(1983)과 신라면(1986)으로 완성된 대한민국 라면의 40년 절대 종손(宗孫)이자 주류 정권.',
+    summary: '안성탕면(1983)과 신라면(1986)으로 완성된 대한민국 라면의 40년 절대 적통 주류이자 주류 정권.',
     doctrine: '“얼큰하고 칼칼한 소고기 국물과 쫄깃한 면발이야말로 대한민국 라면의 변치 않는 황금률이다.”',
     chronicleStory: [
       '1983년 안성탕면이 시골 소고기 우거지장국 맛으로 1980년대 초반 시장을 장악하며 소고기 육수 시대를 개막.',
@@ -1035,7 +1035,7 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'seafood-ocean',
     name: '해물 시원계',
-    hanja: '海鮮派',
+    hanja: '시원한 해물 짬뽕파',
     themeColor: { primary: '#0284c7', bg: '#f0f9ff', text: '#075985', border: '#38bdf8' },
     riseDecade: '1982년',
     hegemonyStatus: 'MAINSTREAM',
@@ -1051,7 +1051,7 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'bone-broth',
     name: '사골·우골 구수계',
-    hanja: '牛骨派',
+    hanja: '진한 사골 곰탕파',
     themeColor: { primary: '#d97706', bg: '#fffbeb', text: '#92400e', border: '#f59e0b' },
     riseDecade: '1988년',
     hegemonyStatus: 'COEXISTING',
@@ -1067,7 +1067,7 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'white-broth-rebel',
     name: '백탕 혁명계',
-    hanja: '白湯派',
+    hanja: '하얀국물 반란파',
     themeColor: { primary: '#059669', bg: '#ecfdf5', text: '#065f46', border: '#34d399' },
     riseDecade: '2011년',
     hegemonyStatus: 'EXPEDITIONARY',
@@ -1083,7 +1083,7 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'jjajang-chunjang',
     name: '정통 춘장 짜장계',
-    hanja: '炸醬派',
+    hanja: '정통 춘장 짜장파',
     themeColor: { primary: '#451a03', bg: '#fef3c7', text: '#292524', border: '#78350f' },
     riseDecade: '1984년',
     hegemonyStatus: 'MAINSTREAM',
@@ -1099,7 +1099,7 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'bibim-cold',
     name: '초고추장 냉비빔계',
-    hanja: '冷排派',
+    hanja: '새콤달콤 냉비빔파',
     themeColor: { primary: '#ea580c', bg: '#fff7ed', text: '#9a3412', border: '#fb923c' },
     riseDecade: '1984년',
     hegemonyStatus: 'MAINSTREAM',
@@ -1115,7 +1115,7 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'fire-bokkeum',
     name: '화마 매운볶음계',
-    hanja: '火魔派',
+    hanja: '화끈한 불닭 볶음파',
     themeColor: { primary: '#e11d48', bg: '#ffe4e6', text: '#881337', border: '#f43f5e' },
     riseDecade: '2012년',
     hegemonyStatus: 'RULING',
@@ -1131,7 +1131,7 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'extreme-spicy',
     name: '극초매운계',
-    hanja: '極辛派',
+    hanja: '극초매운맛파',
     themeColor: { primary: '#991b1b', bg: '#fef2f2', text: '#450a0a', border: '#b91c1c' },
     riseDecade: '1996년',
     hegemonyStatus: 'MAINSTREAM',
@@ -1147,7 +1147,7 @@ export const FACTION_CHRONICLES: FactionChronicle[] = [
   {
     id: 'cream-fusion',
     name: '크림 퓨전계',
-    hanja: '融合派',
+    hanja: '치즈·크림 퓨전파',
     themeColor: { primary: '#db2777', bg: '#fdf2f8', text: '#831843', border: '#f472b6' },
     riseDecade: '2017년',
     hegemonyStatus: 'MAINSTREAM',

@@ -322,10 +322,10 @@ export function LineageTree({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-stone-100">
           <div className="flex items-center gap-2">
             <span className="px-3 py-1 rounded-lg bg-stone-950 text-amber-300 font-serif font-black text-xs shadow-xs">
-              朋黨史 (붕당사)
+              라면 파벌 실록
             </span>
             <span className="text-sm font-bold text-stone-900 font-serif">
-              한국 라면 60년 맛의 파벌·분열·집권 실록 계보도
+              한국 라면 60년 맛의 파벌·분열·집권 계보도
             </span>
           </div>
 
@@ -625,25 +625,25 @@ export function LineageTree({
               <div className="w-[220px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
                 <span className="text-[11px] font-mono text-amber-400 font-bold">1963~1970s</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  제1기: 건국과 시원 (開拓期)
+                  제1기: 최초의 탄생 (개척기)
                 </span>
               </div>
               <div className="w-[240px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
                 <span className="text-[11px] font-mono text-amber-400 font-bold">1980~1985</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  제2·3기: 장국 혁신과 분파 (分黨期)
+                  제2·3기: 장국 혁신과 분파기
                 </span>
               </div>
               <div className="w-[240px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
                 <span className="text-[11px] font-mono text-amber-400 font-bold">1986~1988</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  辛라면 천하통일 & 라이벌전
+                  신라면 천하통일 & 라이벌전
                 </span>
               </div>
               <div className="w-[240px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
                 <span className="text-[11px] font-mono text-amber-400 font-bold">1992~2000s</span>
                 <span className="text-xs font-serif font-black text-stone-100">
-                  제4기: 백화제방 다양화 (百花齊放)
+                  제4기: 다양화 전성기
                 </span>
               </div>
               <div className="w-[240px] border-r border-stone-800/80 p-2 flex flex-col justify-center">
@@ -668,7 +668,7 @@ export function LineageTree({
                 style={{ top: '120px', height: '110px' }}
               >
                 <span className="text-[10px] font-serif font-black tracking-wider text-rose-500/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-950">
-                  極辛派 · 극초매운 국물계 (5000~9413 SHU 도발)
+                  극초매운 국물파 (열라면 · 틈새라면 · 마열 · 더레드)
                 </span>
               </div>
 
@@ -678,7 +678,7 @@ export function LineageTree({
                 style={{ top: '230px', height: '140px' }}
               >
                 <span className="text-[10px] font-serif font-black tracking-wider text-rose-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-rose-950">
-                  辛牛派 · 정통 얼큰 소고기계 (대한민국 라면의 절대 집권층)
+                  정통 얼큰 소고기파 (신라면 · 진라면 매운맛 · 안성탕면 · 육개장)
                 </span>
               </div>
 
@@ -688,7 +688,7 @@ export function LineageTree({
                 style={{ top: '370px', height: '180px' }}
               >
                 <span className="text-[10px] font-serif font-black tracking-wider text-amber-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
-                  始原 · 骨湯 · 白湯 · 원조 백탕 / 진한 사골 / 하얀국물의 난
+                  원조 백탕 · 진한 사골파 · 하얀국물의 난 (삼양라면 · 사리곰탕 · 꼬꼬면)
                 </span>
               </div>
 
@@ -698,7 +698,7 @@ export function LineageTree({
                 style={{ top: '550px', height: '180px' }}
               >
                 <span className="text-[10px] font-serif font-black tracking-wider text-sky-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-sky-950">
-                  海鮮派 · 해물 시원 · 정통 중화 짬뽕계 (바다의 감칠맛)
+                  시원한 해물 · 짬뽕파 (너구리 · 오징어짬뽕 · 진짬뽕)
                 </span>
               </div>
 
@@ -708,7 +708,7 @@ export function LineageTree({
                 style={{ top: '730px', height: '140px' }}
               >
                 <span className="text-[10px] font-serif font-black tracking-wider text-amber-500/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-amber-950">
-                  炸醬 · 火魔 · 融合 · 춘장 짜장 / 불닭 화마 / 크림 퓨전계
+                  짜장 · 불닭 볶음 · 크림 퓨전파 (짜파게티 · 불닭볶음면 · 신라면 툼바)
                 </span>
               </div>
 
@@ -718,7 +718,7 @@ export function LineageTree({
                 style={{ top: '870px', height: '130px' }}
               >
                 <span className="text-[10px] font-serif font-black tracking-wider text-cyan-400/70 bg-stone-950/80 px-2.5 py-1 rounded-md border border-cyan-950">
-                  冷排派 · 초고추장 냉비빔계 (사계절 비빔면의 대결)
+                  새콤달콤 냉비빔면파 (팔도비빔면 vs 배홍동)
                 </span>
               </div>
             </div>

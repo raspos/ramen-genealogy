@@ -48,7 +48,7 @@ export function LabPage({ onSelectProduct }: LabPageProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-12 pb-6">
         <div className="max-w-3xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-900 text-stone-100 text-xs font-serif font-bold mb-3 shadow-xs">
-            <span>라면 조합 연구소 · 混雜의 實驗室</span>
+            <span>라면 조합 연구소 · 의 </span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl font-black text-stone-950 font-serif tracking-tight leading-tight">

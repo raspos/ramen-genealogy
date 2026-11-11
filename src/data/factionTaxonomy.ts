@@ -23,7 +23,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'spicy-beef',
     name: '소고기·표고 정통계',
-    hanja: '辛牛派',
+    hanja: '정통 소고기파',
     parentBranchId: 'SOUP',
     subCategory: '얼큰계',
     summary: '진한 소고기 육수에 칼칼한 고춧가루와 표고버섯의 풍미가 어우러진 대한민국 라면의 주류',
@@ -39,7 +39,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'spicy-seafood',
     name: '해물·칼칼 시원계',
-    hanja: '辛海派',
+    hanja: '얼큰 해물파',
     parentBranchId: 'SOUP',
     subCategory: '얼큰계',
     summary: '오징어, 홍합, 다시마 등 해산물 베이스에 얼큰한 고추 양념으로 시원한 속풀이를 이끄는 계열',
@@ -55,7 +55,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'spicy-kimchi',
     name: '김치·사발 찌개계',
-    hanja: '辛泡派',
+    hanja: '김치 찌개파',
     parentBranchId: 'SOUP',
     subCategory: '얼큰계',
     summary: '발효 김치의 시큼털털한 감칠맛과 쇠고기 육개장의 묵직한 얼큰함이 결합된 사발면의 대표',
@@ -73,7 +73,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'mild-bone',
     name: '사골·우육 구수계',
-    hanja: '醇骨派',
+    hanja: '대표 파벌',
     parentBranchId: 'SOUP',
     subCategory: '담백계',
     summary: '고춧가루의 자극 없이 우사골과 쇠고기를 오래 우려낸 진하고 순한 국물의 계열',
@@ -89,7 +89,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'mild-fish',
     name: '멸치·어육 맑은계',
-    hanja: '醇魚派',
+    hanja: '대표 파벌',
     parentBranchId: 'SOUP',
     subCategory: '담백계',
     summary: '남해안 멸치와 무, 다시마를 우려내어 텁텁하지 않고 담백·개운한 칼국수 스타일',
@@ -105,7 +105,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'mild-chicken',
     name: '닭·백탕 이단계',
-    hanja: '白湯派',
+    hanja: '하얀국물 반란파',
     parentBranchId: 'SOUP',
     subCategory: '담백계',
     summary: '1963년 최초 치킨라면의 맥을 잇거나 청양고추 칼칼함을 더한 백색 짬뽕 돌풍의 주역',
@@ -123,7 +123,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'rich-jjamppong',
     name: '불맛·진짬뽕계',
-    hanja: '濃火派',
+    hanja: '대표 파벌',
     parentBranchId: 'SOUP',
     subCategory: '진한 육수계',
     summary: '유성스프의 그윽한 웍 불맛과 넓은 칼국수 면발, 풍성한 목이버섯 건더기의 프리미엄 짬뽕',
@@ -139,7 +139,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'rich-craft',
     name: '자연·건면 특화계',
-    hanja: '自然派',
+    hanja: '채식 비건야채파',
     parentBranchId: 'SOUP',
     subCategory: '진한 육수계',
     summary: '바람에 말린 쫄깃한 건면과 로스팅한 자연 식재료 육수로 기름기를 뺀 현대 웰빙파',
@@ -157,7 +157,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'dry-jjajang',
     name: '정통 볶음 짜장계',
-    hanja: '黑醬派',
+    hanja: '정통 춘장짜장파',
     parentBranchId: 'NON_SOUP',
     subCategory: '짜장계',
     summary: '물을 따라버리고 과립스프와 유성스프로 자작하게 비벼내는 일요일의 대명사',
@@ -175,7 +175,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'dry-bibim',
     name: '새콤달콤 비빔면계',
-    hanja: '冷拌派',
+    hanja: '새콤달콤 냉비빔파',
     parentBranchId: 'NON_SOUP',
     subCategory: '비빔계',
     summary: '찬물에 면을 차갑게 헹군 뒤 사과·배 농축 과일 양념장으로 비비는 여름철의 절대 강자',
@@ -193,7 +193,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'dry-fire',
     name: '극강 매운 볶음계',
-    hanja: '極辛派',
+    hanja: '대표 파벌',
     parentBranchId: 'NON_SOUP',
     subCategory: '볶음계',
     summary: 'K-라면 신드롬의 중심. 4400 SHU 이상의 극한 캡사이신 액상소스로 바짝 볶아낸 불맛',
@@ -209,7 +209,7 @@ export const FACTION_TAXONOMY: FactionNode[] = [
   {
     id: 'dry-cream',
     name: '크림·치즈 퓨전계',
-    hanja: '和洋派',
+    hanja: '치즈 크림퓨전파',
     parentBranchId: 'NON_SOUP',
     subCategory: '볶음계',
     summary: '부드러운 크림 분말과 치즈, 토마토 파스타 소스를 결합해 매운맛을 부드럽게 감싼 퓨전파',

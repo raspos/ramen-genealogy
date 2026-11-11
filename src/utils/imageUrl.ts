@@ -1,13 +1,25 @@
 /**
  * Helper to resolve image paths against the current Vite base URL
- * (crucial for GitHub Pages subpath deployment like /ramen-genealogy/)
+ * (handles GitHub Pages subpath deployment like /ramen-genealogy/)
+ * Guarantees idempotency so calling it multiple times never duplicates the base prefix.
  */
 export function getAssetUrl(path?: string): string {
   if (!path) return '';
   if (path.startsWith('http://') || path.startsWith('https://') || path.startsWith('data:')) {
     return path;
   }
-  const clean = path.startsWith('/') ? path.slice(1) : path;
+
   const base = import.meta.env.BASE_URL || '/';
-  return base.endsWith('/') ? `${base}${clean}` : `${base}/${clean}`;
+  const cleanBase = base.endsWith('/') ? base : `${base}/`;
+
+  // Normalize path to leading slash
+  const normPath = path.startsWith('/') ? path : `/${path}`;
+
+  // If already starts with base, return as-is!
+  if (normPath.startsWith(cleanBase)) {
+    return normPath;
+  }
+
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return `${cleanBase}${cleanPath}`;
 }

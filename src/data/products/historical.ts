@@ -112,7 +112,7 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
     },
     flavorProfile: { primaryFlavors: ['검은 가마솥 쇠고기 진국', '구수한 된장과 소고기 조화', '묵직한 바디감'], savoryScore: 5, oilinessScore: 3, saltinessScore: 4, sweetnessScore: 1 },
     lineage: [
-      { targetId: 'anseongtangmyeon', relation: 'CROSSOVER', description: '안성탕면과 함께 1980년대 탕(湯)류 라면 전성기를 이끈 소고기 진국 라면', year: 1987 }
+      { targetId: 'anseongtangmyeon', relation: 'CROSSOVER', description: '안성탕면과 함께 1980년대 탕류 라면 전성기를 이끈 소고기 진국 라면', year: 1987 }
     ],
     priceKrw: 200, officialDataSource: '농심 40년사', verifiedDate: '2026-11-10', dataPipelineStatus: 'PUBLISHED'
   },
@@ -234,7 +234,7 @@ export const HISTORICAL_PRODUCTS: RamenProduct[] = [
   },
   {
     id: 'cheongbo-yeol-ramyun',
-    name: '청보 열(熱)라면 (1985년)',
+    name: '청보 열라면 (1985년)',
     manufacturer: '기타국내제조사',
     brand: '열라면',
     releaseYear: 1985,

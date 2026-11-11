@@ -14,6 +14,7 @@ export function RamenEncyclopedia({ onOpenProductModal }: RamenEncyclopediaProps
   const [selectedPackage, setSelectedPackage] = useState<string>('ALL');
   const [selectedType, setSelectedType] = useState<string>('ALL');
   const [selectedSpicy, setSelectedSpicy] = useState<string>('ALL');
+  const [visibleCount, setVisibleCount] = useState<number>(24);
 
   const filtered = RAMEN_DATASET.filter((p) => {
     // Search filter
@@ -215,16 +216,30 @@ export function RamenEncyclopedia({ onOpenProductModal }: RamenEncyclopediaProps
 
         {/* Product Grid */}
         {filtered.length > 0 ? (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 sm:gap-4">
-            {filtered.map((product) => (
-              <ProductCardVisual
-                key={product.id}
-                product={product}
-                size="sm"
-                showDetails={true}
-                onClick={() => onOpenProductModal(product)}
-              />
-            ))}
+          <div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3.5 sm:gap-4">
+              {filtered.slice(0, visibleCount).map((product) => (
+                <ProductCardVisual
+                  key={product.id}
+                  product={product}
+                  size="sm"
+                  showDetails={true}
+                  onClick={() => onOpenProductModal(product)}
+                />
+              ))}
+            </div>
+
+            {visibleCount < filtered.length && (
+              <div className="text-center pt-8">
+                <button
+                  type="button"
+                  onClick={() => setVisibleCount((prev) => prev + 24)}
+                  className="px-8 py-3.5 rounded-2xl bg-stone-900 hover:bg-stone-800 text-amber-300 font-bold text-sm shadow-md transition cursor-pointer hover:scale-105"
+                >
+                  라면 더보기 ({Math.min(visibleCount, filtered.length)} / {filtered.length}개 표시 중)
+                </button>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center py-16 bg-white rounded-3xl border border-stone-200 p-8">

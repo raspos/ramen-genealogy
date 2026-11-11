@@ -29,12 +29,12 @@ const QUESTIONS: Question[] = [
     subtitle: '국물의 유무는 라면 철학의 가장 큰 갈림길입니다.',
     options: [
       {
-        label: '뜨끈하고 깊은 국물파 (湯派)',
+        label: '뜨끈하고 깊은 국물파 ()',
         description: '밥 한 숟갈 말아먹을 수 있는 시원하고 깊은 국물이 필수',
         branchWeight: { 'spicy-beef': 3, 'spicy-seafood': 3, 'mild-bone': 3, 'rich-jjamppong': 2 }
       },
       {
-        label: '소스에 비비고 볶아내는 비국물파 (乾派)',
+        label: '소스에 비비고 볶아내는 비국물파 ()',
         description: '국물을 버리고 농축된 양념과 면발 본연의 식감에 집중',
         branchWeight: { 'dry-jjajang': 3, 'dry-bibim': 3, 'dry-fire': 3, 'dry-cream': 3 }
       }

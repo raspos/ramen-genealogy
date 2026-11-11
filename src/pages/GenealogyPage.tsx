@@ -21,7 +21,7 @@ export function GenealogyPage({ onSelectProduct }: GenealogyPageProps) {
       {/* Editorial Page Header */}
       <div className="max-w-3xl mx-auto text-center mb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-stone-900 text-stone-100 text-xs font-serif font-bold mb-3 shadow-xs">
-          <span>붕당정치(朋黨政治) 도식으로 읽는 한국 라면 60년</span>
+          <span>정당 계보도처럼 한눈에 보는 한국 라면 60년</span>
         </div>
 
         <h1 className="text-3xl sm:text-5xl font-black text-stone-950 font-serif tracking-tight leading-tight">
@@ -32,7 +32,7 @@ export function GenealogyPage({ onSelectProduct }: GenealogyPageProps) {
           1963년부터 오늘까지, 한국 라면은 어떻게 갈라졌을까?
         </p>
         <p className="text-xs sm:text-sm text-stone-500 mt-1 font-serif">
-          조선시대 붕당의 이념 대립처럼, 국물파와 비국물파로 나뉜 맛과 조리법의 정밀 분류도
+          정당 계보처럼 국물파와 비국물파로 나뉜 맛과 조리법의 정밀 계보도
         </p>
 
         {/* Search & Quiz Action Bar */}

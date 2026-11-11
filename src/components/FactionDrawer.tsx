@@ -47,15 +47,15 @@ export function FactionDrawer({ faction, onClose, onSelectProduct }: FactionDraw
   const getHegemonyLabel = (status?: string) => {
     switch (status) {
       case 'RULING':
-        return { label: '천하통일 집권 (天下統一)', color: 'bg-rose-600 text-white' };
+        return { label: '천하통일 집권', color: 'bg-rose-600 text-white' };
       case 'MAINSTREAM':
-        return { label: '주류 붕당 (主流 朋黨)', color: 'bg-stone-900 text-amber-300' };
+        return { label: '주류 파벌', color: 'bg-stone-900 text-amber-300' };
       case 'HISTORIC_ORIGIN':
-        return { label: '역사적 시원 (始原)', color: 'bg-amber-500 text-stone-950 font-black' };
+        return { label: '역사적 시작', color: 'bg-amber-500 text-stone-950 font-black' };
       case 'EXPEDITIONARY':
-        return { label: '반란과 신흥 돌풍 (叛亂·突風)', color: 'bg-orange-500 text-white' };
+        return { label: '반란과 신흥 돌풍', color: 'bg-orange-500 text-white' };
       case 'COEXISTING':
-        return { label: '공존과 롱셀러 (共存)', color: 'bg-sky-600 text-white' };
+        return { label: '장수 공존', color: 'bg-sky-600 text-white' };
       default:
         return { label: '전통 붕당', color: 'bg-stone-800 text-stone-200' };
     }
@@ -132,7 +132,7 @@ export function FactionDrawer({ faction, onClose, onSelectProduct }: FactionDraw
               <div className="bg-stone-50 border border-stone-200 rounded-2xl p-4 space-y-3">
                 <div className="flex items-center gap-2 text-stone-900 font-serif font-black text-xs">
                   <Scroll className="w-4 h-4 text-amber-600" />
-                  <span>붕당 흥망성쇠 실록 (興亡盛衰 實錄)</span>
+                  <span>라면 파벌 흥망성쇠 실록</span>
                 </div>
                 <div className="space-y-2 border-l-2 border-amber-400 pl-3">
                   {chronicle.chronicleStory.map((story, idx) => (
