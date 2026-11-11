@@ -12,6 +12,8 @@ interface MobileVerticalTreeProps {
   edges: LineageEdge[];
   epochs: HistoricalEpoch[];
   milestones: HistoricalEventMilestone[];
+  activeNodeId?: string | null;
+  onClearActiveNode?: () => void;
   onSelectNode: (node: LineageLegendNode) => void;
   onSelectMilestone: (milestone: HistoricalEventMilestone) => void;
 }
@@ -19,6 +21,8 @@ interface MobileVerticalTreeProps {
 export function MobileVerticalTree({
   nodes,
   milestones,
+  activeNodeId,
+  onClearActiveNode,
   onSelectNode,
   onSelectMilestone,
 }: MobileVerticalTreeProps) {
@@ -26,7 +30,25 @@ export function MobileVerticalTree({
   const getMilestone = (id: string) => milestones.find((m) => m.id === id);
 
   return (
-    <div className="w-full max-w-xl mx-auto space-y-6 pb-8 text-stone-900 overflow-hidden">
+    <div className="w-full max-w-xl mx-auto space-y-6 pb-16 text-stone-900 overflow-hidden relative">
+      {/* Sticky Floating Reset Pill on Mobile */}
+      {activeNodeId && (
+        <div className="sticky top-2 z-40 flex items-center justify-between p-3 bg-stone-950/95 border-2 border-amber-400 rounded-2xl shadow-2xl text-white backdrop-blur-md animate-fadeIn">
+          <div className="flex items-center gap-2 text-xs">
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
+            <span className="font-bold text-amber-300">
+              [{getNode(activeNodeId)?.name}] 추적 중
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={onClearActiveNode}
+            className="px-3 py-1 bg-rose-600 hover:bg-rose-500 text-white font-black text-xs rounded-xl flex items-center gap-1 cursor-pointer transition active:scale-95 shadow-md"
+          >
+            <span>전체 복귀</span>
+          </button>
+        </div>
+      )}
       {/* Intro Header */}
       <div className="text-center p-4 rounded-3xl bg-stone-900 text-white shadow-md border border-stone-800">
         <span className="inline-block px-3 py-1 rounded-full bg-amber-400 text-stone-950 font-black text-[11px] font-serif mb-2">
@@ -649,6 +671,7 @@ function ProductMiniCard({
   node,
   compact = false,
   dark = false,
+  isSelected = false,
   badgeColor,
   borderColor,
   onClick,
@@ -656,6 +679,7 @@ function ProductMiniCard({
   node: LineageLegendNode;
   compact?: boolean;
   dark?: boolean;
+  isSelected?: boolean;
   badgeColor: string;
   borderColor?: string;
   onClick: () => void;
@@ -663,8 +687,10 @@ function ProductMiniCard({
   return (
     <button
       onClick={onClick}
-      className={`w-full p-2.5 rounded-2xl flex items-center gap-2.5 text-left cursor-pointer transition hover:scale-102 border ${
-        dark
+      className={`w-full p-2.5 rounded-2xl flex items-center gap-2.5 text-left cursor-pointer transition hover:scale-102 border relative ${
+        isSelected
+          ? 'bg-stone-900 text-white ring-4 ring-amber-400 border-amber-400 shadow-xl'
+          : dark
           ? 'bg-stone-900/90 text-white hover:bg-stone-850'
           : 'bg-stone-50 text-stone-900 hover:bg-stone-100'
       } ${borderColor || 'border-stone-200'}`}
@@ -688,7 +714,7 @@ function ProductMiniCard({
           </span>
           <span
             className={`text-[9px] font-bold truncate ${
-              dark ? 'text-stone-400' : 'text-stone-500'
+              dark || isSelected ? 'text-stone-400' : 'text-stone-500'
             }`}
           >
             {node.historicalRole}
@@ -697,7 +723,7 @@ function ProductMiniCard({
 
         <h5
           className={`text-xs font-black truncate ${
-            dark ? 'text-white' : 'text-stone-900'
+            dark || isSelected ? 'text-white' : 'text-stone-900'
           }`}
         >
           {node.name}
@@ -706,13 +732,19 @@ function ProductMiniCard({
         {!compact && (
           <p
             className={`text-[10px] line-clamp-1 mt-0.5 font-medium ${
-              dark ? 'text-stone-400' : 'text-stone-600'
+              dark || isSelected ? 'text-stone-400' : 'text-stone-600'
             }`}
           >
             {node.doctrineQuote.replace(/[“”"]/g, '')}
           </p>
         )}
       </div>
+
+      {isSelected && (
+        <span className="shrink-0 text-[10px] font-black bg-rose-600 text-white px-2 py-0.5 rounded-full shadow-sm">
+          해제
+        </span>
+      )}
     </button>
   );
 }

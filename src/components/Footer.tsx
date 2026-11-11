@@ -1,3 +1,5 @@
+import { VisitorCounter } from './VisitorCounter';
+
 interface FooterProps {
   onOpenMethodology: () => void;
 }
@@ -49,7 +51,12 @@ export function Footer({ onOpenMethodology }: FooterProps) {
         </div>
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 mt-8 pt-6 border-t border-stone-300/70 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 gap-2">
+      {/* Visitor Counter Section (Hongdam Craft Style) */}
+      <div className="max-w-6xl mx-auto px-4 mt-8 flex justify-center">
+        <VisitorCounter />
+      </div>
+
+      <div className="max-w-6xl mx-auto px-4 mt-6 pt-6 border-t border-stone-300/70 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 gap-2">
         <div className="flex items-center gap-1.5 flex-wrap">
           <span>©</span>
           <a

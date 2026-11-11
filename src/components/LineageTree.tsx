@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import type { RamenProduct } from '../types/ramen';
 import { RAMEN_DATASET } from '../data/ramenDataset';
 import { FACTION_TAXONOMY, type FactionNode } from '../data/factionTaxonomy';
@@ -17,11 +17,13 @@ import { MobileVerticalTree } from './MobileVerticalTree';
 import {
   Sparkles,
   RotateCcw,
-  Info,
   Swords,
+  ChevronLeft,
   ChevronRight,
   X,
   ArrowRight,
+  Navigation,
+  MousePointer,
 } from 'lucide-react';
 
 interface LineageTreeProps {
@@ -49,8 +51,102 @@ export function LineageTree({
   const [selectedLegendNode, setSelectedLegendNode] = useState<LineageLegendNode | null>(null);
   const [selectedMilestone, setSelectedMilestone] = useState<HistoricalEventMilestone | null>(null);
 
-  // Canvas zoom/pan reference
+  // Canvas zoom/pan reference & drag physics
   const canvasScrollRef = useRef<HTMLDivElement>(null);
+  const isDraggingRef = useRef(false);
+  const startPosRef = useRef({ x: 0, y: 0, scrollLeft: 0, scrollTop: 0 });
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const handleScrollCheck = useCallback(() => {
+    if (!canvasScrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = canvasScrollRef.current;
+    setCanScrollLeft(scrollLeft > 15);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 15);
+  }, []);
+
+  useEffect(() => {
+    const el = canvasScrollRef.current;
+    if (!el) return;
+    handleScrollCheck();
+    el.addEventListener('scroll', handleScrollCheck, { passive: true });
+    window.addEventListener('resize', handleScrollCheck);
+
+    // Smooth horizontal timeline scroll with mouse wheel
+    const onWheel = (e: WheelEvent) => {
+      if (!e.ctrlKey && Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY * 1.25;
+      }
+    };
+    el.addEventListener('wheel', onWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener('scroll', handleScrollCheck);
+      window.removeEventListener('resize', handleScrollCheck);
+      el.removeEventListener('wheel', onWheel);
+    };
+  }, [handleScrollCheck]);
+
+  // Drag-to-pan handlers
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if ((e.target as HTMLElement).closest('button, .pointer-events-auto, a, select')) {
+      return;
+    }
+    isDraggingRef.current = true;
+    startPosRef.current = {
+      x: e.clientX,
+      y: e.clientY,
+      scrollLeft: canvasScrollRef.current?.scrollLeft || 0,
+      scrollTop: canvasScrollRef.current?.scrollTop || 0,
+    };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingRef.current || !canvasScrollRef.current) return;
+    e.preventDefault();
+    const dx = e.clientX - startPosRef.current.x;
+    canvasScrollRef.current.scrollLeft = startPosRef.current.scrollLeft - dx;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDraggingRef.current = false;
+  };
+
+  const scrollCanvas = (direction: 'left' | 'right') => {
+    if (!canvasScrollRef.current) return;
+    const delta = direction === 'left' ? -460 : 460;
+    canvasScrollRef.current.scrollBy({ left: delta, behavior: 'smooth' });
+  };
+
+  const scrollToEpoch = (xPos: number) => {
+    if (!canvasScrollRef.current) return;
+    canvasScrollRef.current.scrollTo({ left: Math.max(0, xPos - 30), behavior: 'smooth' });
+  };
+
+  const handleCanvasBackgroundClick = (e: React.MouseEvent) => {
+    if (isDraggingRef.current) return;
+    const target = e.target as HTMLElement;
+    if (
+      target === canvasScrollRef.current ||
+      target.tagName === 'svg' ||
+      target.dataset.canvasBg === 'true'
+    ) {
+      if (activeNodeId) {
+        setActiveNodeId(null);
+      }
+    }
+  };
+
+  const handleNodeClick = (node: LineageLegendNode, e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
+    if (activeNodeId === node.id) {
+      // Tapping the currently selected card a second time CLEARS tracking!
+      setActiveNodeId(null);
+    } else {
+      setActiveNodeId(node.id);
+    }
+  };
 
   // Search matching nodes
   const searchMatchedNodeIds = useMemo(() => {
@@ -547,23 +643,86 @@ export function LineageTree({
           </div>
         </div>
 
-        {/* Active Path Tracing Alert Banner */}
+        {/* Active Path Tracing Alert Banner (Ultra-clear for first-time users) */}
         {activeNodeId && (
-          <div className="flex items-center justify-between p-3 bg-amber-50 border border-amber-300 rounded-2xl text-xs shadow-xs">
-            <div className="flex items-center gap-2.5 text-stone-900">
-              <Sparkles className="w-4 h-4 text-amber-600 shrink-0" />
-              <span className="font-medium">
-                <strong>[{getNodeById(activeNodeId)?.name}]</strong> 중심의 60년 계통 경로를 추적 중입니다. (선조·직계·숙명의 적수만 강조)
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 bg-gradient-to-r from-amber-500/15 via-rose-500/10 to-amber-500/15 border-2 border-amber-400 rounded-2xl shadow-md text-xs">
+            <div className="flex items-center gap-3 text-stone-900">
+              <span className="p-2 rounded-xl bg-amber-400 text-stone-950 shrink-0 shadow-sm">
+                <Sparkles className="w-5 h-5" />
               </span>
+              <div>
+                <p className="font-black text-stone-950 text-sm">
+                  [{getNodeById(activeNodeId)?.name}] 계보 추적 중
+                </p>
+                <p className="text-stone-600 text-xs mt-0.5">
+                  해당 제품의 선조·직계 후손·숙명의 라이벌 관계만 강조됩니다. 카드를 다시 클릭하거나 빈 곳을 누르면 전체 계보로 복귀합니다.
+                </p>
+              </div>
             </div>
-            <button
-              onClick={() => setActiveNodeId(null)}
-              className="text-amber-900 hover:text-stone-950 font-bold underline cursor-pointer shrink-0 ml-2"
-            >
-              전체 계보 복귀
-            </button>
+            <div className="flex items-center gap-2 shrink-0 self-end sm:self-center">
+              <button
+                type="button"
+                onClick={() => {
+                  const n = getNodeById(activeNodeId);
+                  if (n) setSelectedLegendNode(n);
+                }}
+                className="px-3.5 py-2 bg-stone-900 hover:bg-stone-800 text-amber-300 font-bold text-xs rounded-xl flex items-center gap-1.5 cursor-pointer transition shadow-sm"
+              >
+                <span>상세 역사 서사 ↗</span>
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveNodeId(null)}
+                className="px-4 py-2 bg-rose-600 hover:bg-rose-700 text-white font-black text-xs rounded-xl flex items-center gap-1.5 cursor-pointer transition shadow-md hover:scale-105 active:scale-95"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>전체 계보 복귀</span>
+              </button>
+            </div>
           </div>
         )}
+
+        {/* 60-Year Era Fast Jump Bar */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs pt-1">
+          <span className="text-stone-500 font-bold text-[11px] shrink-0 flex items-center gap-1 mr-1">
+            <Navigation className="w-3.5 h-3.5 text-amber-600" /> 시대 바로가기:
+          </span>
+          <button
+            type="button"
+            onClick={() => scrollToEpoch(0)}
+            className="px-3 py-1 rounded-xl bg-white hover:bg-stone-200 text-stone-800 font-bold text-xs transition cursor-pointer shrink-0 border border-stone-300 hover:border-amber-400 shadow-2xs"
+          >
+            1963 건국
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToEpoch(380)}
+            className="px-3 py-1 rounded-xl bg-white hover:bg-stone-200 text-stone-800 font-bold text-xs transition cursor-pointer shrink-0 border border-stone-300 hover:border-amber-400 shadow-2xs"
+          >
+            1980 탕·건 대분화
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToEpoch(720)}
+            className="px-3 py-1 rounded-xl bg-white hover:bg-stone-200 text-stone-800 font-bold text-xs transition cursor-pointer shrink-0 border border-stone-300 hover:border-amber-400 shadow-2xs"
+          >
+            1986 신라면 집권
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToEpoch(1100)}
+            className="px-3 py-1 rounded-xl bg-white hover:bg-stone-200 text-stone-800 font-bold text-xs transition cursor-pointer shrink-0 border border-stone-300 hover:border-amber-400 shadow-2xs"
+          >
+            2011 하얀국물의 난
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToEpoch(1450)}
+            className="px-3 py-1 rounded-xl bg-white hover:bg-stone-200 text-stone-800 font-bold text-xs transition cursor-pointer shrink-0 border border-stone-300 hover:border-amber-400 shadow-2xs"
+          >
+            2012 불닭 & K-크림
+          </button>
+        </div>
       </div>
 
       {/* ================= 2. MOBILE VIEW SWITCHER ================= */}
@@ -594,9 +753,14 @@ export function LineageTree({
             edges={filteredEdges}
             epochs={HISTORICAL_EPOCHS}
             milestones={HISTORICAL_MILESTONES}
+            activeNodeId={activeNodeId}
+            onClearActiveNode={() => setActiveNodeId(null)}
             onSelectNode={(node) => {
-              setActiveNodeId(node.id);
-              setSelectedLegendNode(node);
+              if (activeNodeId === node.id) {
+                setActiveNodeId(null);
+              } else {
+                setActiveNodeId(node.id);
+              }
             }}
             onSelectMilestone={(ms) => setSelectedMilestone(ms)}
           />
@@ -649,14 +813,63 @@ export function LineageTree({
           mobileMode === 'CHRONICLE' ? 'hidden md:block' : 'block'
         } bg-stone-950 border border-stone-800 rounded-3xl overflow-hidden shadow-2xl relative`}
       >
+        {/* Floating Left/Right Navigation Arrows (Figma Viewport Navigation) */}
+        {canScrollLeft && (
+          <button
+            type="button"
+            onClick={() => scrollCanvas('left')}
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-35 w-12 h-12 rounded-full bg-stone-900/90 hover:bg-stone-850 text-white border border-stone-700/80 shadow-2xl flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 backdrop-blur-md group"
+            title="이전 시대로 (1960년대 쪽으로 이동)"
+            aria-label="이전 시대로 이동"
+          >
+            <ChevronLeft className="w-6 h-6 text-amber-300 group-hover:-translate-x-0.5 transition-transform" />
+          </button>
+        )}
+
+        {canScrollRight && (
+          <button
+            type="button"
+            onClick={() => scrollCanvas('right')}
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-35 w-12 h-12 rounded-full bg-stone-900/90 hover:bg-stone-850 text-white border border-stone-700/80 shadow-2xl flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 backdrop-blur-md group"
+            title="다음 시대로 (2026년 쪽으로 이동)"
+            aria-label="다음 시대로 이동"
+          >
+            <ChevronRight className="w-6 h-6 text-amber-300 group-hover:translate-x-0.5 transition-transform" />
+          </button>
+        )}
+
+        {/* Sticky Floating Active Tracing Reset Pill */}
+        {activeNodeId && (
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-35 flex items-center gap-3 px-4 py-2.5 rounded-full bg-stone-950/95 border-2 border-amber-400 text-white shadow-2xl backdrop-blur-md">
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse shrink-0" />
+            <span className="text-xs font-bold text-amber-300">
+              <strong>[{getNodeById(activeNodeId)?.name}]</strong> 계보 추적 중
+            </span>
+            <button
+              type="button"
+              onClick={() => setActiveNodeId(null)}
+              className="px-3.5 py-1 bg-rose-600 hover:bg-rose-500 text-white text-xs font-black rounded-full flex items-center gap-1.5 cursor-pointer shadow-md transition hover:scale-105 active:scale-95"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>전체 계보로 돌아가기</span>
+            </button>
+          </div>
+        )}
+
         <div
           ref={canvasScrollRef}
-          className="relative overflow-x-auto overflow-y-hidden cursor-grab active:cursor-grabbing p-6"
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
+          onClick={handleCanvasBackgroundClick}
+          className="relative overflow-x-auto overflow-y-hidden cursor-grab active:cursor-grabbing p-6 select-none"
           style={{ minHeight: '620px', maxHeight: '1160px' }}
         >
-          {/* Virtual SVG Canvas: 1850px x 1120px */}
+          {/* Virtual SVG Canvas: 1850px x 1120px with Figma Canvas Grid */}
           <div
-            className="relative select-none"
+            data-canvas-bg="true"
+            className="relative select-none figma-canvas-grid rounded-2xl"
             style={{
               width: '1850px',
               height: selectedBranch === 'NON_SOUP' ? '640px' : selectedBranch === 'SOUP' ? '820px' : '1120px',
@@ -856,7 +1069,7 @@ export function LineageTree({
               {filteredEdges.map((edge) => renderEdgeSvgPath(edge))}
             </svg>
 
-            {/* Absolute Positioned 23 Legend Nodes (HTML Elements for Crisp Cards) */}
+            {/* Absolute Positioned 23 Legend Nodes (Figma-Crafted HTML Elements) */}
             <div className="absolute inset-0 z-20 pointer-events-none">
               {filteredNodes.map((node) => {
                 const isSelected = activeNodeId === node.id;
@@ -867,29 +1080,23 @@ export function LineageTree({
                 return (
                   <div
                     key={node.id}
-                    onClick={() => {
-                      setActiveNodeId(node.id);
-                      setSelectedLegendNode(node);
-                    }}
-                    onMouseEnter={() => {
-                      if (!activeNodeId) setActiveNodeId(node.id);
-                    }}
-                    className={`group absolute -translate-x-1/2 -translate-y-1/2 w-[132px] rounded-2xl p-2.5 transition-all duration-300 pointer-events-auto cursor-pointer flex flex-col justify-between ${
+                    onClick={(e) => handleNodeClick(node, e)}
+                    className={`group absolute -translate-x-1/2 -translate-y-1/2 w-[132px] rounded-2xl p-2.5 figma-card transition-all duration-300 pointer-events-auto cursor-pointer flex flex-col justify-between select-none ${
                       isDimmed ? 'opacity-25 grayscale-[70%] scale-95' : 'opacity-100'
                     } ${
                       isSelected || isMatched
-                        ? 'bg-stone-900 border-2 border-amber-400 shadow-2xl ring-4 ring-amber-400/40 scale-105 z-30'
+                        ? 'bg-stone-900 border-2 border-amber-400 ring-4 ring-amber-400/40 figma-active-glow scale-105 z-30'
                         : is1963
                         ? 'bg-amber-950/95 border-2 border-amber-400 shadow-xl ring-2 ring-amber-500/50'
-                        : 'bg-stone-900/95 border-2 border-stone-700/80 hover:border-amber-400 hover:bg-stone-850 shadow-lg'
+                        : 'bg-stone-900/95 border border-stone-700/80 hover:border-amber-400/80 hover:bg-stone-850'
                     }`}
                     style={{
                       left: `${node.canvasX}px`,
                       top: `${getNodeY(node)}px`,
-                      height: '146px',
+                      height: isSelected ? '172px' : '146px',
                     }}
                   >
-                    {/* Header: Role Badge + Year */}
+                    {/* Header: Role Badge + Year OR Deselect Button */}
                     <div className="flex items-center justify-between gap-1 mb-1">
                       <span
                         className={`text-[9px] px-1.5 py-0.5 rounded-full leading-none font-bold ${getRoleBadgeStyle(
@@ -902,6 +1109,24 @@ export function LineageTree({
                         {node.releaseYear}
                       </span>
                     </div>
+
+                    {/* Prominent On-Card Deselect Badge when Selected */}
+                    {isSelected && (
+                      <div className="absolute -top-3 -right-2 z-40">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveNodeId(null);
+                          }}
+                          className="px-2 py-0.5 bg-rose-600 hover:bg-rose-500 text-white text-[10px] font-black rounded-full shadow-lg border border-white flex items-center gap-0.5 cursor-pointer transition hover:scale-110 active:scale-95 animate-pulse"
+                          title="추적 해제 (클릭 시 전체 계보 복귀)"
+                        >
+                          <X className="w-3 h-3" />
+                          <span>전체 복귀</span>
+                        </button>
+                      </div>
+                    )}
 
                     {/* Packaging Photo */}
                     <div className="relative w-full h-[62px] rounded-xl bg-stone-950 p-1 flex items-center justify-center overflow-hidden border border-stone-800 group-hover:scale-105 transition-transform">
@@ -933,6 +1158,20 @@ export function LineageTree({
                         {node.hanjaFaction}
                       </p>
                     </div>
+
+                    {/* On-Card Editorial Story Button when Selected */}
+                    {isSelected && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setSelectedLegendNode(node);
+                        }}
+                        className="mt-1 w-full py-1 px-1 bg-amber-400 hover:bg-amber-300 text-stone-950 text-[10px] font-black rounded-lg flex items-center justify-center gap-1 cursor-pointer transition shadow-xs"
+                      >
+                        <span>역사 서사 보기 ↗</span>
+                      </button>
+                    )}
                   </div>
                 );
               })}
@@ -941,16 +1180,23 @@ export function LineageTree({
         </div>
 
         {/* Canvas Bottom Control Guide */}
-        <div className="p-4 bg-stone-950 border-t border-stone-800 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-stone-400">
+        <div className="p-4 bg-stone-950 border-t border-stone-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-stone-400">
           <div className="flex items-center gap-2">
-            <Info className="w-4 h-4 text-amber-400 shrink-0" />
+            <MousePointer className="w-4 h-4 text-amber-400 shrink-0" />
             <span>
-              제품 카드를 클릭하면 <strong>직계 선조와 후손 계보</strong>가 하이라이트되며, 역사적 서사 창이 열립니다.
+              마우스 <strong>클릭 & 드래그</strong> 또는 <strong>휠</strong>로 60년 라면사를 좌우로 넘길 수 있습니다. 카드를 다시 누르면 전체 계보로 복귀합니다.
             </span>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-[11px] font-mono text-stone-400">
+            <button
+              type="button"
+              onClick={() => scrollToEpoch(0)}
+              className="px-2.5 py-1 rounded-lg bg-stone-850 hover:bg-stone-800 text-amber-300 font-mono text-[11px] font-bold border border-stone-700 cursor-pointer transition"
+            >
+              1963 처음으로
+            </button>
+            <span className="text-[11px] font-mono text-stone-500">
               전체 23대 기수 대표 라면 수록
             </span>
           </div>
