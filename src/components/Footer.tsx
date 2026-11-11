@@ -7,11 +7,19 @@ export function Footer({ onOpenMethodology }: FooterProps) {
     <footer className="border-t border-stone-300 bg-[#efebe1] py-12 text-stone-600 text-xs">
       <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row md:items-start justify-between gap-8">
         <div className="space-y-2 max-w-md">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 flex-wrap">
             <span className="font-black text-stone-900 text-lg font-serif">라면의 계보</span>
             <span className="text-[10px] px-2 py-0.5 rounded bg-stone-200 text-stone-700 font-bold">
               K-RAMEN ARCHIVE
             </span>
+            <a
+              href="https://raspos.github.io/databrew/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[11px] text-rose-800 hover:text-stone-950 font-black underline underline-offset-2 ml-1"
+            >
+              by databrew
+            </a>
           </div>
           <p className="text-stone-600 leading-relaxed">
             "60년 라면의 역사부터 오늘의 새로운 조합까지" — 한국 라면의 맛과 역사, 영양성분을 정밀 데이터로 기록하고 새로운 미식의 조합을 탐색하는 인터랙티브 데이터저널리즘 프로젝트입니다.
@@ -42,7 +50,18 @@ export function Footer({ onOpenMethodology }: FooterProps) {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 mt-8 pt-6 border-t border-stone-300/70 flex flex-col sm:flex-row items-center justify-between text-[11px] text-stone-500 gap-2">
-        <span>© 2026 라면의 계보 (The Genealogy of Korean Ramen). All rights reserved.</span>
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <span>©</span>
+          <a
+            href="https://raspos.github.io/databrew/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-black text-stone-800 hover:text-rose-700 underline underline-offset-2 transition-colors"
+          >
+            databrew
+          </a>
+          <span>· 라면의 계보 (The Genealogy of Korean Ramen). All rights reserved.</span>
+        </div>
         <span className="flex items-center gap-1">
           한국 라면 60년의 맛과 역사에 헌정합니다.
         </span>

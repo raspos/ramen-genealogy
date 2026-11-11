@@ -808,8 +808,8 @@ export const LINEAGE_EDGES: LineageEdge[] = [
     id: 'edge-yeol-teumsae',
     fromId: 'yeol-ramyun',
     toId: 'teumsae-bbalggyettok',
-    relationType: 'FACTION_SPLIT',
-    label: '2009 9413 SHU 돌파',
+    relationType: 'HISTORICAL_RIVALRY',
+    label: '2009 스코빌 라이벌전',
     year: 2009,
     narrative: '명동 골목 빨계떡 레시피로 시판 라면 최고 스코빌을 기록하며 매운맛 경쟁의 극한을 시현',
     factionColor: '#7f1d1d'
@@ -864,8 +864,8 @@ export const LINEAGE_EDGES: LineageEdge[] = [
     id: 'edge-ojingeo-jinjjamppong',
     fromId: 'ojingeo-jjamppong',
     toId: 'jin-jjamppong',
-    relationType: 'REVOLUTIONARY_SCHISM',
-    label: '2015 불맛 짬뽕 대전',
+    relationType: 'HISTORICAL_RIVALRY',
+    label: '2015 짬뽕 라이벌 대전',
     year: 2015,
     narrative: '불맛 유성스프와 극후면으로 라면 시장의 가격 상한선과 맛의 눈높이를 완전히 바꾼 혁명',
     factionColor: '#c2410c'
@@ -911,7 +911,7 @@ export const LINEAGE_EDGES: LineageEdge[] = [
     fromId: 'kkokko-myeon',
     toId: 'nagasaki-jjamppong',
     relationType: 'HISTORICAL_RIVALRY',
-    label: '2011 백탕 연합군',
+    label: '2011 하얀국물 라이벌전',
     year: 2011,
     narrative: '닭고기 백탕(꼬꼬면)과 해물 돈골 백짬뽕(나가사끼)이 손잡고 라면 시장 점유율 15%를 강타',
     factionColor: '#059669'
@@ -957,7 +957,7 @@ export const LINEAGE_EDGES: LineageEdge[] = [
     fromId: 'paldo-bibim',
     toId: 'baehongdong',
     relationType: 'HISTORICAL_RIVALRY',
-    label: '2021 비빔 패권 전쟁',
+    label: '2021 비빔 패권 라이벌전',
     year: 2021,
     narrative: '팔도의 40년 아성에 배·홍고추·동치미 과채 비빔장으로 농심이 정면 도전장을 투척',
     factionColor: '#ea580c'

@@ -1,14 +1,103 @@
-import { NavLink, Link } from 'react-router-dom';
-import { HelpCircle, GitFork, FlaskConical, Trophy, BookOpen } from 'lucide-react';
-import { getKSTDateString } from '../utils/dailyRecommendation';
+import { NavLink } from 'react-router-dom';
+import { GitFork, FlaskConical, Trophy, BookOpen } from 'lucide-react';
 
 interface HeaderProps {
-  onOpenMethodology: () => void;
+  onOpenMethodology?: () => void;
 }
 
-export function Header({ onOpenMethodology }: HeaderProps) {
-  const kstDate = getKSTDateString();
+// 라면 면발 & 그릇 그래픽 로고 SVG
+function RamenNoodleLogo() {
+  return (
+    <div className="relative w-10 h-10 sm:w-11 sm:h-11 shrink-0 flex items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 via-rose-600 to-red-700 p-1.5 shadow-md shadow-rose-900/20 group-hover:scale-105 group-hover:rotate-[-2deg] transition-all duration-300">
+      <svg
+        viewBox="0 0 48 48"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="w-full h-full drop-shadow-sm"
+      >
+        {/* 모락모락 김 (Steam) */}
+        <path
+          d="M15 9C15 6 18 5 16 2"
+          stroke="#fed7aa"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M24 9C24 5 28 4 25 1"
+          stroke="#fef08a"
+          strokeWidth="2.5"
+          strokeLinecap="round"
+        />
+        <path
+          d="M33 9C33 6 36 5 34 2"
+          stroke="#fed7aa"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
 
+        {/* 전통 라면 그릇 (Red Ceramic Bowl) */}
+        <path
+          d="M7 22C7 34 14.5 42 24 42C33.5 42 41 34 41 22H7Z"
+          fill="#991b1b"
+        />
+        <path
+          d="M6 21C6 19.5 9 19 24 19C39 19 42 19.5 42 21H6Z"
+          fill="#7f1d1d"
+        />
+        {/* 그릇 굽 */}
+        <path
+          d="M18 42H30V44C30 44.5 29.5 45 29 45H19C18.5 45 18 44.5 18 44V42Z"
+          fill="#450a0a"
+        />
+
+        {/* 얼큰한 라면 국물 (Soup Surface) */}
+        <ellipse cx="24" cy="21" rx="15.5" ry="3.5" fill="#ea580c" />
+
+        {/* 꼬불꼬불 황금빛 라면 면발 (Curling Ramen Noodles) */}
+        {/* 1단 웨이브 면발 */}
+        <path
+          d="M11 20C12.5 16 15 17 17 20C19 23 21 16 23 20C25 24 28 17 30 20C32 23 34 18 36 20"
+          stroke="#fde047"
+          strokeWidth="2.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* 2단 웨이브 면발 */}
+        <path
+          d="M13 24C14.5 21 17 22 19 25C21 28 23 22 25 25C27 28 30 22 32 25C33.5 27 35 24 37 24"
+          stroke="#facc15"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        {/* 3단 깊은 면발 */}
+        <path
+          d="M16 29C18 27 20 28 22 30C24 32 26 28 28 30C30 32 32 28 34 29"
+          stroke="#eab308"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+
+        {/* 젓가락 (Chopsticks) */}
+        <path
+          d="M39 6L21 21"
+          stroke="#fef3c7"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+        />
+        <path
+          d="M41 9L25 22"
+          stroke="#fde68a"
+          strokeWidth="2"
+          strokeLinecap="round"
+        />
+      </svg>
+    </div>
+  );
+}
+
+export function Header({ onOpenMethodology: _onOpenMethodology }: HeaderProps) {
   const navItems = [
     { to: '/', label: '라면의 계보', icon: GitFork, end: true },
     { to: '/lab', label: '라면 조합 연구소', icon: FlaskConical },
@@ -16,44 +105,54 @@ export function Header({ onOpenMethodology }: HeaderProps) {
     { to: '/encyclopedia', label: '라면 도감', icon: BookOpen },
   ];
 
+  // 라면의 계보 클릭 시 새로고침 (초기화)
+  const handleReloadToHome = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (window.location.hash === '#/' || window.location.hash === '') {
+      window.location.reload();
+    } else {
+      window.location.hash = '#/';
+      window.location.reload();
+    }
+  };
+
   return (
     <header className="border-b border-stone-200 bg-[#faf9f5] sticky top-0 z-40 backdrop-blur-md bg-opacity-95">
-      {/* Top Meta Strip */}
-      <div className="border-b border-stone-200/80 px-4 py-1.5 text-xs text-stone-600 max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
-        <div className="flex items-center gap-2">
-          <span className="font-bold tracking-wider text-rose-800 uppercase bg-rose-50 px-2 py-0.5 rounded border border-rose-200 text-[11px]">
-            데이터저널리즘
-          </span>
-          <span className="text-stone-300">|</span>
-          <span className="font-mono text-stone-700 text-[11px]">KST {kstDate} (00:00 갱신)</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <span className="text-stone-500 hidden md:inline text-[11px]">식품의약품안전처 · 한국소비자원 DB 검증</span>
-          <button
-            onClick={onOpenMethodology}
-            className="flex items-center gap-1 text-stone-600 hover:text-stone-900 text-xs font-medium cursor-pointer underline underline-offset-2"
-          >
-            <HelpCircle className="w-3.5 h-3.5 text-stone-500" />
-            <span>분석 방법론</span>
-          </button>
-        </div>
-      </div>
-
       {/* Main Masthead & Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 py-3 sm:py-4 flex flex-col md:flex-row md:items-center justify-between gap-3">
-        {/* Brand Logo */}
-        <Link to="/" className="group flex items-baseline gap-2.5 select-none">
-          <div className="flex flex-col">
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] tracking-widest font-black uppercase text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300/60">
-                1963 — 2026 ARCHIVE
-              </span>
+        {/* Brand Logo & databrew badge */}
+        <div className="flex items-center gap-3">
+          <a
+            href="#/"
+            onClick={handleReloadToHome}
+            className="group flex items-center gap-3 select-none cursor-pointer"
+            title="라면의 계보 홈으로 (클릭 시 새로고침)"
+          >
+            {/* 라면 면발 그래픽 로고 */}
+            <RamenNoodleLogo />
+
+            <div className="flex flex-col">
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] tracking-widest font-black uppercase text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300/60">
+                  1963 — 2026 ARCHIVE
+                </span>
+                <a
+                  href="https://raspos.github.io/databrew/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="text-xs font-black text-stone-600 hover:text-rose-700 underline underline-offset-2 transition-colors"
+                  title="databrew 방문하기"
+                >
+                  © databrew
+                </a>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight font-serif mt-0.5 group-hover:text-rose-700 transition-colors flex items-center gap-1.5">
+                <span>라면의 계보</span>
+              </h1>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-black text-stone-950 tracking-tight font-serif mt-0.5 group-hover:text-rose-700 transition-colors">
-              라면의 계보
-            </h1>
-          </div>
-        </Link>
+          </a>
+        </div>
 
         {/* 4 Independent Navigation Tabs */}
         <nav className="flex items-center gap-1 sm:gap-2 overflow-x-auto pb-1 md:pb-0 text-xs sm:text-sm font-medium">
@@ -64,6 +163,11 @@ export function Header({ onOpenMethodology }: HeaderProps) {
                 key={item.to}
                 to={item.to}
                 end={item.end}
+                onClick={(e) => {
+                  if (item.to === '/' && (window.location.hash === '#/' || window.location.hash === '')) {
+                    handleReloadToHome(e);
+                  }
+                }}
                 className={({ isActive }) =>
                   `flex items-center gap-1.5 px-3.5 py-2 rounded-xl transition-all whitespace-nowrap cursor-pointer text-xs sm:text-sm font-bold ${
                     isActive

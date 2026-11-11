@@ -174,16 +174,65 @@ export function LineageTree({
         );
       }
       if (selectedBranch === 'RIVALRY') {
-        const hasRivalry = LINEAGE_EDGES.some(
+        const isRivalryNode = LINEAGE_EDGES.some(
           (e) =>
-            (e.fromId === n.id || e.toId === n.id) &&
-            (e.relationType === 'HISTORICAL_RIVALRY' || e.relationType === 'REVOLUTIONARY_SCHISM')
+            e.relationType === 'HISTORICAL_RIVALRY' &&
+            (e.fromId === n.id || e.toId === n.id)
         );
-        return hasRivalry || n.id === 'samyang-chicken-1963';
+        return isRivalryNode;
       }
       return true;
     });
   }, [selectedEpochId, selectedBranch]);
+
+  // Filter edges so when selecting tabs (국물파, 비국물파, 라이벌전), the lines disappear with the nodes!
+  const filteredEdges = useMemo(() => {
+    const visibleNodeIds = new Set(filteredNodes.map((n) => n.id));
+
+    return LINEAGE_EDGES.filter((edge) => {
+      // 1. Both endpoints MUST be currently visible
+      if (!visibleNodeIds.has(edge.fromId) || !visibleNodeIds.has(edge.toId)) {
+        return false;
+      }
+
+      // 2. In RIVALRY mode, show strictly rivalry edges
+      if (selectedBranch === 'RIVALRY') {
+        return edge.relationType === 'HISTORICAL_RIVALRY';
+      }
+
+      const isSoup = (f: string) =>
+        f === 'root-chicken' ||
+        f === 'spicy-beef' ||
+        f === 'extreme-spicy' ||
+        f === 'seafood-ocean' ||
+        f === 'bone-broth' ||
+        f === 'white-broth-rebel';
+
+      const isNonSoup = (f: string) =>
+        f === 'jjajang-chunjang' ||
+        f === 'bibim-cold' ||
+        f === 'fire-bokkeum' ||
+        f === 'cream-fusion';
+
+      // 3. In SOUP mode, ensure both endpoints are soup ramen
+      if (selectedBranch === 'SOUP') {
+        const fromNode = getNodeById(edge.fromId);
+        const toNode = getNodeById(edge.toId);
+        if (!fromNode || !toNode) return false;
+        return isSoup(fromNode.factionId) && isSoup(toNode.factionId);
+      }
+
+      // 4. In NON_SOUP mode, ensure both endpoints are non-soup ramen
+      if (selectedBranch === 'NON_SOUP') {
+        const fromNode = getNodeById(edge.fromId);
+        const toNode = getNodeById(edge.toId);
+        if (!fromNode || !toNode) return false;
+        return isNonSoup(fromNode.factionId) && isNonSoup(toNode.factionId);
+      }
+
+      return true;
+    });
+  }, [filteredNodes, selectedBranch]);
 
   // Render edge curve
   const renderEdgeSvgPath = (edge: LineageEdge) => {
@@ -477,7 +526,7 @@ export function LineageTree({
           </div>
 
           {HISTORICAL_EPOCHS.map((epoch) => {
-            const epochNodes = LINEAGE_LEGEND_NODES.filter((n) => n.epochId === epoch.id);
+            const epochNodes = filteredNodes.filter((n) => n.epochId === epoch.id);
             const epochMilestone = HISTORICAL_MILESTONES.find((m) => m.epochId === epoch.id);
 
             return (
@@ -761,7 +810,7 @@ export function LineageTree({
               style={{ overflow: 'visible' }}
             >
               {/* Render All 24 Edges */}
-              {LINEAGE_EDGES.map((edge) => renderEdgeSvgPath(edge))}
+              {filteredEdges.map((edge) => renderEdgeSvgPath(edge))}
             </svg>
 
             {/* Absolute Positioned 25 Legend Nodes (HTML Elements for Crisp Cards) */}
